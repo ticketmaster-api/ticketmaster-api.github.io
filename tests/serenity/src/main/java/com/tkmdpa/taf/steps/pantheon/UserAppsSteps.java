@@ -3,6 +3,7 @@ package com.tkmdpa.taf.steps.pantheon;
 import com.tkmdpa.taf.pages.pantheon.AddNewAppPage;
 import net.thucydides.core.annotations.Step;
 
+import static com.tkmdpa.taf.staticmethods.StaticMethods.checkIfWebElementExist;
 import static com.tkmdpa.taf.staticmethods.StaticMethods.reloadPage;
 import static junit.framework.TestCase.assertTrue;
 import static org.junit.Assert.assertEquals;
@@ -49,6 +50,7 @@ public class UserAppsSteps {
 
     @Step
     public void checkIfChangesAreApplied(String detailName, String value) {
+        checkIfWebElementExist(addNewAppPage.getAppNameInDetailsTab(detailName));
         assertEquals (addNewAppPage.getAppNameInDetailsTab(detailName).getText(), value);
     }
 

@@ -1,6 +1,8 @@
 package com.tkmdpa.taf.staticmethods;
 
 import net.serenitybdd.core.pages.WebElementFacade;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Map;
 import java.util.regex.Matcher;
@@ -10,6 +12,8 @@ import static java.util.Optional.ofNullable;
 import static net.thucydides.core.webdriver.ThucydidesWebDriverSupport.getDriver;
 
 public class StaticMethods {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(StaticMethods.class);
 
     public static WebElementFacade findWebElementByKey(String key, Map<String, WebElementFacade> webElementsList) {
         return ofNullable(webElementsList.get(key)).orElseThrow(
@@ -25,6 +29,7 @@ public class StaticMethods {
         try {
             Thread.sleep(sec);
         } catch (InterruptedException ex) {
+            LOGGER.info(String.valueOf(ex));
             Thread.currentThread().interrupt();
         }
     }
