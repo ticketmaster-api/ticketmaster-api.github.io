@@ -499,12 +499,6 @@ class TicketmasterMapWidget {
         });
 
         let events = this.eventsRoot.getElementsByClassName("event-wrapper");
-        for (let i in events) {
-            if (events.hasOwnProperty(i) && events[i].style !== undefined) {
-                events[i].style.width = `${this.config.width - this.borderSize * 2}px`;
-                events[i].style.height = `${this.widgetContentHeight - this.borderSize * 2}px`;
-            }
-        }
         this.useGeolocation();
 
     }
@@ -535,10 +529,6 @@ class TicketmasterMapWidget {
                 style.setAttribute("id",`widget-theme-${this.widget.config.theme}`);
                 style.textContent = this.responseText;
                 document.getElementsByTagName("head")[0].appendChild(style);
-            }
-            else {
-                //alert("theme wasn't loaded");
-                // console.log("theme wasn't loaded");
             }
         }
     }
