@@ -3,7 +3,8 @@
  */
 var $contactForm = $('.js_contact_form'),
 	formKey = simpleFormService.checkKey('d9878ccc8e22c7253d057015617f82cd'/*production key*/,null)[0],
-	formKeyCC = simpleFormService.checkKey(null,'0d9da5473940d4380dc3a16fb47a2c55'/*CC production key*/)[1],
+	/* formKeyCC = simpleFormService.checkKey(null,'0d9da5473940d4380dc3a16fb47a2c55'/*CC production key*/)[1], */
+	formKeyCC = simpleFormService.checkKey(null,'f4a6500b8d01c981db58b4b859b78224'/*CC production key*/)[1],
 	$textAreaDescription = $('#message-detail-text');
 
 var $modalAlert = $('#contact-alert-modal'),

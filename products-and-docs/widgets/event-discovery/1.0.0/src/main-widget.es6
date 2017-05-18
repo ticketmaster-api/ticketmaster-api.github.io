@@ -1554,7 +1554,6 @@ let widgetsEventDiscovery = [];
 ga('create', 'UA-78315612-1', 'auto');
 ga('send', 'pageview');
 
-
 if(typeof module !== "undefined") {
   module.exports = { widgetsEventDiscovery, TicketmasterEventDiscoveryWidget };
 }
