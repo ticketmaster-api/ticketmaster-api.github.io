@@ -2,10 +2,13 @@ package com.tkmdpa.taf.steps.pantheon;
 
 import com.tkmdpa.taf.pages.pantheon.AddNewAppPage;
 import net.thucydides.core.annotations.Step;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import static com.tkmdpa.taf.staticmethods.StaticMethods.checkIfWebElementExist;
 import static com.tkmdpa.taf.staticmethods.StaticMethods.reloadPage;
 import static junit.framework.TestCase.assertTrue;
+import static net.thucydides.core.webdriver.ThucydidesWebDriverSupport.getDriver;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 
@@ -66,6 +69,8 @@ public class UserAppsSteps {
 
     @Step
     public void checkIfMessageIsDisplayed(String errorMessage) {
+        WebDriverWait wait = new WebDriverWait(getDriver(), 15);
+        wait.until(ExpectedConditions.textToBePresentInElement(addNewAppPage.getPopUpMessage(), errorMessage));
         assertEquals(addNewAppPage.getPopUpMessage().getText(), errorMessage);
     }
 

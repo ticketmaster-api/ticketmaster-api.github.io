@@ -23,16 +23,16 @@ public class FeedbackWidgetImpl extends AncestorWidgetImpl implements FeedbackWi
     @FindBy(xpath = ".//label[@for='description']")
     private WebElementFacade feedbackDescriptionLabel;
 
-    @FindBy(xpath = ".//input[@id='name']")
+    @FindBy(id = "name")
     private WebElementFacade feedbackNameTextField;
 
-    @FindBy(xpath = ".//input[@id='email']")
+    @FindBy(id = "email")
     private WebElementFacade feedbackEmailTextField;
 
-    @FindBy(xpath = ".//select[@id='subject']")
+    @FindBy(id = "subject")
     private WebElementFacade feedbackSubjectDropdown;
 
-    @FindBy(xpath = ".//textarea[@id='description']")
+    @FindBy(id = "description")
     private WebElementFacade feedbackDescriptionTextField;
 
     @FindBy(id = "js_feedback_btn")
