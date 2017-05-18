@@ -8,8 +8,6 @@ import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.util.logging.Logger;
-
 public class AddNewAppPage extends AncestorPage {
 
     @FindBy(xpath = "//input[@name='human']")
