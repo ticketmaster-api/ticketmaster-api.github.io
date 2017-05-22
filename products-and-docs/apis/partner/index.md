@@ -43,7 +43,7 @@ All connections must be made over SSL using https.
 Here you can test API transactions for different scenarios like credit card and invoice payment, captcha, etc.  The following event ids are available for use:
 
 
-    * 000051048D991EE7: Use this event ID for production environment testing
+    * 2000527EE48A9334: Use this event ID for production environment testing
 
 
 ### Best Practices
@@ -958,7 +958,7 @@ This is only available for partners signed up for affiliate tracking through Imp
 {: .reqres}
 
 {% highlight bash %}
-https://app.ticketmaster.com/partners/v1/tracking?event_id=000051048D991EE7&apikey=GkB8Z037ZfqbLCNtZViAgrEegbsrZ6Ne
+https://app.ticketmaster.com/partners/v1/tracking?event_id=2000527EE48A9334&apikey=GkB8Z037ZfqbLCNtZViAgrEegbsrZ6Ne
 {% endhighlight %}
 
 {% highlight js %}
@@ -1724,7 +1724,7 @@ Encrypt a credit card and cvv number using the following steps:
 </ol>
 
 
-Sample credit-card information for use in the production environment for event id 000051048D991EE7 (see code examples below):
+Sample credit-card information for use in the production environment for event id 2000527EE48A9334 (see code examples below):
 
 <ul>
     <li>payment.card.issuer=DISCOVER</li>
