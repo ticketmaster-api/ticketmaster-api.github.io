@@ -2282,10 +2282,6 @@ Status 200
     "customer_email": "joe.qa@ticketmaster.com",
     "tickets": [
         {
-            "barcode_display_date": {
-                "format": "datetime",
-                "value": "2015-12-09T23:30:37Z"
-            },
             "barcode_id": "8819624561542398",
             "charges": [
                 {
@@ -2339,9 +2335,6 @@ Status 200
             "event_code": "EGOLD",
             "event_host": "PHX",
             "event_id": "3F004EC9D1EBBC76",
-            "event_name": "Seattle Sounders FC vs. San Jose Earthquakes",
-            "face_value": 66.0,
-            "facility_charge": 0.0,
             "is_ga": false,
             "is_national_vip": false,
             "order_date": "2015-12-10",
@@ -2351,21 +2344,6 @@ Status 200
             "seat_id": "252313614",
             "seat_name": "16",
             "section": "CLB237",
-            "service_charge": 0.0,
-            "tax": 0.0,
-            "text": [
-                "",
-                "SEATTLE SOUNDERS FC",
-                "VS",
-                "SAN JOSE EARTHQUAKES",
-                "CENTURYLINK FIELD",
-                "SAT AUG 20 2016 7:00PM"
-            ],
-            "ticket_type_description": {
-                "description": "FULL PRICE - UNDER 3 ON LAP",
-                "id": "000000000001"
-            },
-            "transfer_eligibility": "available",
             "voided": false
         }
     ],
