@@ -79,7 +79,7 @@
           "type" : "string",
           "default" : "no",
           "pattern" : "^\\s*|yes|no|only$",
-          "enum" : [ "yes", " no", " only" ],
+          "enum" : [ "yes", "no", "only" ],
           "x-example" : ""
         }, {
           "name" : "page",
@@ -221,7 +221,7 @@
           "type" : "string",
           "default" : "no",
           "pattern" : "^\\s*|yes|no|only$",
-          "enum" : [ "yes", " no", " only" ],
+          "enum" : [ "yes", "no", "only" ],
           "x-example" : ""
         }, {
           "name" : "page",
@@ -709,7 +709,7 @@
           "type" : "string",
           "default" : "no",
           "pattern" : "^\\s*|yes|no|only$",
-          "enum" : [ "yes", " no", " only" ],
+          "enum" : [ "yes", "no", "only" ],
           "x-example" : ""
         }, {
           "name" : "page",
@@ -1112,7 +1112,7 @@
           "type" : "string",
           "default" : "no",
           "pattern" : "^\\s*|yes|no|only$",
-          "enum" : [ "yes", " no", " only" ],
+          "enum" : [ "yes", "no", "only" ],
           "x-example" : ""
         }, {
           "name" : "page",
