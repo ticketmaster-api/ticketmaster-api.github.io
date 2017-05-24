@@ -160,8 +160,8 @@ class TicketmasterEventDiscoveryWidget {
       attrs.endDateTime = period[1];
     }
 
-    if (WidgetRoot.getAttribute("w-latlong") != null) {
-        attrs.latlong = WidgetRoot.getAttribute("w-latlong").replace(/\s+/g, '');
+    if (this.widgetRoot.getAttribute("w-latlong") != null) {
+        attrs.latlong = this.widgetRoot.getAttribute("w-latlong").replace(/\s+/g, '');
     }
 
     if (attrs.latlong == ',') {

@@ -4,7 +4,7 @@ describe("EDWWidget", () => {
 		hideMessageDelay;
 	var setFixture = () => {
 		document.body.innerHTML =
-			'<head></head><div w-type="event-discovery" w-tmapikey="y61xDc5xqUSIOz4ISjgCe5E9Lh0hfUH1" w-googleapikey="AIzaSyBQrJ5ECXDaXVlICIdUBOe8impKIGHDzdA" w-keyword="" w-theme="simple" w-colorscheme="light" w-width="350" w-height="600" w-size="25" w-border="0" w-borderradius="4" w-postalcode="" w-radius="" w-period="week" w-layout="vertical" w-attractionid="" w-promoterid="" w-venueid="" w-affiliateid="" w-segmentid="" w-proportion="custom" w-titlelink="off" w-countrycode="US" w-source="" w-latlong=""><div class="event-logo centered-logo"></div></div>';
+			'<head></head><div w-type="event-discovery" w-tmapikey="y61xDc5xqUSIOz4ISjgCe5E9Lh0hfUH1" w-googleapikey="AIzaSyBQrJ5ECXDaXVlICIdUBOe8impKIGHDzdA" w-keyword="" w-theme="simple" w-colorscheme="light" w-width="350" w-height="600" w-size="25" w-border="0" w-borderradius="4" w-postalcode="" w-radius="" w-period="week" w-layout="vertical" w-attractionid="" w-promoterid="" w-venueid="" w-affiliateid="" w-segmentid="" w-proportion="custom" w-titlelink="off" w-countrycode="US" w-source="" w-latlong=","><div class="event-logo centered-logo"></div><div class="event-date centered-logo"></div></div>';
 	};
 	beforeAll(() => {
 		window.__VERSION__ = 'mockedVersion';
@@ -122,14 +122,6 @@ describe("EDWWidget", () => {
 			tmapikey: '',
 		};
 		expect(widget.eventReqAttrs).toBeDefined();
-		widget.attrs = {
-			latlong: ','
-		};
-		expect(widget.eventReqAttrs).toBeDefined();
-		widget.attrs = {
-			latlong: null
-		};
-		expect(widget.eventReqAttrs).toBeDefined();
 	});
 
 	it('#getCoordinates should be Defined', () => {
@@ -141,7 +133,7 @@ describe("EDWWidget", () => {
 		widget.onLoadCoordinate = function() {return true}
 		widget.getCoordinates(cb);
 		expect(typeof(widget.getCoordinates(cb))).toBeDefined();
-		let responseTxt = '[{"id":"vv1k0Zf0C6G7Dsmj","status":"OK","url":"http://www.ticketmaster.com/event/0900524387EF1B9C","name":"Bryan Adams","date":{"day":"2017-05-20","time":"18:00:00"},"address":{"line1":"2700 N. Vermont Ave","name":"Greek Theatre"},"location":{"lat":34.11948811,"lng":-118.29629093},"img":"https://s1.ticketm.net/dam/a/6b4/91e51635-4d17-42cb-9495-6f6702a546b4_288631_RECOMENDATION_16_9.jpg"},{"id":"vvG1iZfGxi-dEf","url":"http://www.ticketmaster.com/event/0B0050C8AC8439D4","name":"The Bodyguard (Touring)","date":{"day":"2017-05-17","time":"20:00:00"},"address":{"line1":"6233 Hollywood Blvd.","name":"Hollywood Pantages Theatre"},"location":{"lat":34.10200961,"lng":-118.32586552},"img":"https://s1.ticketm.net/dam/a/fd9/e1435468-e4f2-4c23-b7b8-61728c267fd9_241751_RECOMENDATION_16_9.jpg"}]';
+		var responseTxt = '[{"id":"vv1k0Zf0C6G7Dsmj", "url":"http://www.ticketmaster.com/event/0900524387EF1B9C","name":"Bryan Adams","date":{"day":"2017-05-20","time":"18:00:00"},"address":{"line1":"2700 N. Vermont Ave","name":"Greek Theatre"},"location":{"lat":34.11948811,"lng":-118.29629093},"img":"https://s1.ticketm.net/dam/a/6b4/91e51635-4d17-42cb-9495-6f6702a546b4_288631_RECOMENDATION_16_9.jpg"},{"id":"vvG1iZfGxi-dEf","url":"http://www.ticketmaster.com/event/0B0050C8AC8439D4","name":"The Bodyguard (Touring)","date":{"day":"2017-05-17","time":"20:00:00"},"address":{"line1":"6233 Hollywood Blvd.","name":"Hollywood Pantages Theatre"},"location":{"lat":34.10200961,"lng":-118.32586552},"img":"https://s1.ticketm.net/dam/a/fd9/e1435468-e4f2-4c23-b7b8-61728c267fd9_241751_RECOMENDATION_16_9.jpg"}]';
 		widget.getCoordinates.bind({
 			makeRequest:function(callback){
 				callback.bind({
@@ -149,26 +141,35 @@ describe("EDWWidget", () => {
 					latlong: '34.0390107, -118.2672801',
 					readyState:XMLHttpRequest.DONE,
 					responseText:responseTxt,
+					googleapikey: 'kjhbg*&TB9ybKJjbhPJH',
+					country: 'UK',
 				})()
 			},
 			config: {
-				postalcode: '90015'
+				postalcode: '90015',
+				googleapikey: 'kjhbg*&TB9ybKJjbhPJH',
+				country: 'UK',
 			},
 			widget:{
 				config:{
 					theme:'simple',
 					latlong: '34.0390107, -118.2672801',
-					postalcode: '90015'
+					postalcode: '90015',
+					googleapikey: 'kjhbg*&TB9ybKJjbhPJH',
+					country: 'UK',
 				},
-				latlong: '34.0390107, -118.2672801'
+				latlong: '34.0390107, -118.2672801',
+				googleapikey: 'kjhbg*&TB9ybKJjbhPJH',
+				country: 'UK',
 			},
 			latlong: '34.0390107, -118.2672801',
+			googleapikey: 'kjhbg*&TB9ybKJjbhPJH',
+			country: 'UK',
 			isConfigAttrExistAndNotEmpty:function(){return true},
 			readyState:XMLHttpRequest.DONE,
 			responseText:responseTxt,
 			responceStatus:'OK',
 			postalcode: '90015',
-			status:200
 		})(function(){});
 	});
 
@@ -209,10 +210,14 @@ describe("EDWWidget", () => {
 	});
 
 	it('#addBuyButton should be defined', () => {
-		// widget.isListView = function() {return true}
-		// widget.isUniverseUrl = function() {return true}
-		// widget.isAllowedTMEvent = function() {return true}
+		widget.config.theme = 'listview';
+		spyOn(widget,"isUniverseUrl").and.returnValue(true);
+		spyOn(widget,"isAllowedTMEvent").and.returnValue(true);
 		let _urlValid = undefined;
+		widget.addBuyButton(document.querySelector('.events-root-container'), 'www.ticketmaster.com');
+		expect(typeof(widget.addBuyButton)).toBe('function');
+		widget.config.theme = 'listviewthumbnails';
+		widget.isUniverseUrl('universe.com');
 		widget.addBuyButton(document.querySelector('.events-root-container'), 'www.ticketmaster.com');
 		expect(typeof(widget.addBuyButton)).toBe('function');
 	});
@@ -222,6 +227,9 @@ describe("EDWWidget", () => {
 	});
 
 	it('#isAllowedTMEvent should be defined', () => {
+		widget.isAllowedTMEvent('livenation.com');
+		expect(widget.isAllowedTMEvent('livenation.com')).toBeFalsy();
+		widget.isAllowedTMEvent('ticketmaster.com');
 		expect(widget.isAllowedTMEvent('livenation.com')).toBeFalsy();
 	});
 
@@ -232,6 +240,7 @@ describe("EDWWidget", () => {
 
 	it('#showMessage should be defined', () => {
 		let hideMessageWithoutDelay = function() {return true};
+		widget.massageDialog = widget.eventsRoot;
 		widget.messageTimeout = function() {return true};
 		widget.showMessage('Test message', hideMessageWithoutDelay);
 		expect(typeof(widget.showMessage)).toBe('function');
@@ -240,6 +249,11 @@ describe("EDWWidget", () => {
 	it('#hideMessageWithDelay should be defined', () => {
 		widget.hideMessageWithDelay(500);
 		expect(typeof(widget.hideMessageWithDelay)).toBe('function');
+	});
+
+	it('#clearEvents should be defined', () => {
+		widget.clearEvents;
+		expect(typeof(widget.clearEvents)).toBe('function');
 	});
 
 	it('#hideMessage should be defined', () => {
@@ -378,15 +392,51 @@ describe("EDWWidget", () => {
 	it('#initSlider should be defined', () => {
 		widget.initSlider();
 		widget.config = {
-			layoyt: 'fullwidth'
+			layout: 'fullwidth'
 		}
 		widget.initSlider();
 		expect(typeof(widget.initSlider)).toBe('function');
+		widget.prevEventX.click();
 	});
 
 	it('#initSlider should be defined', () => {
 		widget.initFullWidth();
 		expect(typeof(widget.initFullWidth)).toBe('function');
+	});
+
+	it('#publishEventsGroup should be defined', () => {
+		widget.publishEventsGroup;
+		expect(typeof(widget.publishEventsGroup)).toBe('function');
+	});
+
+	it('#addScroll should be defined', () => {
+		widget.addScroll;
+		expect(typeof(widget.addScroll)).toBe('function');
+	});
+
+	it('#initPretendedLink should be defined', () => {
+		widget.initPretendedLink(widget.widgetRoot, 'http://ticketmaster.com');
+		expect(typeof(widget.initPretendedLink)).toBe('function');
+	});
+
+	it('#createBackgroundImage should be defined', () => {
+		widget.createBackgroundImage(widget.widgetRoot, 'http://ticketmaster.com');
+		expect(typeof(widget.createBackgroundImage)).toBe('function');
+	});
+
+	it('#addBarcode should be defined', () => {
+		widget.addBarcode(widget.widgetRoot, 'http://ticketmaster.com');
+		expect(typeof(widget.addBarcode)).toBe('function');
+	});
+
+	it('#groupEventsByName should be defined', () => {
+		widget.groupEventsByName;
+		expect(typeof(widget.groupEventsByName)).toBe('function');
+	});
+
+	it('#styleLoadingHandler should be defined', () => {
+		widget.styleLoadingHandler.bind({widget:{config:{theme:'simple'}},readyState:XMLHttpRequest.DONE, status:200})();
+		expect(typeof(widget.styleLoadingHandler)).toBe('function');
 	});
 
 	it('#formatDate should return result', function(){
@@ -413,11 +463,17 @@ describe("EDWWidget", () => {
 	});
 
 	it('#clear should be defined', () => {
-		widget.eventsRootContainer = document.querySelector('.events-root-container');
-		widget.eventsRoot = document.querySelector('.events-root-container');
+		// widget.eventsRootContainer = document.querySelector('.events-root-container');
+		// widget.eventsRoot = document.querySelector('.events-root-container');
 		let modificator = document.createElement("div");
 		modificator.classList.add = "modificator";
-		widget.eventsRoot.appendChild(modificator);
+		widget.widgetRoot.appendChild(modificator);
+		modificator = document.createElement("div");
+		modificator.classList.add = "modificator";
+		widget.widgetRoot.appendChild(modificator);
+		modificator = document.createElement("div");
+		modificator.classList.add = "modificator";
+		widget.widgetRoot.appendChild(modificator);
 		widget.clear();
 		expect(typeof(widget.clear)).toBe('function');
 	});
@@ -435,6 +491,11 @@ describe("EDWWidget", () => {
 		}
 		widget.update();
 		expect(typeof(widget.update)).toBe('function');
+	});
+
+	it('#createDOMItem should be defined', () => {
+		// widget.createDOMItem(widget.eventsRoot);
+		// expect(typeof(widget.createDOMItem)).toBe('function');
 	});
 
 	it('#parseEvent should return currentEvent', () => {
