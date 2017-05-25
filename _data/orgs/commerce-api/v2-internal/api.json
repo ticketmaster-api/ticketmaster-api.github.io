@@ -825,7 +825,12 @@
       }
     },
     "AttributeRefAttributes": {
-      "type": "object"
+      "type": "object",
+      "properties": {
+        "description": {
+          "type": "string"
+        }
+      }
     },
     "AttributeRefRelationships": {
       "type": "object"
@@ -893,6 +898,14 @@
           "type": "string"
         },
         "multiples": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "maxAccessibleSeats": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "maxCompanionSeatsPerAccessibleSeat": {
           "type": "integer",
           "format": "int32"
         }
@@ -1110,6 +1123,10 @@
       "properties": {
         "eventMapping": {
           "$ref": "#/definitions/EventMappingView"
+        },
+        "accessibleSeatingEnabled": {
+          "type": "boolean",
+          "default": false
         }
       }
     },
