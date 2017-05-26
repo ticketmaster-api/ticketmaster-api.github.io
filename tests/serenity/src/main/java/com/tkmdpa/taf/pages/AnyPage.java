@@ -1,5 +1,6 @@
 package com.tkmdpa.taf.pages;
 
+import com.tkmdpa.taf.staticmethods.StaticMethods;
 import net.serenitybdd.core.annotations.findby.By;
 import net.serenitybdd.core.annotations.findby.FindBy;
 import net.serenitybdd.core.pages.WebElementFacade;
@@ -37,4 +38,13 @@ public class AnyPage extends AncestorPage {
     public WebElementFacade getLogOutLink() {
         return logOutLink;
     }
+
+    public void waitForPageReadyStateComplete() {
+        StaticMethods.waitForPageReadyStateComplete(this);
+    }
+
+    public void waitForAjaxToComplete() {
+        StaticMethods.waitForAjaxToComplete(this);
+    }
+
 }

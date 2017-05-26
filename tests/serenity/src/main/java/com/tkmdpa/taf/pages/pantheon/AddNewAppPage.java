@@ -83,16 +83,12 @@ public class AddNewAppPage extends AncestorPage {
         deleteApp.click();
     }
 
-    public boolean checkIsPresent() {
+    public boolean check_if_app_is_present() {
         try { return appLink.isDisplayed();
         } catch (NoSuchElementException e) {
             LOGGER.error(String.valueOf(e));
             return false;
         }
-    }
-
-    public WebElementFacade getNoApplicationText() {
-        return noAppsMessage;
     }
 
 }

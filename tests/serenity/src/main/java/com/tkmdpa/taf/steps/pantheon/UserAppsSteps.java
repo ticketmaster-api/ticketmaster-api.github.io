@@ -1,20 +1,20 @@
 package com.tkmdpa.taf.steps.pantheon;
 
+import com.tkmdpa.taf.pages.AnyPage;
 import com.tkmdpa.taf.pages.pantheon.AddNewAppPage;
 import net.thucydides.core.annotations.Step;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 import static com.tkmdpa.taf.staticmethods.StaticMethods.checkIfWebElementExist;
 import static com.tkmdpa.taf.staticmethods.StaticMethods.reloadPage;
 import static junit.framework.TestCase.assertTrue;
-import static net.thucydides.core.webdriver.ThucydidesWebDriverSupport.getDriver;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 
 public class UserAppsSteps {
 
     AddNewAppPage addNewAppPage;
+
+    AnyPage anyPage;
 
     @Step
     public void checkGeneralPageElements(){
@@ -64,13 +64,13 @@ public class UserAppsSteps {
 
     @Step
     public void checkIfTheAppIsPresent() {
+        anyPage.waitForAjaxToComplete();
         assertTrue(addNewAppPage.getAppName().isDisplayed());
     }
 
     @Step
     public void checkIfMessageIsDisplayed(String errorMessage) {
-        WebDriverWait wait = new WebDriverWait(getDriver(), 15);
-        wait.until(ExpectedConditions.textToBePresentInElement(addNewAppPage.getPopUpMessage(), errorMessage));
+        anyPage.waitForPageReadyStateComplete();
         assertEquals(addNewAppPage.getPopUpMessage().getText(), errorMessage);
     }
 
@@ -82,8 +82,8 @@ public class UserAppsSteps {
     @Step
     public void checkIsAppNotExists() {
         reloadPage();
-        assertFalse(addNewAppPage.checkIsPresent());
-        addNewAppPage.getNoApplicationText().shouldBeVisible();
+        anyPage.waitForPageReadyStateComplete();
+        assertFalse(addNewAppPage.check_if_app_is_present());
     }
 
 }
