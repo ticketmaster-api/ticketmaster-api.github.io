@@ -111,7 +111,6 @@ public abstract class AncestorWidgetImpl extends WidgetObjectImpl implements Anc
         return apiKeyTextField.getValue();
     }
 
-    //Setters
     @Override
     public void setApiKeyValue(String apiKey) {
         apiKeyTextField.clear();

@@ -7,8 +7,6 @@ import org.jbehave.core.annotations.Given;
 import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
 
-import static com.tkmdpa.taf.staticmethods.StaticMethods.waitForSomeActionHappened;
-
 public class Support_ContactUsDefinition {
 
     @Steps
@@ -34,7 +32,7 @@ public class Support_ContactUsDefinition {
 
     @When("description is populated with $number symbols text on Contact Us Page")
     public void descriptionIsPopukatedWith(int number){
-        waitForSomeActionHappened(500);
+        anyPageSteps.waitForPageReadyStateComplete();
         contactUsPage.populateDescription(number);
     }
 

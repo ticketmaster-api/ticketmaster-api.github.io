@@ -1,20 +1,19 @@
 package com.tkmdpa.taf.steps.products_and_docs;
 
+import com.tkmdpa.taf.pages.AnyPage;
 import com.tkmdpa.taf.pages.site.products_and_docs.PD_Widget_EventDiscoveryPage;
 import net.thucydides.core.annotations.Step;
 import org.junit.Assert;
 
-import static com.tkmdpa.taf.staticmethods.StaticMethods.waitForSomeActionHappened;
 import static net.serenitybdd.core.Serenity.getCurrentSession;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 public class PD_Widget_EventDiscoverySteps extends PD_CommonSteps {
 
-    //Pages
     PD_Widget_EventDiscoveryPage eventDiscoveryWidgetPage;
+    AnyPage anyPage;
 
-    //Steps
     @Step
     public void openPage() {
         eventDiscoveryWidgetPage.open();
@@ -36,7 +35,7 @@ public class PD_Widget_EventDiscoverySteps extends PD_CommonSteps {
             assertEquals(eventDiscoveryWidgetPage.getEventDiscoveryWidget().getApiKeyValue(), DEFAULTKEY);
         }
         else {
-            waitForSomeActionHappened(50);
+            anyPage.waitForAjaxToComplete();
             assertEquals(eventDiscoveryWidgetPage.getEventDiscoveryWidget().getApiKeyValue(), apikey);
         }
     }
@@ -97,7 +96,6 @@ public class PD_Widget_EventDiscoverySteps extends PD_CommonSteps {
         Assert.assertEquals("The Postal Code actual result does not equals expected result", getCurrentSession().get("postalCodeApi"), eventDiscoveryWidgetPage.getEventDiscoveryWidget().getPostalCodeApiValue());
         Assert.assertEquals("The Attraction Id actual result does not equals expected result", getCurrentSession().get("attractionId"), eventDiscoveryWidgetPage.getEventDiscoveryWidget().getAttractionIdValue());
         Assert.assertEquals("The Venue Id actual result does not equals expected result", getCurrentSession().get("venueId"), eventDiscoveryWidgetPage.getEventDiscoveryWidget().getVenueIdValue());
-//        Assert.assertEquals("The Affiliate Id actual result does not equals expected result", getCurrentSession().get("affiliateId"), eventDiscoveryWidgetPage.getEventDiscoveryWidget().getAffiliateIdValue());
         Assert.assertEquals("The Promoter Id actual result does not equals expected result", getCurrentSession().get("promoterId"), eventDiscoveryWidgetPage.getEventDiscoveryWidget().getPromoterIdValue());
         Assert.assertEquals("The City actual result does not equals expected result", getCurrentSession().get("city"), eventDiscoveryWidgetPage.getEventDiscoveryWidget().getCityValue());
         Assert.assertEquals("The Country Code actual result does not equals expected result", getCurrentSession().get("countryCode"), eventDiscoveryWidgetPage.getEventDiscoveryWidget().getCountryCodeValue());

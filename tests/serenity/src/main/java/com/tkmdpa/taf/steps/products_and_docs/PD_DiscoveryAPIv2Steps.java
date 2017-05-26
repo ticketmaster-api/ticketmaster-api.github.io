@@ -1,5 +1,6 @@
 package com.tkmdpa.taf.steps.products_and_docs;
 
+import com.tkmdpa.taf.pages.AnyPage;
 import com.tkmdpa.taf.pages.site.products_and_docs.PD_DiscoveryAPIv2Page;
 import net.serenitybdd.core.pages.WebElementFacade;
 import net.thucydides.core.annotations.Step;
@@ -14,6 +15,7 @@ import static org.junit.Assert.assertTrue;
 public class PD_DiscoveryAPIv2Steps {
 
     PD_DiscoveryAPIv2Page discoveryAPIv2Page;
+    AnyPage anyPage;
 
     @Step
     public void openPage() {
@@ -52,7 +54,7 @@ public class PD_DiscoveryAPIv2Steps {
 
         for (Map.Entry<String, WebElementFacade> entry : discoveryAPIv2Page.getAPIKeyHiddenPlaceHoldersList().entrySet()){
             WebElementFacade value = entry.getValue();
-            waitForSomeActionHappened(50);
+            anyPage.waitForPageReadyStateComplete();
             assertTrue(checkIfWebElementExist(value).getAttribute("textContent").contains(apikey));
         }
     }
