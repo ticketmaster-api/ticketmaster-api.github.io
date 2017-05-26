@@ -54,6 +54,7 @@ public class AnyPageSteps extends ScenarioSteps {
 
     @Step
     public void checkErrorEmailSentNotificationIsShown() {
+        waitForPageReadyStateComplete();
         waitForAjaxToComplete();
         checkIfWebElementExist(anyPage.getErrorMessage());
         assertTrue("Error message is absent", anyPage.getErrorMessage().getWrappedElement().getText().contains("Error"));
