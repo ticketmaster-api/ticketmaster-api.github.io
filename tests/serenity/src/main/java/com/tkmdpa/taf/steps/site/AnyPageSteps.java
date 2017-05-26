@@ -2,13 +2,14 @@ package com.tkmdpa.taf.steps.site;
 
 import com.tkmdpa.taf.pages.AnyPage;
 import net.thucydides.core.annotations.Step;
+import net.thucydides.core.steps.ScenarioSteps;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import static com.tkmdpa.taf.staticmethods.StaticMethods.checkIfWebElementExist;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-public class AnyPageSteps {
+public class AnyPageSteps extends ScenarioSteps {
 
     AnyPage anyPage;
 
@@ -23,6 +24,14 @@ public class AnyPageSteps {
         }
 
         anyPage.keyPageElementIsVisible(xpath);
+    }
+
+    public void waitForPageReadyStateComplete() {
+        anyPage.waitForPageReadyStateComplete();
+    }
+
+    public void waitForAjaxToComplete() {
+        anyPage.waitForAjaxToComplete();
     }
 
     @Step
@@ -45,6 +54,7 @@ public class AnyPageSteps {
 
     @Step
     public void checkErrorEmailSentNotificationIsShown() {
+        waitForAjaxToComplete();
         checkIfWebElementExist(anyPage.getErrorMessage());
         assertTrue("Error message is absent", anyPage.getErrorMessage().getWrappedElement().getText().contains("Error"));
     }
