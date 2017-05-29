@@ -1,15 +1,16 @@
 package com.tkmdpa.taf.steps.products_and_docs;
 
+import com.tkmdpa.taf.pages.AnyPage;
 import com.tkmdpa.taf.pages.site.products_and_docs.PD_Widget_CalendarPage;
 import net.serenitybdd.core.Serenity;
 import net.thucydides.core.annotations.Step;
 
-import static com.tkmdpa.taf.staticmethods.StaticMethods.waitForSomeActionHappened;
 import static org.junit.Assert.*;
 
 public class PD_Widget_CalendarSteps extends PD_CommonSteps {
 
     PD_Widget_CalendarPage calendarWidgetPage;
+    AnyPage anyPage;
 
     @Step
     public void openPage() {
@@ -32,7 +33,7 @@ public class PD_Widget_CalendarSteps extends PD_CommonSteps {
             assertEquals(calendarWidgetPage.getCalendarWidget().getAPIKeyTextFieldValue(), DEFAULTKEY);
         }
         else {
-            waitForSomeActionHappened(50);
+            anyPage.waitForPageReadyStateComplete();
             assertEquals(calendarWidgetPage.getCalendarWidget().getAPIKeyTextFieldValue(), apikey);
         }
     }
@@ -104,7 +105,8 @@ public class PD_Widget_CalendarSteps extends PD_CommonSteps {
     public void resetForm(){
         ancestorPage.scrollToElement(calendarWidgetPage.getCalendarWidget().getResetButton());
         calendarWidgetPage.getCalendarWidget().clickResetButton();
-        waitForSomeActionHappened(500);
+        anyPage.waitForAjaxToComplete();
+        anyPage.waitForPageReadyStateComplete();
     }
 
     @Step

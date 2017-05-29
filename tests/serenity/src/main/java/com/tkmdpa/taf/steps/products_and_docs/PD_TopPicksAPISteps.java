@@ -1,19 +1,24 @@
 package com.tkmdpa.taf.steps.products_and_docs;
 
+import com.tkmdpa.taf.pages.AnyPage;
 import com.tkmdpa.taf.pages.site.products_and_docs.PD_TopPicksAPIPage;
 import net.serenitybdd.core.pages.WebElementFacade;
 import net.thucydides.core.annotations.Step;
+import net.thucydides.core.annotations.Steps;
 
 import java.util.Map;
 
 import static com.tkmdpa.taf.staticmethods.StaticMethods.checkIfWebElementExist;
-import static com.tkmdpa.taf.staticmethods.StaticMethods.waitForSomeActionHappened;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 
 public class PD_TopPicksAPISteps {
 
+    @Steps
     PD_TopPicksAPIPage topPicksAPIPage;
+
+    @Steps
+    AnyPage anyPage;
 
     @Step
     public void openPage() {
@@ -39,7 +44,7 @@ public class PD_TopPicksAPISteps {
     public void checkAPIKeyPlaceholders(String apikey) {
         for (Map.Entry<String, WebElementFacade> entry : topPicksAPIPage.getAPIKeyPlaceHoldersList().entrySet()){
             WebElementFacade value = entry.getValue();
-            waitForSomeActionHappened(50);
+            anyPage.waitForPageReadyStateComplete();
             assertFalse(checkIfWebElementExist(value).getAttribute("textContent").contains(apikey));
         }
     }
