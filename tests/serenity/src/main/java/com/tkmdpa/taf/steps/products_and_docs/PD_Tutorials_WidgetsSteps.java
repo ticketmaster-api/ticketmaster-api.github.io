@@ -11,10 +11,7 @@ import static org.junit.Assert.*;
 
 public class PD_Tutorials_WidgetsSteps {
 
-    @Steps
     PD_Tutorials_WidgetsPage tutorialsWidgetsPage;
-
-    @Steps
     AnyPage anyPage;
 
     @Step
@@ -41,7 +38,6 @@ public class PD_Tutorials_WidgetsSteps {
 
     @Step
     public void checkIfWidgetIsNotShown() {
-//        waitForSomeActionHappened(500);
         anyPage.waitForPageReadyStateComplete();
         anyPage.waitForAjaxToComplete();
         assertFalse(tutorialsWidgetsPage.getFeedbackWidget().isCurrentlyVisible());
@@ -60,8 +56,8 @@ public class PD_Tutorials_WidgetsSteps {
     @Step
     public void clickCloseFeedbackWidgetButton() {
         tutorialsWidgetsPage.getFeedbackWidget().getCloseButton().click();
-        anyPage.waitForAjaxToComplete();
         anyPage.waitForPageReadyStateComplete();
+        anyPage.waitForAjaxToComplete();
     }
 
     @Step

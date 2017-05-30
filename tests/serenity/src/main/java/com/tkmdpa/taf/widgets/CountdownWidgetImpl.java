@@ -68,7 +68,7 @@ public class CountdownWidgetImpl extends AncestorWidgetImpl implements Countdown
     @FindBy(xpath = "//input[@id='keyword']")
     private WebElementFacade keywordField;
 
-    @FindBy(xpath = "//ul[@id='js_lazy-sel_list']/li[1]//button")
+    @FindBy(xpath = "//ul[@id='js_lazy-sel_list']/li[2]//button")
     private WebElementFacade setThisIdBtn;
 
     @FindBy(xpath = "//a[text()='Get your own']")
