@@ -4,7 +4,6 @@ import com.tkmdpa.taf.pages.AnyPage;
 import com.tkmdpa.taf.pages.site.products_and_docs.PD_InventoryStatusAPIPage;
 import net.serenitybdd.core.pages.WebElementFacade;
 import net.thucydides.core.annotations.Step;
-import net.thucydides.core.annotations.Steps;
 
 import java.util.Map;
 
@@ -14,10 +13,7 @@ import static org.junit.Assert.assertFalse;
 
 public class PD_InventoryStatusAPISteps {
 
-    @Steps
     PD_InventoryStatusAPIPage inventoryStatusAPIPage;
-
-    @Steps
     AnyPage anyPage;
 
     @Step
