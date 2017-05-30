@@ -60,8 +60,8 @@ public class PD_Tutorials_WidgetsSteps {
     @Step
     public void clickCloseFeedbackWidgetButton() {
         tutorialsWidgetsPage.getFeedbackWidget().getCloseButton().click();
-        anyPage.waitForAjaxToComplete();
         anyPage.waitForPageReadyStateComplete();
+        anyPage.waitForAjaxToComplete();
     }
 
     @Step
