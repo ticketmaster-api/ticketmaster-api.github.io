@@ -251,6 +251,7 @@ Do you have a site that attracts visitors who are interested in buying tickets? 
 </div>
 </div>
 
+<!--
 <div class="flipper flipper-rect flipper-rect-margin">
 <div class="card">
 <div class="content">
@@ -272,6 +273,7 @@ Do you have a site that attracts visitors who are interested in buying tickets? 
 </div>
 </div>
 </div>
+-->
 
 </div><!--tiles-wrapper-->
 </div>
