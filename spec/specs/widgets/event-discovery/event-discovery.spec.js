@@ -357,7 +357,6 @@ describe("EDWWidget", () => {
 
 	it('#initSliderControls should be defined', () => {
 		widget.initSliderControls();
-		var e = new $.Event('click');
 		$(widget.eventsRootContainer).trigger('touchstart');
 		expect(typeof(widget.initSliderControls)).toBe('function');
 
@@ -499,15 +498,21 @@ describe("EDWWidget", () => {
 	it('#initSlider should be defined', () => {
 		widget.initSlider();
 		widget.sliderInterval = undefined;
-		widget.config = {
+		widget.listenerResize = [];
+		widget.initSlider();
+		expect(typeof(widget.initSlider)).toBe('function');
+		widget.sliderTimeout = undefined;
+		widget.widgetConfig = {
 			layout: 'fullwidth'
-		}
+		};
+		widget.listenerResize = [];
+		$(window).trigger('resize');
 		widget.initSlider();
 		expect(typeof(widget.initSlider)).toBe('function');
 		widget.prevEventX.click();
 	});
 
-	it('#initSlider should be defined', () => {
+	it('#initFullWidth should be defined', () => {
 		widget.widgetConfig = {
 			layout: 'fullwidth'
 		};
