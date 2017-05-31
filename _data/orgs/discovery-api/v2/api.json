@@ -79,7 +79,7 @@
           "type" : "string",
           "default" : "no",
           "pattern" : "^\\s*|yes|no|only$",
-          "enum" : [ "yes", "no", "only" ],
+          "enum" : [ "yes", " no", " only" ],
           "x-example" : ""
         }, {
           "name" : "page",
@@ -221,7 +221,7 @@
           "type" : "string",
           "default" : "no",
           "pattern" : "^\\s*|yes|no|only$",
-          "enum" : [ "yes", "no", "only" ],
+          "enum" : [ "yes", " no", " only" ],
           "x-example" : ""
         }, {
           "name" : "page",
@@ -709,7 +709,7 @@
           "type" : "string",
           "default" : "no",
           "pattern" : "^\\s*|yes|no|only$",
-          "enum" : [ "yes", "no", "only" ],
+          "enum" : [ "yes", " no", " only" ],
           "x-example" : ""
         }, {
           "name" : "page",
@@ -1112,7 +1112,7 @@
           "type" : "string",
           "default" : "no",
           "pattern" : "^\\s*|yes|no|only$",
-          "enum" : [ "yes", "no", "only" ],
+          "enum" : [ "yes", " no", " only" ],
           "x-example" : ""
         }, {
           "name" : "page",
@@ -1240,6 +1240,17 @@
         }
       },
       "description" : "Event's Access Date"
+    },
+    "Accessibility" : {
+      "type" : "object",
+      "properties" : {
+        "info" : {
+          "type" : "string",
+          "position" : 1,
+          "description" : "Accessibility's information"
+        }
+      },
+      "description" : "Additional information for people who experience disabilities"
     },
     "Address" : {
       "type" : "object",
@@ -1484,12 +1495,12 @@
           "type" : "integer",
           "format" : "int32"
         },
+        "rangeDurationField" : {
+          "$ref" : "#/definitions/DurationField"
+        },
         "maximumValue" : {
           "type" : "integer",
           "format" : "int32"
-        },
-        "rangeDurationField" : {
-          "$ref" : "#/definitions/DurationField"
         },
         "leapDurationField" : {
           "$ref" : "#/definitions/DurationField"
@@ -1557,13 +1568,13 @@
     "DurationField" : {
       "type" : "object",
       "properties" : {
-        "precise" : {
-          "type" : "boolean",
-          "default" : false
-        },
         "unitMillis" : {
           "type" : "integer",
           "format" : "int64"
+        },
+        "precise" : {
+          "type" : "boolean",
+          "default" : false
         },
         "name" : {
           "type" : "string"
@@ -1742,6 +1753,11 @@
           "position" : 43,
           "description" : "Event's seatmap",
           "$ref" : "#/definitions/SeatMap"
+        },
+        "accessibility" : {
+          "position" : 44,
+          "description" : "Additional information for people who experience disabilities",
+          "$ref" : "#/definitions/Accessibility"
         },
         "classifications" : {
           "type" : "array",
