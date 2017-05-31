@@ -404,7 +404,6 @@ class TicketmasterEventDiscoveryWidget {
           url = '';
       if(event){
         if(event.url){
-
            if((this.isUniversePluginInitialized && this.isUniverseUrl(event.url)) || (this.isTMPluginInitialized && this.isAllowedTMEvent(event.url))){
              url = event.url;
            }

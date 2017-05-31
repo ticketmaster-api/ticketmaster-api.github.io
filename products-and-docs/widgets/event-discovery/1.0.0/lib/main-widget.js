@@ -188,7 +188,7 @@ var TicketmasterEventDiscoveryWidget = function () {
   }, {
     key: 'widgetVersion',
     get: function get() {
-      return '' + "1.0.481";
+      return '' + "1.0.482";
     }
   }, {
     key: 'geocodeUrl',
@@ -547,7 +547,6 @@ var TicketmasterEventDiscoveryWidget = function () {
             url = '';
         if (event) {
           if (event.url) {
-
             if (this.isUniversePluginInitialized && this.isUniverseUrl(event.url) || this.isTMPluginInitialized && this.isAllowedTMEvent(event.url)) {
               url = event.url;
             }
