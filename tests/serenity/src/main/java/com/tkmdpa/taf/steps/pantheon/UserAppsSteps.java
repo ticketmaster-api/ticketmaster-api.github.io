@@ -71,6 +71,7 @@ public class UserAppsSteps {
     @Step
     public void checkIfMessageIsDisplayed(String errorMessage) {
         anyPage.waitForPageReadyStateComplete();
+        anyPage.waitForAjaxToComplete();
         assertEquals(addNewAppPage.getPopUpMessage().getText(), errorMessage);
     }
 
