@@ -135,6 +135,8 @@ describe("EDWWidget", () => {
 			tmapikey: '',
 		};
 		expect(widget.eventReqAttrs).toBeDefined();
+		widget.widgetRoot.setAttribute("w-latlong", null);
+		widget.eventReqAttrs;
 	});
 
 	it('#getCoordinates should be Defined', () => {
@@ -283,6 +285,8 @@ describe("EDWWidget", () => {
 		widget.isUniverseUrl('universe.com');
 		widget.addBuyButton(document.querySelector('.events-root-container'), 'www.ticketmaster.com');
 		expect(typeof(widget.addBuyButton)).toBe('function');
+		widget.config.theme = 'oldschool';
+		widget.addBuyButton(document.querySelector('.events-root-container'), 'www.ticketmaster.com');
 	});
 
 	it('#embedUniversePlugin should be defined', () => {
@@ -675,15 +679,31 @@ describe("EDWWidget", () => {
 
 	it('#initPretendedLink should be defined', () => {
 		widget.initPretendedLink(widget.widgetRoot, 'http://ticketmaster.com');
+		$(widget.widgetRoot).trigger('click');
 		expect(typeof(widget.initPretendedLink)).toBe('function');
+		widget.initPretendedLink(widget.widgetRoot, false);
+		$(widget.widgetRoot).trigger('touchstart');
 	});
 
 	it('#createBackgroundImage should be defined', () => {
 		widget.createBackgroundImage(widget.widgetRoot, 'http://ticketmaster.com');
 		expect(typeof(widget.createBackgroundImage)).toBe('function');
+		widget.widgetConfig = {
+			theme: 'listviewthumbnails'
+		}
+		widget.createBackgroundImage(widget.widgetRoot, 'http://ticketmaster.com');
+		widget.createBackgroundImage(widget.widgetRoot, false);
 	});
 
 	it('#addBarcode should be defined', () => {
+		widget.widgetConfig ={
+			theme: 'oldschool'
+		}
+		widget.addBarcode(widget.widgetRoot, 'http://ticketmaster.com');
+		expect(typeof(widget.addBarcode)).toBe('function');
+		widget.widgetConfig ={
+			theme: undefined
+		}
 		widget.addBarcode(widget.widgetRoot, 'http://ticketmaster.com');
 		expect(typeof(widget.addBarcode)).toBe('function');
 	});
@@ -709,6 +729,11 @@ describe("EDWWidget", () => {
 	it('#resetReduceParamsOrder should be defined', () => {
 		widget.resetReduceParamsOrder();
 		expect(typeof(widget.resetReduceParamsOrder)).toBe('function');
+	});
+
+	it('#makeImageUrl should be defined', () => {
+		widget.makeImageUrl('test');
+		expect(widget.makeImageUrl('test')).toBe('https://app.ticketmaster.com/discovery/v2/events/test/images.json');
 	});
 
 	it('#reduceParamsAndReloadEvents should be defined', () => {
@@ -748,22 +773,6 @@ describe("EDWWidget", () => {
 		expect(okResult).toEqual("Fri, Mar 17, 2017 12:00 AM");
 	});
 
-	it('#clear should be defined', () => {
-		// widget.eventsRootContainer = document.querySelector('.events-root-container');
-		// widget.eventsRoot = document.querySelector('.events-root-container');
-		let modificator = document.createElement("div");
-		modificator.classList.add = "modificator";
-		widget.widgetRoot.appendChild(modificator);
-		modificator = document.createElement("div");
-		modificator.classList.add = "modificator";
-		widget.widgetRoot.appendChild(modificator);
-		modificator = document.createElement("div");
-		modificator.classList.add = "modificator";
-		widget.widgetRoot.appendChild(modificator);
-		widget.clear();
-		expect(typeof(widget.clear)).toBe('function');
-	});
-
 	it('#update should be defined', () => {
 		widget.eventsRootContainer = document.querySelector('.events-root-container');
 		widget.eventsRoot = document.querySelector('.events-root-container');
@@ -775,13 +784,11 @@ describe("EDWWidget", () => {
 		widget.config = {
 			border: '2'
 		}
+		widget.widgetConfig = {
+			theme: ''
+		};
 		widget.update();
 		expect(typeof(widget.update)).toBe('function');
-	});
-
-	it('#createDOMItem should be defined', () => {
-		// widget.createDOMItem(widget.eventsRoot);
-		// expect(typeof(widget.createDOMItem)).toBe('function');
 	});
 
 	it('#parseEvent should return currentEvent', () => {
@@ -843,6 +850,72 @@ describe("EDWWidget", () => {
 		let currentEventNoVenueName = widget.parseEvents(eventSet);
 		// expect(currentEventNoVenueName).toEqual(generatedObjNoVenueName);
 
+	});
+
+});
+
+describe("EDWWidgetWithoutSpyOn", () => {
+	let widget,
+		module,
+		hideMessageDelay;
+	var setFixture = () => {
+		document.body.innerHTML =
+			'<head></head><div w-type="event-discovery" w-tmapikey="y61xDc5xqUSIOz4ISjgCe5E9Lh0hfUH1" w-googleapikey="AIzaSyBQrJ5ECXDaXVlICIdUBOe8impKIGHDzdA" w-keyword="" w-theme="ListView" w-colorscheme="light" w-width="350" w-height="600" w-size="25" w-border="0" w-borderradius="4" w-postalcode="" w-radius="" w-period="week" w-layout="vertical" w-attractionid="" w-promoterid="" w-venueid="" w-affiliateid="" w-segmentid="" w-proportion="custom" w-titlelink="off" w-countrycode="US" w-source="" w-latlong=","><div class="event-logo centered-logo"></div><div class="event-date centered-logo"></div></div>';
+	};
+	beforeAll(() => {
+		window.__VERSION__ = 'mockedVersion';
+		setFixture();
+		module = require('products-and-docs/widgets/event-discovery/1.0.0/src/main-widget.es6');
+		widget = new module.TicketmasterEventDiscoveryWidget();
+		widget = new module.TicketmasterEventDiscoveryWidget(document.querySelector('div[w-type="event-discovery"]'));
+	});
+
+	beforeEach(function() {
+		spyOn(widget, 'isListView');
+	});
+
+	it('#clear should be defined', () => {
+		$(widget.widgetRoot).append('<div class="modificator"></div><div class="modificator"></div><div class="modificator"></div>');
+		$(document.body).append('<div class="widget-container--discovery"><div class="listview-after"></div></div>');
+		widget.clear();
+		expect(typeof(widget.clear)).toBe('function');
+		widget.widgetConfig = {
+			theme: 'listview'
+		};
+		widget.clear();
+	});
+
+	it('#hideMessage should be defined', () => {
+		widget.hideMessage();
+		expect(typeof(widget.hideMessage)).toBe('function');
+		widget.messageTimeout = function() {return true};
+		widget.hideMessage();
+		expect(typeof(widget.hideMessage)).toBe('function');
+	});
+
+	it('#showMessage should be defined', () => {
+		let hideMessageWithoutDelay = function() {return true};
+		widget.massageDialog = widget.eventsRoot;
+		widget.messageTimeout = function() {return true};
+		widget.showMessage('Test message', hideMessageWithoutDelay);
+		expect(typeof(widget.showMessage)).toBe('function');
+	});
+
+	it('#publishEvent should be defined', () => {
+		let evt = JSON.parse('[[{"id":"Z1lMVSyiJynZ177dJa","url":"https://qapurchasetest.nbp.frontgatetickets.com/event/lwln7sy8bni2h448","name":"No Longer on Sale for Web","date":{"day":"2014-03-31","time":"19:15:00"},"address":{"line1":"1711 S. Congress","line2":"2nd Floor","name":"FGS - Selenium (With enough text for 2nd"},"img":"https://s1.ticketm.net/dam/c/8cf/a6653880-7899-4f67-8067-1f95f4d158cf_124761_TABLET_LANDSCAPE_3_2.jpg"}],[{"id":"vv1AdZAa4GkdE0_X3","url":"http://www.ticketmaster.com/event/03005255E7919F92","name":"FIAF Presents - Wine Tour de France - 4 Tasting Class Package","date":{"day":"2017-03-20","time":"19:00:00"},"address":{"line1":"22 East 60th St","line2":"8th Floor (Between Park & Madison Aves)","name":"Le Skyroom at FIAF"},"img":"https://s1.ticketm.net/dam/c/7e6/22f24b33-e33a-4ee1-87ba-9c3aece497e6_105841_TABLET_LANDSCAPE_3_2.jpg"}],[{"id":"vvG1HZf0T55fH1","url":"http://www.ticketmaster.com/event/0F00524FCB2D4F0A","name":"DMX & Zeds Dead Two Show Combo","date":{"day":"2017-03-31","time":"20:00:00"},"address":{"line1":"555 W 5th Avenue","name":"William a Egan Civic and Convention Center"},"img":"https://s1.ticketm.net/dam/a/835/16ceaa41-585f-4bc5-b376-a56d2e9a3835_298451_TABLET_LANDSCAPE_16_9.jpg"}]]');
+		widget.publishEvent(evt, widget.widgetRoot);
+		expect(typeof(widget.publishEvent)).toBe('function');
+	});
+
+	it('#createDOMItem should be defined', () => {
+		let evt = JSON.parse('{"id":"LvZ184X-QKyIveZvudILo","url":"https://www.universe.com/events/2017-2018-subscription-tickets-F39HZP?ref=ticketmaster","name":"2017/2018 Subscription","date":{"day":"2016-09-25","time":"18:15:00"},"img":"https://s1.ticketm.net/dam/c/8cf/a6653880-7899-4f67-8067-1f95f4d158cf_124761_TABLET_LANDSCAPE_16_9.jpg"}');
+		widget.createDOMItem(evt, widget.widgetRoot);
+		expect(typeof(widget.createDOMItem)).toBe('function');
+		document.querySelector('[w-type="event-discovery"]').removeAttribute('w-titlelink');
+		evt = JSON.parse('{"id":"LvZ184X-QKyIveZvudILo","url":"https://www.universe.com/events/2017-2018-subscription-tickets-F39HZP?ref=ticketmaster","name":"2017/2018 Subscription","address":{"name":"Avenue 5", "line1":"one" ,"line2": "two"},"categories":["music", "games"],"date":{"day":"2016-09-25","time":"18:15:00"},"img":"https://s1.ticketm.net/dam/c/8cf/a6653880-7899-4f67-8067-1f95f4d158cf_124761_TABLET_LANDSCAPE_16_9.jpg"}');
+		widget.createDOMItem(evt, widget.widgetRoot);
+		evt = JSON.parse('{"id":"LvZ184X-QKyIveZvudILo","url":"https://www.universe.com/events/2017-2018-subscription-tickets-F39HZP?ref=ticketmaster","address":"","name":"2017/2018 Subscription","date":{"day":"2016-09-25","time":"18:15:00"},"img":"https://s1.ticketm.net/dam/c/8cf/a6653880-7899-4f67-8067-1f95f4d158cf_124761_TABLET_LANDSCAPE_16_9.jpg"}');
+		widget.createDOMItem(evt, widget.widgetRoot);
 	});
 
 });
