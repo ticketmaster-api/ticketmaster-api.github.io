@@ -188,7 +188,7 @@ var TicketmasterEventDiscoveryWidget = function () {
   }, {
     key: 'widgetVersion',
     get: function get() {
-      return '' + "1.0.479";
+      return '' + "1.0.484";
     }
   }, {
     key: 'geocodeUrl',
@@ -288,8 +288,8 @@ var TicketmasterEventDiscoveryWidget = function () {
         attrs.endDateTime = period[1];
       }
 
-      if (WidgetRoot.getAttribute("w-latlong") != null) {
-        attrs.latlong = WidgetRoot.getAttribute("w-latlong").replace(/\s+/g, '');
+      if (this.widgetRoot.getAttribute("w-latlong") != null) {
+        attrs.latlong = this.widgetRoot.getAttribute("w-latlong").replace(/\s+/g, '');
       }
 
       if (attrs.latlong == ',') {
@@ -384,22 +384,6 @@ var TicketmasterEventDiscoveryWidget = function () {
       }
     }
   }
-
-  /*
-  getCoordinates(cb){
-      let widget = this;
-      if(this.config.postalcode) {
-          widget.config.postalcode = this.config.postalcode;
-          cb(widget.config.postalcode);
-      }else{
-          // Used in builder
-          if(widget.onLoadCoordinate) widget.onLoadCoordinate(null);
-          widget.config.latlong = '';
-          // widget.config.countrycode = '';
-          cb(widget.config.latlong);
-      }
-  }
-  */
 
   _createClass(TicketmasterEventDiscoveryWidget, [{
     key: 'getCoordinates',
@@ -547,7 +531,6 @@ var TicketmasterEventDiscoveryWidget = function () {
             url = '';
         if (event) {
           if (event.url) {
-
             if (this.isUniversePluginInitialized && this.isUniverseUrl(event.url) || this.isTMPluginInitialized && this.isAllowedTMEvent(event.url)) {
               url = event.url;
             }
@@ -565,13 +548,18 @@ var TicketmasterEventDiscoveryWidget = function () {
   }, {
     key: 'isUniverseUrl',
     value: function isUniverseUrl(url) {
-      return url.match(/universe.com/g) || url.match(/uniiverse.com/g) || url.match(/ticketmaster.com/g);
+      return !!url && (url.match(/universe.com/g) || url.match(/uniiverse.com/g) || url.match(/ticketmaster.com/g));
     }
   }, {
     key: 'isAllowedTMEvent',
     value: function isAllowedTMEvent(url) {
-      for (var t = [/(?:ticketmaster\.com)\/(.*\/)?event\/([^\/?#]+)/, /(?:concerts\.livenation\.com)\/(.*\/)?event\/([^\/?#]+)/], n = null, r = 0; r < t.length && (n = url.match(t[r]), null === n); r++) {}
-      var id = null !== n ? n[2] : void 0;
+      var id = 0;
+      if (url !== undefined) {
+        for (var t = [/(?:ticketmaster\.com)\/(.*\/)?event\/([^\/?#]+)/, /(?:concerts\.livenation\.com)\/(.*\/)?event\/([^\/?#]+)/], n = null, r = 0; r < t.length && (n = url.match(t[r]), null === n); r++) {}
+        id = null !== n ? n[2] : void 0;
+      } else {
+        var _id = 0;
+      }
       return this.tmWidgetWhiteList.indexOf(id) > -1;
     }
   }, {
@@ -1045,6 +1033,7 @@ var TicketmasterEventDiscoveryWidget = function () {
     key: 'formatDate',
     value: function formatDate(date) {
       var result = '';
+      if (date === undefined) return result;
       if (!date.day) return result; // Day is required
 
       function LZ(x) {
