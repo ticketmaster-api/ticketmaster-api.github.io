@@ -4,9 +4,9 @@ import com.tkmdpa.taf.pages.AnyPage;
 import com.tkmdpa.taf.pages.site.products_and_docs.PD_Tutorials_WidgetsPage;
 import net.serenitybdd.core.pages.WebElementFacade;
 import net.thucydides.core.annotations.Step;
-import net.thucydides.core.annotations.Steps;
 
-import static com.tkmdpa.taf.staticmethods.StaticMethods.*;
+import static com.tkmdpa.taf.staticmethods.StaticMethods.checkIfWebElementExist;
+import static com.tkmdpa.taf.staticmethods.StaticMethods.findWebElementByKey;
 import static org.junit.Assert.*;
 
 public class PD_Tutorials_WidgetsSteps {
@@ -51,6 +51,8 @@ public class PD_Tutorials_WidgetsSteps {
     @Step
     public void clickFeedbackButton() {
         tutorialsWidgetsPage.getFeedbackButton().click();
+        anyPage.waitForAjaxToComplete();
+        anyPage.waitForPageReadyStateComplete();
     }
 
     @Step
