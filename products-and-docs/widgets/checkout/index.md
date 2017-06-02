@@ -196,6 +196,7 @@ If the debug tool may indicates the event cannot be transacted using Universal C
   <li>• The event has sold out or has very low ticket availability</li>
   <li>• The event is in presale mode and there is no DID on the link</li>
   <li>• e-Tickets / print-at-home delivery is not available</li>
+  <li>• Transacting on free events ($0 tickets) is not available<li>
 </ul>
 
 ## Additional Resources
