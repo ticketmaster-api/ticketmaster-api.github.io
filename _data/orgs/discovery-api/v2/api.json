@@ -651,7 +651,7 @@
         }, {
           "name" : "latlong",
           "in" : "query",
-          "description" : "Filter events by latitude and longitude",
+          "description" : "Filter events by latitude and longitude, this filter is deprecated and maybe removed in a future release, please use geoPoint instead",
           "required" : false,
           "type" : "string",
           "default" : "",
@@ -676,6 +676,15 @@
           "pattern" : "^\\s*|miles|km$",
           "enum" : [ "miles", "km" ],
           "x-example" : ""
+        }, {
+          "name" : "geoPoint",
+          "in" : "query",
+          "description" : "filter events by geoHash",
+          "required" : false,
+          "type" : "string",
+          "default" : "",
+          "pattern" : "^\\s*$|^-?(90(\\.0+)?|[0-8]?[0-9](\\.\\d+)?),-?(180(\\.0+)?|(1[0-7][0-9]|\\d{1,2})(\\.\\d+)?)$|^[a-zA-Z0-9]{1,9}$",
+          "x-example" : "dr5rh"
         }, {
           "name" : "keyword",
           "in" : "query",
@@ -872,7 +881,7 @@
         }, {
           "name" : "latlong",
           "in" : "query",
-          "description" : "Filter events by latitude and longitude",
+          "description" : "Filter events by latitude and longitude, this filter is deprecated and maybe removed in a future release, please use geoPoint instead",
           "required" : false,
           "type" : "string",
           "default" : "",
@@ -992,6 +1001,15 @@
           "default" : "",
           "x-example" : ""
         }, {
+          "name" : "geoPoint",
+          "in" : "query",
+          "description" : "filter events by geoHash",
+          "required" : false,
+          "type" : "string",
+          "default" : "",
+          "pattern" : "^\\s*$|^-?(90(\\.0+)?|[0-8]?[0-9](\\.\\d+)?),-?(180(\\.0+)?|(1[0-7][0-9]|\\d{1,2})(\\.\\d+)?)$|^[a-zA-Z0-9]{1,9}$",
+          "x-example" : "dr5rh"
+        }, {
           "name" : "locale",
           "in" : "query",
           "description" : "The locale in ISO code format. Multiple comma-separated values can be provided. When omitting the country part of the code (e.g. only 'en' or 'fr') then the first matching locale is used.",
@@ -1054,7 +1072,7 @@
         }, {
           "name" : "latlong",
           "in" : "query",
-          "description" : "Filter events by latitude and longitude",
+          "description" : "Filter events by latitude and longitude, this filter is deprecated and maybe removed in a future release, please use geoPoint instead",
           "required" : false,
           "type" : "string",
           "default" : "",
@@ -1079,6 +1097,15 @@
           "pattern" : "^\\s*|miles|km$",
           "enum" : [ "miles", "km" ],
           "x-example" : ""
+        }, {
+          "name" : "geoPoint",
+          "in" : "query",
+          "description" : "filter events by geoHash",
+          "required" : false,
+          "type" : "string",
+          "default" : "",
+          "pattern" : "^\\s*$|^-?(90(\\.0+)?|[0-8]?[0-9](\\.\\d+)?),-?(180(\\.0+)?|(1[0-7][0-9]|\\d{1,2})(\\.\\d+)?)$|^[a-zA-Z0-9]{1,9}$",
+          "x-example" : "dr5rh"
         }, {
           "name" : "keyword",
           "in" : "query",
@@ -1488,15 +1515,15 @@
           "type" : "boolean",
           "default" : false
         },
+        "rangeDurationField" : {
+          "$ref" : "#/definitions/DurationField"
+        },
         "durationField" : {
           "$ref" : "#/definitions/DurationField"
         },
         "minimumValue" : {
           "type" : "integer",
           "format" : "int32"
-        },
-        "rangeDurationField" : {
-          "$ref" : "#/definitions/DurationField"
         },
         "maximumValue" : {
           "type" : "integer",
