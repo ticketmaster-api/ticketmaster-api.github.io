@@ -96,15 +96,18 @@
             </li>
 
 						<!--automenu for Swagger api-->
-						<li><a href="/products-and-docs/apis/commerce-api-5670/v2/">Commerce API(5670)</a>
+						{% comment %}
+					  <li><a href="/products-and-docs/apis/commerce-api-5670/v2/">Commerce API(5670)</a>
 							{% if page.categories[0] == "documentation" and page.categories[1] == "generated" and page.categories[2] == "commerce-api" %}
 							{% include partials/autodoc/side-menu-generate.html%}
 
 							<!--{% comment %}<!--faq-api menu item can be here--><!--
 											{% include partials/autodoc/side-menu-faq.html %}
-									{% endcomment %}-->
+							{% endcomment %}-->
 							{% endif %}
-						</li><!--END automenu-->
+						</li>
+					  {% endcomment %}  
+					  <!--END automenu-->
 
             <li><a href="/products-and-docs/apis/partner/">Partner API</a>
                 {% if page.categories[0] == "documentation" and page.categories[1] == "partner" %}
