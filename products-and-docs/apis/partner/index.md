@@ -1033,8 +1033,8 @@ For use by Channel Partners only. Discover events available to transact on. For 
         * `eventCode` (string) -  Event code  Eg: "EPT0726E"
         * `eventHost` (string) -  Host system Eg: "LA2"
         * `eventId` (string) - Event ID Eg. "0B004D43F86C478F"
-        * `eventDate` (date) - Event Date in UTC YYYY-MM-DD format
-        * `eventTime` (time) - Event Time in UTC HH:MM:SS format
+        * `eventDate` (date) - Event Date is Local Date YYYY-MM-DD format
+        * `eventTime` (time) - Event Time is Local Time HH:MM:SS format
         * `timeZone` (text) - Time zone of the event venue location Eg: "America/Los_Angeles"
         * `offers` (array) - Offers on the Event
             - {arrayitemobject} - offer
