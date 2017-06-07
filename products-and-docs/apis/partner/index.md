@@ -1033,8 +1033,8 @@ For use by Channel Partners only. Discover events available to transact on. For 
         * `eventCode` (string) -  Event code  Eg: "EPT0726E"
         * `eventHost` (string) -  Host system Eg: "LA2"
         * `eventId` (string) - Event ID Eg. "0B004D43F86C478F"
-        * `eventDate` (date) - Event Date in UTC YYYY-MM-DD format
-        * `eventTime` (time) - Event Time in UTC HH:MM:SS format
+        * `eventDate` (date) - Event Date is Local Date YYYY-MM-DD format
+        * `eventTime` (time) - Event Time is Local Time HH:MM:SS format
         * `timeZone` (text) - Time zone of the event venue location Eg: "America/Los_Angeles"
         * `offers` (array) - Offers on the Event
             - {arrayitemobject} - offer
@@ -1771,6 +1771,7 @@ Sample credit-card information for use in the production environment for event i
             * `abbreb` (string) Region abbreviation
         * `postal_code` (string) - Postal/Zip code
     * `card` (object) - Card information
+        * `issuer` (string) - Issuer of card (VISA, MC, AMEX, DISCOVER)
         * `number` (string) - Encrypted credit card number (CC type only)
         * `cin` (string) - Encrypted cvv number (CC type only)
         * `encryption_key` (string) - Encryption certificate id (see certificate docs earlier, CC type only) 
@@ -1813,6 +1814,7 @@ https://app.ticketmaster.com/partners/v1/events/0B004ED9FC825ACB/cart/payment?ap
         },
         "amount": "69.00",              
         "card": {                       
+            "issuer" : "VISA",
             "number": "qvaEc5EX2bt5pt5DiTQR4J6iYZKxsujQPdw7LXCAnbeb8cD/CiXoB1V/pG2GAHBcHS/IdIMskFg=",
             "cin": "BYdEgXIxwz6bXG6OVQRKwj0wc9KE510eXRpwoEoTrd9t9i7=",
             "encryption_key": "paysys-dev.0.us.999",
