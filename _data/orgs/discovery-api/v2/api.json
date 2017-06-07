@@ -119,6 +119,26 @@
           "pattern" : "^\\s*|yes|no$",
           "enum" : [ "yes", " no" ],
           "x-example" : ""
+        }, {
+          "name" : "includeSpellcheck",
+          "in" : "query",
+          "description" : "yes, to include spell check suggestions in the response.",
+          "required" : false,
+          "type" : "string",
+          "default" : "no",
+          "pattern" : "^\\s*|yes|no",
+          "enum" : [ "yes", " no" ],
+          "x-example" : ""
+        }, {
+          "name" : "autocorrect",
+          "in" : "query",
+          "description" : "yes, to re-execute the query based on the best spellcheck suggestion",
+          "required" : false,
+          "type" : "string",
+          "default" : "no",
+          "pattern" : "^\\s*|yes|no",
+          "enum" : [ "yes", " no" ],
+          "x-example" : ""
         } ],
         "responses" : {
           "200" : {
@@ -259,6 +279,26 @@
           "type" : "string",
           "default" : "no",
           "pattern" : "^\\s*|yes|no$",
+          "enum" : [ "yes", " no" ],
+          "x-example" : ""
+        }, {
+          "name" : "includeSpellcheck",
+          "in" : "query",
+          "description" : "yes, to include spell check suggestions in the response.",
+          "required" : false,
+          "type" : "string",
+          "default" : "no",
+          "pattern" : "^\\s*|yes|no",
+          "enum" : [ "yes", " no" ],
+          "x-example" : ""
+        }, {
+          "name" : "autocorrect",
+          "in" : "query",
+          "description" : "yes, to re-execute the query based on the best spellcheck suggestion",
+          "required" : false,
+          "type" : "string",
+          "default" : "no",
+          "pattern" : "^\\s*|yes|no",
           "enum" : [ "yes", " no" ],
           "x-example" : ""
         } ],
@@ -758,6 +798,26 @@
           "pattern" : "^\\s*|yes|no$",
           "enum" : [ "yes", " no" ],
           "x-example" : ""
+        }, {
+          "name" : "includeSpellcheck",
+          "in" : "query",
+          "description" : "yes, to include spell check suggestions in the response.",
+          "required" : false,
+          "type" : "string",
+          "default" : "no",
+          "pattern" : "^\\s*|yes|no",
+          "enum" : [ "yes", " no" ],
+          "x-example" : ""
+        }, {
+          "name" : "autocorrect",
+          "in" : "query",
+          "description" : "yes, to re-execute the query based on the best spellcheck suggestion",
+          "required" : false,
+          "type" : "string",
+          "default" : "no",
+          "pattern" : "^\\s*|yes|no",
+          "enum" : [ "yes", " no" ],
+          "x-example" : ""
         } ],
         "responses" : {
           "200" : {
@@ -945,26 +1005,6 @@
           "enum" : [ "location" ],
           "x-example" : ""
         }, {
-          "name" : "includeSpellcheck",
-          "in" : "query",
-          "description" : "yes, to include spell check suggestions in the response.",
-          "required" : false,
-          "type" : "string",
-          "default" : "no",
-          "pattern" : "^\\s*|yes|no",
-          "enum" : [ "yes", " no" ],
-          "x-example" : ""
-        }, {
-          "name" : "autocorrect",
-          "in" : "query",
-          "description" : "yes, to re-execute the query based on the best spellcheck suggestion",
-          "required" : false,
-          "type" : "string",
-          "default" : "no",
-          "pattern" : "^\\s*|yes|no",
-          "enum" : [ "yes", " no" ],
-          "x-example" : ""
-        }, {
           "name" : "countryCode",
           "in" : "query",
           "description" : "Filter suggestions by country code",
@@ -1035,6 +1075,26 @@
           "type" : "string",
           "default" : "no",
           "pattern" : "^\\s*|yes|no$",
+          "enum" : [ "yes", " no" ],
+          "x-example" : ""
+        }, {
+          "name" : "includeSpellcheck",
+          "in" : "query",
+          "description" : "yes, to include spell check suggestions in the response.",
+          "required" : false,
+          "type" : "string",
+          "default" : "no",
+          "pattern" : "^\\s*|yes|no",
+          "enum" : [ "yes", " no" ],
+          "x-example" : ""
+        }, {
+          "name" : "autocorrect",
+          "in" : "query",
+          "description" : "yes, to re-execute the query based on the best spellcheck suggestion",
+          "required" : false,
+          "type" : "string",
+          "default" : "no",
+          "pattern" : "^\\s*|yes|no",
           "enum" : [ "yes", " no" ],
           "x-example" : ""
         } ],
@@ -1186,6 +1246,26 @@
           "type" : "string",
           "default" : "no",
           "pattern" : "^\\s*|yes|no$",
+          "enum" : [ "yes", " no" ],
+          "x-example" : ""
+        }, {
+          "name" : "includeSpellcheck",
+          "in" : "query",
+          "description" : "yes, to include spell check suggestions in the response.",
+          "required" : false,
+          "type" : "string",
+          "default" : "no",
+          "pattern" : "^\\s*|yes|no",
+          "enum" : [ "yes", " no" ],
+          "x-example" : ""
+        }, {
+          "name" : "autocorrect",
+          "in" : "query",
+          "description" : "yes, to re-execute the query based on the best spellcheck suggestion",
+          "required" : false,
+          "type" : "string",
+          "default" : "no",
+          "pattern" : "^\\s*|yes|no",
           "enum" : [ "yes", " no" ],
           "x-example" : ""
         } ],
@@ -1538,9 +1618,6 @@
           "type" : "integer",
           "format" : "int32"
         },
-        "rangeDurationField" : {
-          "$ref" : "#/definitions/DurationField"
-        },
         "leapDurationField" : {
           "$ref" : "#/definitions/DurationField"
         },
@@ -1559,10 +1636,10 @@
     "DateTimeFieldType" : {
       "type" : "object",
       "properties" : {
-        "rangeDurationType" : {
+        "durationType" : {
           "$ref" : "#/definitions/DurationFieldType"
         },
-        "durationType" : {
+        "rangeDurationType" : {
           "$ref" : "#/definitions/DurationFieldType"
         },
         "name" : {
@@ -2071,6 +2148,9 @@
     "LocalTime" : {
       "type" : "object",
       "properties" : {
+        "chronology" : {
+          "$ref" : "#/definitions/Chronology"
+        },
         "millisOfSecond" : {
           "type" : "integer",
           "format" : "int32"
@@ -2090,9 +2170,6 @@
         "hourOfDay" : {
           "type" : "integer",
           "format" : "int32"
-        },
-        "chronology" : {
-          "$ref" : "#/definitions/Chronology"
         },
         "values" : {
           "type" : "array",
