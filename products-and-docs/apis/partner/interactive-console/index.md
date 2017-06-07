@@ -29,7 +29,7 @@ instructions list
 {:/comment}
 {% capture instructions_list %}
 1. Have your **[API Key](https://developer-acct.ticketmaster.com/user/login)** handy. You'll need access to the Ticketmaster **[Partner API](/products-and-docs/apis/partner)** to use this console.
-2. Enter a Ticketmaster event id. Use 000051048D991EE7 for testing.
+2. Enter a Ticketmaster event id. Use 2000527EE48A9334 for testing.
 3. Load Event Details to discover ticket types
 4. Reserve tickets using the ticket type id and specify quantity
 5. A test credit-card can be used to make payment on this event.  Use 'Populate Test CC' in the payment dialog
@@ -120,7 +120,7 @@ page layout goes here
         }
         var app = getQueryParams("app");
 
-        $('#console-iframe').attr('src', 'https://partner-onboarding.tmdc.us/eventTestingTool?doc=' + app + '&key=' + apiKey + '#eventId=000051048D991EE7');
+        $('#console-iframe').attr('src', 'https://partner-onboarding.tmdc.us/eventTestingTool?doc=' + app + '&key=' + apiKey + '#eventId=2000527EE48A9334');
     });
 
 </script>
