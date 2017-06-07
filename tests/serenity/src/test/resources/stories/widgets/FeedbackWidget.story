@@ -12,12 +12,6 @@ And feedback widget is not shown
 When click Feedback button of Tutorials Widgets page
 Then feedback widget elements is shown
 
-Scenario: (feedback widget) Feedback widget Close button
-Given open Tutorials Widgets page
-When click Feedback button of Tutorials Widgets page
-When click close button of Feedback widget
-Then feedback widget is not shown
-
 Scenario: (feedback widget) [3.1.1 Feedback widget sanity]
 Given open Tutorials Widgets page
 And click Feedback button of Tutorials Widgets page

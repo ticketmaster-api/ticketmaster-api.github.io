@@ -4,15 +4,16 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.tkmdpa.taf</groupId>
     <artifactId>testautomation</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0</version>
     <name>UI Test Automation Framework TKM-DPA</name>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <serenity.version>1.2.2</serenity.version>
-        <serenity.jbehave.version>1.21.0</serenity.jbehave.version>
+        <serenity.version>1.4.0</serenity.version>
+        <serenity.jbehave.version>1.24.0</serenity.jbehave.version>
         <jbehave.version>4.1</jbehave.version>
+				<slf4j.version>1.7.7</slf4j.version>
         <java.version>1.8</java.version>
         <maven-failsafe-plugin.version>2.19.1</maven-failsafe-plugin.version>
         <maven-compiler-plugin.version>3.6.1</maven-compiler-plugin.version>
@@ -54,9 +55,14 @@
         </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-simple</artifactId>
-            <version>1.7.7</version>
+            <artifactId>slf4j-api</artifactId>
+            <version>${slf4j.version}</version>
         </dependency>
+				<dependency>
+					<groupId>org.slf4j</groupId>
+					<artifactId>slf4j-log4j12</artifactId>
+					<version>${slf4j.version}</version>
+				</dependency>
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>

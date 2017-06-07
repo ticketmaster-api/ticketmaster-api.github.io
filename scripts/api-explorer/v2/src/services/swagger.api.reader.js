@@ -1,7 +1,7 @@
 import countryOptions from './options/country.options';
 
 export function pathToId (path) {
-	return path.replace(/(\/{|}\/|\/)/g,'.').replace(/}/,'').substring(1);
+	return path.replace(/(}\/{|\/{|}\/|\/)/g,'.').replace(/}/,'').substring(1);
 }
 
 function readParam (data) {

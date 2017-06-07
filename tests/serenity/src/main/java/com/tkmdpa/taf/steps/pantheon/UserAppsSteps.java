@@ -1,8 +1,11 @@
 package com.tkmdpa.taf.steps.pantheon;
 
+import com.tkmdpa.taf.pages.AnyPage;
 import com.tkmdpa.taf.pages.pantheon.AddNewAppPage;
 import net.thucydides.core.annotations.Step;
 
+import static com.tkmdpa.taf.staticmethods.StaticMethods.checkIfWebElementExist;
+import static com.tkmdpa.taf.staticmethods.StaticMethods.reloadPage;
 import static junit.framework.TestCase.assertTrue;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -10,6 +13,8 @@ import static org.junit.Assert.assertFalse;
 public class UserAppsSteps {
 
     AddNewAppPage addNewAppPage;
+
+    AnyPage anyPage;
 
     @Step
     public void checkGeneralPageElements(){
@@ -48,6 +53,7 @@ public class UserAppsSteps {
 
     @Step
     public void checkIfChangesAreApplied(String detailName, String value) {
+        checkIfWebElementExist(addNewAppPage.getAppNameInDetailsTab(detailName));
         assertEquals (addNewAppPage.getAppNameInDetailsTab(detailName).getText(), value);
     }
 
@@ -58,11 +64,14 @@ public class UserAppsSteps {
 
     @Step
     public void checkIfTheAppIsPresent() {
+        anyPage.waitForAjaxToComplete();
         assertTrue(addNewAppPage.getAppName().isDisplayed());
     }
 
     @Step
     public void checkIfMessageIsDisplayed(String errorMessage) {
+        anyPage.waitForPageReadyStateComplete();
+        anyPage.waitForAjaxToComplete();
         assertEquals(addNewAppPage.getPopUpMessage().getText(), errorMessage);
     }
 
@@ -73,8 +82,9 @@ public class UserAppsSteps {
 
     @Step
     public void checkIsAppNotExists() {
-        assertFalse(addNewAppPage.checkIsPresent());
-        addNewAppPage.getNoApplicationText().shouldBeVisible();
+        reloadPage();
+        anyPage.waitForPageReadyStateComplete();
+        assertFalse(addNewAppPage.check_if_app_is_present());
     }
 
 }

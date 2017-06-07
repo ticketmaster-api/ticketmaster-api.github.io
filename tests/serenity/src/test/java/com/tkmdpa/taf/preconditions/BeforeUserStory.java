@@ -6,6 +6,8 @@ import org.jbehave.core.annotations.BeforeStory;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.io.FileReader;
@@ -13,15 +15,17 @@ import java.io.IOException;
 
 import static net.serenitybdd.core.Serenity.getCurrentSession;
 
-public class Before_User_Story {
+public class BeforeUserStory {
+
+    static Logger LOGGER = LoggerFactory.getLogger(BeforeUserScenario.class);
 
     @BeforeStory()
-    public void beforeEachStory () {
-        System.out.println("Before Story...");
+    public void beforeStory () {
+        LOGGER.info("PUT CREDENTIALS INTO CURRENT SESSION");
+
         UserLogInDefinition definition = new UserLogInDefinition();
         PD_GettingStartedDefinition fun = new PD_GettingStartedDefinition();
 
-        //Before test is started we are going to put user credentials to current Session
         getCurrentSession().put("username", definition.getLogin(parseJson("validUser")));
         getCurrentSession().put("password", definition.getPassword(parseJson("validUser")));
 

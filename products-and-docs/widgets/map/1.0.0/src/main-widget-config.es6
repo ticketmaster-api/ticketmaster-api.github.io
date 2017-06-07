@@ -46,6 +46,7 @@
         },
         isPostalCodeChanged = false;
 
+    /*
     var $widthController = $('#w-width').slider({
             tooltip: 'always',
             handle: 'square'
@@ -54,11 +55,13 @@
             tooltip: 'always',
             handle: 'square'
         }),
-        $colorSchemeSelector = $('.widget__color_scheme_control');
+     */
+
+    var $colorSchemeSelector = $('.widget__color_scheme_control');
 
     $('#js_styling_nav_tab').on('shown.bs.tab', function (e) {
-        $widthController.slider('relayout');
-        $borderRadiusController.slider('relayout');
+        /* $widthController.slider('relayout'); */
+        /* $borderRadiusController.slider('relayout'); */
         windowScroll(); //recalculate widget container position
     });
 
@@ -244,13 +247,6 @@
                 };
             }
 
-            $widthController.slider({
-                setValue: sizeConfig.width ,
-                max: sizeConfig.maxWidth,
-                min: sizeConfig.minWidth
-            })
-                .slider('refresh');
-
             document.querySelector('.map').style.width = sizeConfig.width + 'px';
             document.querySelector('.map').style.height = sizeConfig.height + 'px';
             widgetNode.setAttribute('w-width', sizeConfig.width);
@@ -260,6 +256,7 @@
         if(targetName === "w-width") {
             document.querySelector('.map').style.width = widgetNode.getAttribute('w-width') + 'px';
             document.querySelector('.map').style.height = widgetNode.getAttribute('w-height') + 'px';
+            document.querySelector('.map').style.width = document.getElementById('w-width').value + 'px';
         }
 
         //Check fixed sizes for 'simple' theme
@@ -292,12 +289,14 @@
                     maxWidth: themeConfig.initSliderSize.maxWidth,  //500
                     minWidth: themeConfig.initSliderSize.minWidth // 350
                 };
+                /*
                 $widthController.slider({
                     setValue: sizeConfig.width,
                     max: sizeConfig.maxWidth,
                     min: sizeConfig.minWidth
                 })
                     .slider('refresh');
+                */
 
             }
 
@@ -536,4 +535,26 @@
     if(parseInt($(window).width(), 10) < 767){
         $('#w-fixed-300x250').trigger('click');
     }
+
+    document.getElementById('w-width').addEventListener('blur', function(e) {
+        if(this.value < 350 || this.value > 1920) {
+            this.value = 350;
+            let widgetNode = document.querySelector("div[w-tmapikey]");
+            widgetNode.setAttribute('w-width', '350');
+            document.querySelector('.events-root-container').style.width = '350px';
+            document.querySelector('.map').style.width = '350px';
+            widget.update();
+        }
+
+    });
+
+    document.getElementById('w-borderradius').addEventListener('blur', function(e) {
+        if(this.value < 0 || this.value > 50) {
+            this.value = 4;
+            let widgetNode = document.querySelector("div[w-tmapikey]");
+            widgetNode.setAttribute('w-borderradius', '4');
+            widget.update();
+        }
+    });
+
 })();

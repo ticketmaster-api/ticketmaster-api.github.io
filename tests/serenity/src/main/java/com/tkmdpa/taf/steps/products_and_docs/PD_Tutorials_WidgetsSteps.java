@@ -1,16 +1,18 @@
 package com.tkmdpa.taf.steps.products_and_docs;
 
+import com.tkmdpa.taf.pages.AnyPage;
 import com.tkmdpa.taf.pages.site.products_and_docs.PD_Tutorials_WidgetsPage;
 import net.serenitybdd.core.pages.WebElementFacade;
 import net.thucydides.core.annotations.Step;
+import net.thucydides.core.annotations.Steps;
 
-import static com.tkmdpa.taf.staticmethods.StaticMethods.findWebElementByKey;
-import static com.tkmdpa.taf.staticmethods.StaticMethods.waitForSomeActionHappened;
+import static com.tkmdpa.taf.staticmethods.StaticMethods.*;
 import static org.junit.Assert.*;
 
 public class PD_Tutorials_WidgetsSteps {
 
-    private PD_Tutorials_WidgetsPage tutorialsWidgetsPage;
+    PD_Tutorials_WidgetsPage tutorialsWidgetsPage;
+    AnyPage anyPage;
 
     @Step
     public void openPage() {
@@ -36,7 +38,8 @@ public class PD_Tutorials_WidgetsSteps {
 
     @Step
     public void checkIfWidgetIsNotShown() {
-        waitForSomeActionHappened(500);
+        anyPage.waitForPageReadyStateComplete();
+        anyPage.waitForAjaxToComplete();
         assertFalse(tutorialsWidgetsPage.getFeedbackWidget().isCurrentlyVisible());
     }
 
@@ -53,7 +56,8 @@ public class PD_Tutorials_WidgetsSteps {
     @Step
     public void clickCloseFeedbackWidgetButton() {
         tutorialsWidgetsPage.getFeedbackWidget().getCloseButton().click();
-        waitForSomeActionHappened(200);
+        anyPage.waitForPageReadyStateComplete();
+        anyPage.waitForAjaxToComplete();
     }
 
     @Step
@@ -97,6 +101,7 @@ public class PD_Tutorials_WidgetsSteps {
 
     @Step
     public void populateName(String text) {
+        checkIfWebElementExist(tutorialsWidgetsPage.getFeedbackWidget().getNameTextField());
         tutorialsWidgetsPage.getFeedbackWidget().getNameTextField().sendKeys(text);
     }
 

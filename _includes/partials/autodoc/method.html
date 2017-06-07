@@ -114,67 +114,6 @@
 		</h5>
 		{% endcomment %}
 
-		{% comment %}
-		<ul class="nested-list">
-				{% for pathFirsLvl in schemaSplit[0] %}
-				{% for pathScdLvl in schemaSplit[1] %}
-				{% if _HAL.links.size > 0 and _HAL.wrappin == null and _HAL.embed %}
-				{%assign isRootEmbed = false %}
-
-				{% for add_property_HAL in _HAL.embed %}
-				{% assign propToEmbed = add_property_HAL.in | replace: '#/',''  | replace:'/',' ' | split: ' ' %}
-				{%if add_property_HAL.in.size > 0 %}
-
-				{% for itemIn in add_property_HAL.in %}
-						{% assign propToEmbed = itemIn | replace: '#/',''  | replace:'/',' ' | split: ' ' %}
-						{% assign propToEmbedLength = propToEmbed.size | minus: 1 %}
-						{% assign _inToExclude = propToEmbed[propToEmbedLength] %}
-						{% assign removeEmbeddedFields = removeEmbeddedFields | append: ' ' | append: _inToExclude %}
-						{% if propToEmbedLength > 2 %}
-								{% assign isWrappedByIn = true %}
-						{%endif%}
-						<li><code class="red">** inToExclude2 - {{_inToExclude}} ; itemIn2 - {{itemIn}} , propToEmbed.size - {{propToEmbed.size}}</code></li>
-				{% endfor %}
-				{% if propToEmbedLength <= 1%}
-						{% assign topPath = swagger.[pathFirsLvl][pathScdLvl] %}
-						<li><code class="red">propToEmbedLength - </code> {{propToEmbedLength}}</li>
-						{%else%}
-						{% assign topPath = swagger.[pathFirsLvl][pathScdLvl].properties[propLastInPath] %}
-						<li><code class="red">propToEmbedLength - </code> {{propToEmbedLength}}</li>
-				{%endif%}
-				<li><code class="red">propToEmbedLength - {{propToEmbedLength}} ;  topPath['type'] - {{topPath.type}}</code></li>
-				<li><code>+++ {{propToEmbed[2]}}</code>{%if topPath['type']%}({{topPath['type']}}){%else%}(object){%endif%}{%if topPath['description']%} - {{topPath['description']}}{% elsif topPath['format'] %} - {{topPath['format']}}{%endif%}
-
-
-						{%endif%}
-				{%comment%}
-						{%if add_property_HAL.in == '#/definitions/Classification/segment' %}
-						<!--<li><h3 class="blue">inside wrap-embed-in.html </h3> propToEmbed is - {{add_property_HAL.in}}</li>-->
-						{%include partials/autodoc/wrap-embed-in-root.html%}
-						{%assign isRootEmbed = true %}
-						{%else%}
-						{%if isRootEmbed == false and forloop.index == 1%}
-				<li><h3 class="red">method->inside wrap-embed-in.html </h3> propToEmbed is - {{add_property_HAL.in}} , path - {{pathFirsLvl}}/{{pathScdLvl}}</li>
-				{% assign removeEmbeddedFields = [""] %}
-				{%include partials/autodoc/wrap-embed-in-item.html%}
-				{%endif%}
-				{%endif%}
-				{%endcomment%}
-				{% endfor %}
-				{% endif %}
-
-				{% for property in swagger.[pathFirsLvl][pathScdLvl].properties %}
-				{% endfor %}
-
-				{% endfor %}
-				{% endfor %}
-
-		</ul>
-
-		<h3>------------</h3>
-		{% endcomment %}
-
-
 		<ul class="nested-list">
 
 				{% if _HAL.wrappin != null %}
@@ -277,14 +216,14 @@
 												{% endif %}
 										{% endfor %}
 								{% endif %}
-								{% if addThisFieldToEmbedded == false %}
-										<li>{% comment %}
+								{% if addThisFieldToEmbedded == false or addThisFieldToEmbedded %}
+										<li>
 												<!--
 														<p class="blue-btn">property[1]['$ref'] : {{property}}</p>
 														<p class="blue-btn">property[0] : {{property[0]}}</p>
 														<p class="blue-btn">property[1] : {{property[1]}}</p>
 														<p class="blue-btn">property[1].items or ['$ref']: {{property[1].items or property[1]['$ref'] }}</p>
-												-->{% endcomment %}
+												-->
 												<code class="highlighter-rouge">{{ property[0] }}</code> {% if property[1].type %}({{ property[1].type | lstrip }}){%else%}({{swagger.[pathFirsLvl][pathScdLvl].type | lstrip }}){% endif %} - {% if property[1].description %}{{ property[1].description }}{% elsif property[1].format %}{{ property[1].format }}{%else%}No description specified{% endif %}{% if property[1].$ref %}{{ property[1].$ref }}{% endif %}{% if property[1].items or property[1]['$ref'] %}
 												<ul>
 														{% if property[1].type == 'array' %}
@@ -293,7 +232,7 @@
 																		{%include partials/autodoc/inner-item.html%}
 																</li>
 																{% endif %}
-																<li>{{property[1].type}} , <span class="red">swagger : </span>{{swagger.[pathFirsLvl][pathScdLvl].type | lstrip }} </li>
+																<!--<li>{{property[1].type}} , <span class="red">swagger : </span>{{swagger.[pathFirsLvl][pathScdLvl].type | lstrip }} </li>-->
 																{% if property[1].type == 'object' %}
 																<li><code class="highlighter-rouge" style="color: #768692">{ object } </code>
 																		{%assign outer = property[1].['$ref'] %}
@@ -301,7 +240,7 @@
 																</li>
 																{% endif %}
 														</ul>
-														{% endif %}<!--{% comment %} END if property[1].items or property[1]['$ref'] - {{property[1]['$ref']}}{% endcomment %}-->
+														{% endif %}<!-- END if property[1].items or property[1]['$ref'] - {{property[1]['$ref']}}-->
 
 														{% if property[1]['$ref'] %}
 														<!--<li><code class="highlighter-rouge" style="color: #768692"> property[1].['$ref'] -  {{ property[1].['$ref'] }}  </code></li>-->

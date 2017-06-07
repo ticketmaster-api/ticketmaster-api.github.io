@@ -27,7 +27,6 @@ Then found events contains <keyword> on Event Discovery Widget page
 Examples:
 |keyword|
 |ADELE  |
-|STING  |
 
 Scenario: (/products-and-docs/widgets/event-discovery/) TECHNICAL TAB - Check that EVENT COUNT works properly
 Given open Event Discovery Widget page

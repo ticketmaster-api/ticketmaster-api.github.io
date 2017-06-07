@@ -64,5 +64,4 @@ Scenario: (Pantheon|Delete App) Delete App positive [2.1.9 Delete application]
 Given open my Apps page
 When delete first App
 Then the message App Deleted! is displayed
-And the predefined app is removed from the list of apps
 

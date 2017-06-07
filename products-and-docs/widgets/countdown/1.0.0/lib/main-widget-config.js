@@ -6,9 +6,9 @@
 /******/ 	function __webpack_require__(moduleId) {
 /******/
 /******/ 		// Check if module is in cache
-/******/ 		if(installedModules[moduleId])
+/******/ 		if(installedModules[moduleId]) {
 /******/ 			return installedModules[moduleId].exports;
-/******/
+/******/ 		}
 /******/ 		// Create a new module (and put it into the cache)
 /******/ 		var module = installedModules[moduleId] = {
 /******/ 			i: moduleId,
@@ -126,15 +126,17 @@
     }
   };
 
+  /*
   var $widthController = $('#w-width').slider({
-    tooltip: 'always',
-    handle: 'square'
-  }),
-      $borderRadiusController = $('#w-borderradius').slider({
-    tooltip: 'always',
-    handle: 'square'
-  }),
-      $getCodeButton = $('.js_get_widget_code'),
+      tooltip: 'always',
+      handle: 'square'
+    }),
+    $borderRadiusController = $('#w-borderradius').slider({
+      tooltip: 'always',
+      handle: 'square'
+    }),
+  */
+  var $getCodeButton = $('.js_get_widget_code'),
       widgetNode = document.querySelector("div[w-tmapikey]"),
       $tabButtons = $('.js-tab-buttons'),
       $layoutBox = $('#js-layout-box'),
@@ -242,14 +244,14 @@
 
     if (targetValue === 'fullwidth') {
       widthSlider.slideUp("fast");
-      $borderRadiusController.slider('setValue', 0);
+      // $borderRadiusController.slider('setValue', 0);
       widgetNode.setAttribute('w-borderradius', 0);
       widgetContainerWrapper.css({ width: "100%" });
       widgetContainer.css({ width: '100%' });
       // widgetNode.setAttribute('w-height', 700);
     } else {
       $border_slider.slideDown("fast");
-      $borderRadiusController.slider('setValue', 4);
+      // $borderRadiusController.slider('setValue', 4);
       widgetNode.setAttribute('w-borderradius', 4);
       widgetContainerWrapper.css({ width: 'auto' });
       widgetContainer.css({ width: 'auto' });
@@ -279,11 +281,14 @@
         };
       }
 
+      /*
       $widthController.slider({
-        setValue: sizeConfig.width,
-        max: sizeConfig.maxWidth,
-        min: sizeConfig.minWidth
-      }).slider('refresh');
+          setValue: sizeConfig.width ,
+          max: sizeConfig.maxWidth,
+          min: sizeConfig.minWidth
+        })
+        .slider('refresh');
+      */
 
       widgetNode.setAttribute('w-width', sizeConfig.width);
       widgetNode.setAttribute('w-height', sizeConfig.height);
@@ -318,11 +323,14 @@
           maxWidth: themeConfig.simple_countdown.initSliderSize.maxWidth, //500
           minWidth: themeConfig.simple_countdown.initSliderSize.minWidth // 350
         };
+        /*
         $widthController.slider({
-          setValue: _sizeConfig.width,
-          max: _sizeConfig.maxWidth,
-          min: _sizeConfig.minWidth
-        }).slider('refresh');
+            setValue: sizeConfig.width,
+            max: sizeConfig.maxWidth,
+            min: sizeConfig.minWidth
+          })
+          .slider('refresh');
+        */
       }
 
       widgetNode.setAttribute('w-width', _sizeConfig.width);
@@ -379,10 +387,10 @@
         } else if (name === 'w-proportion') {
           $layoutBox.slideDown("fast");
           $border_slider.slideDown("fast");
-          $borderRadiusController.slider('setValue', 4);
+          // $borderRadiusController.slider('setValue', 4);
           $tabButtons.slideDown("fast");
           widthSlider.slideDown("fast");
-          $widthController.slider('refresh');
+          // $widthController.slider('refresh');
         }
         $self.prop('checked', true);
         widgetNode.setAttribute($self.attr('name'), val);
@@ -395,8 +403,8 @@
     }
     $layoutBox.slideDown("fast");
     $border_slider.slideDown("fast");
-    $borderRadiusController.slider('setValue', 4);
-    $widthController.slider('refresh');
+    // $borderRadiusController.slider('setValue', 4);
+    // $widthController.slider('refresh');
     $tabButtons.slideDown("fast");
     widthSlider.slideDown("fast");
 
@@ -474,9 +482,28 @@
     });
 
     $('#js_styling_nav_tab').on('shown.bs.tab', function (e) {
-      $widthController.slider('relayout');
-      $borderRadiusController.slider('relayout');
+      /* $widthController.slider('relayout'); */
+      /* $borderRadiusController.slider('relayout'); */
       windowScroll(); //recalculate widget container position
+    });
+
+    document.getElementById('w-width').addEventListener('blur', function (e) {
+      if (this.value < 350 || this.value > 1920) {
+        this.value = 350;
+        var _widgetNode = document.querySelector("div[w-tmapikey]");
+        _widgetNode.setAttribute('w-width', '350');
+        document.querySelector('.events-root-container').style.width = '350px';
+        widget.update();
+      }
+    });
+
+    document.getElementById('w-borderradius').addEventListener('blur', function (e) {
+      if (this.value < 0 || this.value > 50) {
+        this.value = 4;
+        var _widgetNode2 = document.querySelector("div[w-tmapikey]");
+        _widgetNode2.setAttribute('w-borderradius', '4');
+        widget.update();
+      }
     });
   }
 

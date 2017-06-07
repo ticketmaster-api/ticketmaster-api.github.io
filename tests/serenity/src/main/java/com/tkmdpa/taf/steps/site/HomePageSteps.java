@@ -1,4 +1,4 @@
-package com.tkmdpa.taf.steps;
+package com.tkmdpa.taf.steps.site;
 
 import com.tkmdpa.taf.pages.site.HomePage;
 import net.serenitybdd.core.pages.WebElementFacade;

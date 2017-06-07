@@ -5,16 +5,15 @@ import net.serenitybdd.core.annotations.findby.FindBy;
 import net.serenitybdd.core.pages.WebElementFacade;
 import net.thucydides.core.pages.PageObject;
 import org.openqa.selenium.NoSuchElementException;
-
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 public class AncestorPage extends PageObject {
 
-    private static final Logger LOGGER = Logger.getLogger(String.valueOf(AncestorPage.class));
+    public static final Logger LOGGER = LoggerFactory.getLogger(AncestorPage.class);
 
     @FindBy(xpath = "//form[@class='main-widget-config-form common_tabs']")
     private EventDiscoveryWidget eventDiscoveryWidget;
@@ -124,10 +123,12 @@ public class AncestorPage extends PageObject {
     private boolean isDisplayedFooterMenu() {
         try {
             return footerMenu.isDisplayed();
-        } catch (NoSuchElementException e) {
+        } catch (Exception e) {
+            LOGGER.error(String.valueOf(e));
             try {
                 return footerMenu2.isDisplayed();
-            } catch  (NoSuchElementException x) {
+            } catch  (Exception x) {
+                LOGGER.error(String.valueOf(x));
                 return footerMenu3.isDisplayed();
             }
         }
@@ -137,6 +138,7 @@ public class AncestorPage extends PageObject {
         try {
             return disqusOption.isDisplayed();
         } catch (NoSuchElementException e) {
+            LOGGER.error(String.valueOf(e));
             return false;
         }
     }
@@ -145,6 +147,7 @@ public class AncestorPage extends PageObject {
         try {
             return leftSideMenu.isDisplayed();
         } catch (NoSuchElementException e) {
+            LOGGER.error(String.valueOf(e));
             return false;
         }
     }
@@ -190,8 +193,7 @@ public class AncestorPage extends PageObject {
         try {
             Thread.sleep(500);
         } catch (InterruptedException e) {
-            e.printStackTrace();
-            LOGGER.log(Level.WARNING, "Interrupted!", e);
+            LOGGER.info("context", e);
             Thread.currentThread().interrupt();
         }
     }
@@ -205,6 +207,7 @@ public class AncestorPage extends PageObject {
         try {
             return webElementFacade.isDisplayed();
         } catch (NoSuchElementException e) {
+            LOGGER.error(String.valueOf(e));
             return false;
         }
     }

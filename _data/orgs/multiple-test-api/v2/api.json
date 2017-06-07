@@ -1,7 +1,7 @@
 {
   "swagger": "2.0",
   "info": {
-    "description": "The Ticketmaster Discovery API allows you to search for events, attractions, or venues.",
+    "description": "The Ticketmaster Discovery API allows you to search for events, attractions, or venues. ",
     "version": "v2",
     "title": "Multiple Test API",
     "contact": {
@@ -11,9 +11,9 @@
   "host": "www.ticketmaster.com",
   "basePath": "/discovery/v2",
   "paths": {
-    "/discovery/v2/attractions": {
+    "/discovery/v2/attractions/check": {
       "get": {
-        "summary": "Attraction Search",
+        "summary": "Attraction Search Check 10",
         "description": "Find attractions (artists, sports, packages, plays and so on) and filter your search by name, and much more.",
         "operationId": "find",
         "parameters": [

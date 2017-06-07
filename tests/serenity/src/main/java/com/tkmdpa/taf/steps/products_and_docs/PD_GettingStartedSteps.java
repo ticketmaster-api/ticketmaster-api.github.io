@@ -1,5 +1,6 @@
 package com.tkmdpa.taf.steps.products_and_docs;
 
+import com.tkmdpa.taf.pages.AnyPage;
 import com.tkmdpa.taf.pages.site.products_and_docs.PD_GettingStartedPage;
 import com.tkmdpa.taf.staticmethods.MenuElements;
 import net.serenitybdd.core.Serenity;
@@ -11,13 +12,13 @@ import java.util.List;
 import java.util.Map;
 
 import static com.tkmdpa.taf.staticmethods.StaticMethods.checkIfWebElementExist;
-import static com.tkmdpa.taf.staticmethods.StaticMethods.waitForSomeActionHappened;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 public class PD_GettingStartedSteps {
 
     PD_GettingStartedPage gettingStartedPage;
+    AnyPage anyPage;
 
     @Step
     public void openPage() {
@@ -50,7 +51,8 @@ public class PD_GettingStartedSteps {
             element.shouldBeVisible();
             gettingStartedPage.scrollToElement(element);
             element.click();
-            waitForSomeActionHappened(50);
+            anyPage.waitForPageReadyStateComplete();
+            anyPage.waitForAjaxToComplete();
             assertEquals(gettingStartedPage.returnCurrentUrl(), elementUrl);
             gettingStartedPage.open();
         }

@@ -61,19 +61,22 @@
       },
       isPostalCodeChanged = false;
 
+  /*
   var $widthController = $('#w-width').slider({
         tooltip: 'always',
         handle: 'square'
       }),
+
       $borderRadiusController = $('#w-borderradius').slider({
         tooltip: 'always',
         handle: 'square'
       }),
-      $colorSchemeSelector = $('.widget__color_scheme_control');
+      */
+      var $colorSchemeSelector = $('.widget__color_scheme_control');
 
   $('#js_styling_nav_tab').on('shown.bs.tab', function (e) {
-    $widthController.slider('relayout');
-    $borderRadiusController.slider('relayout');
+    // $widthController.slider('relayout');
+    /* $borderRadiusController.slider('relayout'); */
     windowScroll(); //recalculate widget container position
   });
 
@@ -177,7 +180,7 @@
     if(targetValue === 'fullwidth'){
       // $layoutBox.slideUp();
       widthSlider.slideUp("fast");
-      $borderRadiusController.slider('setValue', 0);
+      // $borderRadiusController.slider('setValue', 0);
       widgetNode.setAttribute('w-borderradius', 0);
       $border_slider.slideUp("fast");
       widgetContainerWrapper.css({width: "100%"});
@@ -187,7 +190,7 @@
       // $layoutBox.slideDown("fast");
       widthSlider.hide();
       $border_slider.hide();
-      $borderRadiusController.slider('setValue', 4);
+      // $borderRadiusController.slider('setValue', 4);
       widgetNode.setAttribute('w-borderradius', 4);
       widgetContainerWrapper.css({ width: 'auto' });
       widgetContainer.css({ width: 'auto' });
@@ -282,16 +285,18 @@
         
         $('.js_widget_width_slider').slideDown("fast");
         $('.js_widget_border_slider').slideDown("fast");
-        $borderRadiusController.slider('setValue', 4);
+        // $borderRadiusController.slider('setValue', 4);
         widgetNode.setAttribute('w-borderradius', 4);
         $containerWidget.css({ width: 'auto' });
         $(".widget-container", $containerWidget).css({ width: 'auto' });
 
+        /*
         $widthController.slider({
           setValue: sizeConfig.width,
           max: sizeConfig.maxWidth,
           min: sizeConfig.minWidth
         }).slider('refresh');
+        */
       }
             
       widgetNode.setAttribute('w-width', sizeConfig.width);
@@ -328,18 +333,22 @@
           maxWidth: themeConfig.initSliderSize.maxWidth,  //500
           minWidth: themeConfig.initSliderSize.minWidth // 350
         };
+        /*
         $widthController.slider({
           setValue: sizeConfig.width,
           max: sizeConfig.maxWidth,
           min: sizeConfig.minWidth
         })
             .slider('refresh');
+         */
       }
       widgetNode.setAttribute('w-width', sizeConfig.width);
       widgetNode.setAttribute('w-height', sizeConfig.height);
     }
 
     widgetNode.setAttribute(event.target.name, event.target.value);
+    document.getElementById('w-width').value = widgetNode.getAttribute('w-width');
+    document.getElementById('w-borderradius').value = widgetNode.getAttribute('w-borderradius');
     widget.update();
 
     windowScroll(); //recalculate widget container position
@@ -579,4 +588,24 @@
   if(parseInt($(window).width(), 10) < 767){
     $('#w-fixed-300x250').trigger('click');
   }
+
+   document.getElementById('w-width').addEventListener('blur', function(e) {
+       if(this.value < 350 || this.value > 1920) {
+         this.value = 350;
+         let widgetNode = document.querySelector("div[w-tmapikey]");
+         widgetNode.setAttribute('w-width', '350');
+         document.querySelector('.events-root-container').style.width = '350px';
+         widget.update();
+       }
+   });
+
+    document.getElementById('w-borderradius').addEventListener('blur', function(e) {
+        if(this.value < 0 || this.value > 50) {
+            this.value = 4;
+            let widgetNode = document.querySelector("div[w-tmapikey]");
+            widgetNode.setAttribute('w-borderradius', '4');
+            widget.update();
+        }
+    });
+
 })();

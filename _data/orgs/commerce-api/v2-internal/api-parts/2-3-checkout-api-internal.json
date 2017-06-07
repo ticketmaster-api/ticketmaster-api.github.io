@@ -1,7 +1,7 @@
 {
   "swagger" : "2.0",
   "info" : {
-    "description" : "Use the Ticketmaster Commerce API to look up available offers and products on various platforms, including Ticketmaster’s and TicketWeb’s. Once offers and products are selected, you can use the API to cart and transact on those items.",
+    "description" : "Use the Ticketmaster Commerce API to look up available offers and products on various platforms, including Ticketmaster's and TicketWeb's. Once offers and products are selected, you can use the API to cart and transact on those items.",
     "version" : "v2",
     "title" : "Commerce API",
     "contact" : {
@@ -396,7 +396,7 @@
     "Links" : {
       "type" : "object"
     },
-    "Options" : {
+    "OptionsResponse" : {
       "type" : "object",
       "properties" : {
         "paymentOptions" : {
@@ -412,23 +412,20 @@
           }
         },
         "_embedded" : {
-          "$ref" : "#/definitions/DeliveryOptionsResponseEmbeddedData"
-        }
-      }
-    },
-    "OptionsResponse" : {
-      "type" : "object",
-      "properties" : {
-        "data" : {
-          "$ref" : "#/definitions/Options"
-        },
-        "_embedded" : {
           "$ref" : "#/definitions/OptionsResponseEmbeddedData"
         }
       }
     },
     "OptionsResponseEmbeddedData" : {
-      "type" : "object"
+      "type" : "object",
+      "properties" : {
+        "deliveryOptions" : {
+          "$ref" : "#/definitions/ResponseObjectListDeliveryOptionSimpleLinks"
+        },
+        "instruments" : {
+          "$ref" : "#/definitions/ResponseObjectListPaymentOptionsEmbeddedInstrumentsResponseObjectSimpleLinks"
+        }
+      }
     },
     "PaymentAttributes" : {
       "type" : "object",

@@ -22,7 +22,7 @@
               API Key <span class="config_field__description">(Required)</span>
             </label>
             <a href="https://developer-acct.ticketmaster.com/user/login" class="pull-right">Get your own</a>
-            <div class="widget_api_key__field" id="js_custom_select_key">
+            <div class="widget_api_key__field custom_select" id="js_custom_select_key">
               <input type="text" id="w-tm-api-key" name="w-tm-api-key" value="">
 							<a href="/support/faq/" class="widget_api_key__question"></a>
             </div>
@@ -91,22 +91,32 @@
       </div>
 
       <div class="row row-native">
-        <div class="col-lg-12 js_widget_width_slider">
-          <label for="w-width">
-            Width <span class="config_field__description">(px)</span>
-          </label>
-          <div class="bootstrap_slider bootstrap_slider-horizontal">
-            <input id="w-width" name="w-width" type="text" data-slider-min="350" data-slider-max="500" data-slider-step="1" data-slider-value="350">
-          </div>
-        </div>
-        <div class="col-lg-12 js_widget_border_slider double-margin-bottom">
-          <label for="w-borderradius">
-            Corner Radius <span class="config_field__description">(px)</span>
-          </label>
-          <div class="bootstrap_slider bootstrap_slider-horizontal">
-            <input id="w-borderradius" name="w-borderradius" type="text" data-slider-min="0" data-slider-max="20" data-slider-step="1" data-slider-value="4">
-          </div>
-        </div>
+				<div class="col-lg-12 js_widget_width_slider">
+					<label for="w-width">
+						Width <span class="config_field__description">(px)</span>
+					</label>
+					<div class="row row-native">
+						<div class="col-lg-6">
+							<input id="w-width" name="w-width" type="number" size="6" min="200" max="1920" value="350" />
+						</div>
+						<div class="col-lg-6">
+							<span class="config_field__description max">max width is 1920 px</span>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-12">
+					<label for="w-borderradius">
+						Corner Radius <span class="config_field__description">(px)</span>
+					</label>
+					<div class="row row-native">
+						<div class="col-lg-6">
+							<input id="w-borderradius" name="w-borderradius" type="number" min="0" value="4" />
+						</div>
+						<div class="col-lg-6">
+							<span class="config_field__description max">max radius is 50 px</span>
+						</div>
+					</div>
+				</div>
       </div>
     </div>
 

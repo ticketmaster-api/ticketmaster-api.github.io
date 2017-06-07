@@ -1,7 +1,7 @@
 {
   "swagger" : "2.0",
   "info" : {
-    "description" : "Use the Ticketmaster Commerce API to look up available offers and products on various platforms, including Ticketmaster’s and TicketWeb’s. Once offers and products are selected, you can use the API to cart and transact on those items.",
+    "description" : "Use the Ticketmaster Commerce API to look up available offers and products on various platforms, including Ticketmaster's and TicketWeb's. Once offers and products are selected, you can use the API to cart and transact on those items.",
     "version" : "v2",
     "title" : "Commerce API",
     "contact" : {
@@ -99,6 +99,9 @@
         "name" : {
           "type" : "string"
         },
+        "description" : {
+          "type" : "string"
+        },
         "areaType" : {
           "type" : "string",
           "enum" : [ "LEVEL", "SECTION", "AREA" ]
@@ -140,7 +143,12 @@
       }
     },
     "AttributeRefAttributes" : {
-      "type" : "object"
+      "type" : "object",
+      "properties" : {
+        "description" : {
+          "type" : "string"
+        }
+      }
     },
     "AttributeRefRelationships" : {
       "type" : "object"
@@ -208,6 +216,14 @@
           "type" : "string"
         },
         "multiples" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "maxAccessibleSeats" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "maxCompanionSeatsPerAccessibleSeat" : {
           "type" : "integer",
           "format" : "int32"
         }
@@ -459,6 +475,10 @@
       "properties" : {
         "eventMapping" : {
           "$ref" : "#/definitions/EventMappingView"
+        },
+        "accessibleSeatingEnabled" : {
+          "type" : "boolean",
+          "default" : false
         }
       }
     },

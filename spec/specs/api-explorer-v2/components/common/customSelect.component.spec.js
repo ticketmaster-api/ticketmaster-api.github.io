@@ -21,6 +21,7 @@ describe("CustomSelect component spec", function() {
 		setFixture();
 		this.paramsMock = {
 			data: {
+				name: 'nameMock',
 				value: ko.observable(),
 				isDirty: false
 			},
@@ -57,6 +58,7 @@ describe("CustomSelect component spec", function() {
 			expect(this.component.isReadOnly).toBe(this.paramsMock.isReadOnly);
 			expect(this.component.isDirty()).toBeFalsy();
 			expect(this.component.isOneOption()).toBeFalsy();
+			expect(this.component.name).toBe(this.paramsMock.data.name);
 		});
 
 		it('should update checked properties in options list', () => {
@@ -159,6 +161,36 @@ describe("CustomSelect component spec", function() {
 			spyOn(this.component, 'slideToggle');
 			this.component.onSelect(this.paramsMock.options()[2], event);
 			expect(this.component.slideToggle).toBeCalledWith(this.paramsMock.options()[2], event);
+		});
+	});
+
+	describe('When selected param updated', () => {
+		var selectedMock;
+		beforeEach(() => {
+			selectedMock = {
+				checked:jest.fn()
+			};
+			this.paramsMock.selected(selectedMock);
+		});
+		it('should update selectedOption', () => {
+			expect(this.component.selectedOption()).toBe(selectedMock);
+		});
+		it('should checked selectedOption', () => {
+			expect(selectedMock.checked).toBeCalledWith(true);
+		});
+	});
+
+	describe('When component created with selected object', () => {
+		var selectedMock;
+		beforeEach(() => {
+			selectedMock = {
+				checked:jest.fn()
+			};
+			this.paramsMock.selected = ko.observable(selectedMock);
+			this.component = new CustomSelect(this.paramsMock);
+		});
+		it('should be checked selected item', () => {
+			expect(selectedMock.checked).toBeCalledWith(true);
 		});
 	});
 });

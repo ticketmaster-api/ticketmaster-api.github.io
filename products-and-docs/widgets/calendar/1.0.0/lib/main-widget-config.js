@@ -62,19 +62,11 @@
     },
         isPostalCodeChanged = false;
 
-    var $widthController = $('#w-width').slider({
-        tooltip: 'always',
-        handle: 'square'
-    }),
-        $borderRadiusController = $('#w-borderradius').slider({
-        tooltip: 'always',
-        handle: 'square'
-    }),
-        $colorSchemeSelector = $('.widget__color_scheme_control');
+    var $colorSchemeSelector = $('.widget__color_scheme_control');
 
     $('#js_styling_nav_tab').on('shown.bs.tab', function (e) {
         // $widthController.slider('relayout');
-        $borderRadiusController.slider('relayout');
+        // $borderRadiusController.slider('relayout');
     });
 
     //replace Api Key on init
@@ -365,8 +357,18 @@
             }
         }
         // Use only Key from config form
+        var googleKey = 'YOUR_GOOGLE_API_KEY';
         htmlCode.setAttribute('w-googleapikey', getGooleApiKey());
         htmlCode.setAttribute('w-tmapikey', getTmApiKey());
+        /*
+        if (document.getElementById('w-googleapikey').value != '') {
+            googleKey = document.getElementById('w-googleapikey').value;
+            htmlCode.setAttribute('w-googleapikey', googleKey);
+        } else {
+            htmlCode.setAttribute('w-googleapikey', googleKey);
+        }
+        */
+        htmlCode.setAttribute('w-googleapikey', googleKey);
         var tmp = document.createElement("div");
         tmp.appendChild(htmlCode);
         codeCont.textContent = tmp.innerHTML;
@@ -531,5 +533,14 @@
             $ul.append('<li class="custom_select__item ' + (activeVal === data.value ? 'custom_select__item-active' : '') + '" data-value="' + data.value + '">' + $(this).text() + '</li>');
         });
     }
+
+    document.getElementById('w-borderradius').addEventListener('blur', function (e) {
+        if (this.value < 0 || this.value > 50) {
+            this.value = 4;
+            var widgetNode = document.querySelector("div[w-tmapikey]");
+            widgetNode.setAttribute('w-borderradius', '4');
+            widget.update();
+        }
+    });
 })();
 //# sourceMappingURL=main-widget-config.js.map
