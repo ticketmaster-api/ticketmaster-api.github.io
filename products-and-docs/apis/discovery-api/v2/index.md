@@ -11,6 +11,8 @@ redirect_from:
 - "/products-and-docs/apis/discovery-api/"
 - "/products-and-docs/apis/discovery/"
 - "/products-and-docs/apis/discovery/v2/"
+- "/products-and-docs/apis/discovery-api/v1/"
+- "/products-and-docs/apis/discovery/v1/"
 ---
 
 {% comment %}

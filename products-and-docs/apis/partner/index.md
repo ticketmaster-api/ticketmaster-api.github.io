@@ -43,7 +43,7 @@ All connections must be made over SSL using https.
 Here you can test API transactions for different scenarios like credit card and invoice payment, captcha, etc.  The following event ids are available for use:
 
 
-    * 000051048D991EE7: Use this event ID for production environment testing
+    * 2000527EE48A9334: Use this event ID for production environment testing
 
 
 ### Best Practices
@@ -958,7 +958,7 @@ This is only available for partners signed up for affiliate tracking through Imp
 {: .reqres}
 
 {% highlight bash %}
-https://app.ticketmaster.com/partners/v1/tracking?event_id=000051048D991EE7&apikey=GkB8Z037ZfqbLCNtZViAgrEegbsrZ6Ne
+https://app.ticketmaster.com/partners/v1/tracking?event_id=2000527EE48A9334&apikey=GkB8Z037ZfqbLCNtZViAgrEegbsrZ6Ne
 {% endhighlight %}
 
 {% highlight js %}
@@ -1033,8 +1033,8 @@ For use by Channel Partners only. Discover events available to transact on. For 
         * `eventCode` (string) -  Event code  Eg: "EPT0726E"
         * `eventHost` (string) -  Host system Eg: "LA2"
         * `eventId` (string) - Event ID Eg. "0B004D43F86C478F"
-        * `eventDate` (date) - Event Date in UTC YYYY-MM-DD format
-        * `eventTime` (time) - Event Time in UTC HH:MM:SS format
+        * `eventDate` (date) - Event Date is Local Date YYYY-MM-DD format
+        * `eventTime` (time) - Event Time is Local Time HH:MM:SS format
         * `timeZone` (text) - Time zone of the event venue location Eg: "America/Los_Angeles"
         * `offers` (array) - Offers on the Event
             - {arrayitemobject} - offer
@@ -1724,7 +1724,7 @@ Encrypt a credit card and cvv number using the following steps:
 </ol>
 
 
-Sample credit-card information for use in the production environment for event id 000051048D991EE7 (see code examples below):
+Sample credit-card information for use in the production environment for event id 2000527EE48A9334 (see code examples below):
 
 <ul>
     <li>payment.card.issuer=DISCOVER</li>
@@ -1771,6 +1771,7 @@ Sample credit-card information for use in the production environment for event i
             * `abbreb` (string) Region abbreviation
         * `postal_code` (string) - Postal/Zip code
     * `card` (object) - Card information
+        * `issuer` (string) - Issuer of card (VISA, MC, AMEX, DISCOVER)
         * `number` (string) - Encrypted credit card number (CC type only)
         * `cin` (string) - Encrypted cvv number (CC type only)
         * `encryption_key` (string) - Encryption certificate id (see certificate docs earlier, CC type only) 
@@ -1813,6 +1814,7 @@ https://app.ticketmaster.com/partners/v1/events/0B004ED9FC825ACB/cart/payment?ap
         },
         "amount": "69.00",              
         "card": {                       
+            "issuer" : "VISA",
             "number": "qvaEc5EX2bt5pt5DiTQR4J6iYZKxsujQPdw7LXCAnbeb8cD/CiXoB1V/pG2GAHBcHS/IdIMskFg=",
             "cin": "BYdEgXIxwz6bXG6OVQRKwj0wc9KE510eXRpwoEoTrd9t9i7=",
             "encryption_key": "paysys-dev.0.us.999",
@@ -2282,10 +2284,6 @@ Status 200
     "customer_email": "joe.qa@ticketmaster.com",
     "tickets": [
         {
-            "barcode_display_date": {
-                "format": "datetime",
-                "value": "2015-12-09T23:30:37Z"
-            },
             "barcode_id": "8819624561542398",
             "charges": [
                 {
@@ -2339,9 +2337,6 @@ Status 200
             "event_code": "EGOLD",
             "event_host": "PHX",
             "event_id": "3F004EC9D1EBBC76",
-            "event_name": "Seattle Sounders FC vs. San Jose Earthquakes",
-            "face_value": 66.0,
-            "facility_charge": 0.0,
             "is_ga": false,
             "is_national_vip": false,
             "order_date": "2015-12-10",
@@ -2351,21 +2346,6 @@ Status 200
             "seat_id": "252313614",
             "seat_name": "16",
             "section": "CLB237",
-            "service_charge": 0.0,
-            "tax": 0.0,
-            "text": [
-                "",
-                "SEATTLE SOUNDERS FC",
-                "VS",
-                "SAN JOSE EARTHQUAKES",
-                "CENTURYLINK FIELD",
-                "SAT AUG 20 2016 7:00PM"
-            ],
-            "ticket_type_description": {
-                "description": "FULL PRICE - UNDER 3 ON LAP",
-                "id": "000000000001"
-            },
-            "transfer_eligibility": "available",
             "voided": false
         }
     ],

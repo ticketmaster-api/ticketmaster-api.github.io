@@ -717,6 +717,10 @@
         },
         "cameFrom" : {
           "type" : "string"
+        },
+        "sendRedemptionEmail" : {
+          "type" : "boolean",
+          "default" : false
         }
       }
     },
@@ -1235,6 +1239,9 @@
         },
         "metadata" : {
           "$ref" : "#/definitions/OrderMetadata"
+        },
+        "redemption" : {
+          "$ref" : "#/definitions/Redemption"
         }
       }
     },
@@ -1455,6 +1462,17 @@
         },
         "events" : {
           "$ref" : "#/definitions/ResponseObjectRefList"
+        }
+      }
+    },
+    "Redemption" : {
+      "type" : "object",
+      "properties" : {
+        "url" : {
+          "type" : "string"
+        },
+        "token" : {
+          "type" : "string"
         }
       }
     },
