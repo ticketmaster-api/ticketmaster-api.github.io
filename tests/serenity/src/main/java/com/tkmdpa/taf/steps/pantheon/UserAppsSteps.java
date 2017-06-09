@@ -53,6 +53,7 @@ public class UserAppsSteps {
 
     @Step
     public void checkIfChangesAreApplied(String detailName, String value) {
+        anyPage.waitForPageReadyStateComplete();
         checkIfWebElementExist(addNewAppPage.getAppNameInDetailsTab(detailName));
         assertEquals (addNewAppPage.getAppNameInDetailsTab(detailName).getText(), value);
     }
