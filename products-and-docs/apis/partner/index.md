@@ -96,6 +96,10 @@ The following headers to the availability response add more information about th
 ### Channel Partners
 See ["Channel Partners"](#channel-partner-overview)
 
+### Support/FAQs
+
+You can visit our support/FAQ page  [here](/support/partner-api-faq).
+
 ### Contact
 
 Ticketmaster Developer Program [developer@ticketmaster.com](mailto:developer@ticketmaster.com).
