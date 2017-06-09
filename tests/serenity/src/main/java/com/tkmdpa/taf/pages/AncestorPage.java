@@ -42,7 +42,7 @@ public class AncestorPage extends PageObject {
     @FindBy(xpath = "//div[./ul[@id='scrollable-element']]")
     private LeftMenuWidget leftSideMenuWidget;
 
-    @FindBy(xpath = "//div[@id='feedback-modal']")
+    @FindBy(xpath = ".//*[@id='feedback-modal']/div/div")
     private FeedbackWidget feedbackWidget;
 
 //    PAGE ELEMENTS
