@@ -11,10 +11,6 @@ Given open Home page
 And navigate to Pantheon LogIn page from Home page
 And navigate to Pantheon User Account page from LogIn page
 
-Scenario: (developer-acct.ticketmaster.com/user/1554/apps/add) Verification for general page's elements
-When navigate to Pantheon Add New App page from User Account page
-Then check general page elements for Pantheon Add New App page
-
 Scenario: (Pantheon|Add new App) Add new App negative [2.1.15 Add New App - The required field is empty]
 Given navigate to Pantheon Add New App page from User Account page
 When enter to the field <appFormField> value <appName>
@@ -26,7 +22,8 @@ Examples:
 |Redirect URI     |https://ticketmaster.com |Application name field is required.        |
 
 Scenario: (Pantheon|Add new App) [2.1.5 Add new App with values positive]
-Given navigate to Pantheon Add New App page from User Account page
+Given all the applications were deleted
+And navigate to Pantheon Add New App page from User Account page
 When enter to the field Application name value uniqueApp
 When enter to the field Redirect URI value https://oauth.ticketmaster.com
 And save changes on Edit App Page

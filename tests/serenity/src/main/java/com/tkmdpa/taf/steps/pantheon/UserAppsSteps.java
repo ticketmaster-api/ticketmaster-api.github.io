@@ -17,16 +17,6 @@ public class UserAppsSteps {
     AnyPage anyPage;
 
     @Step
-    public void checkGeneralPageElements(){
-        addNewAppPage.checkGeneralPageElementsPantheonLoggedIn();
-    }
-
-    @Step
-    public void checkIfSomeElementExist(){
-        addNewAppPage.getNameTextInput().shouldBeVisible();
-    }
-
-    @Step
     public void editApp() {
         addNewAppPage.clickEditButton();
     }
@@ -71,14 +61,14 @@ public class UserAppsSteps {
 
     @Step
     public void checkIfMessageIsDisplayed(String errorMessage) {
-        anyPage.waitForPageReadyStateComplete();
-        anyPage.waitForAjaxToComplete();
         assertEquals(addNewAppPage.getPopUpMessage().getText(), errorMessage);
     }
 
     @Step
     public void removeApp() {
-        addNewAppPage.clickDelete();
+            addNewAppPage.clickDelete();
+            anyPage.waitForAjaxToComplete();
+            anyPage.waitForPageReadyStateComplete();
     }
 
     @Step
