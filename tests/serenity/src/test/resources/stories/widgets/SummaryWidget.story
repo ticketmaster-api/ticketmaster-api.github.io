@@ -1,4 +1,5 @@
 Meta:
+@regression-widgets
 
 Narrative:
 As a test engineer

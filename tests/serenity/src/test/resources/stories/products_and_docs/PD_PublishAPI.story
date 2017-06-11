@@ -1,4 +1,5 @@
 Meta:
+@regression-site
 
 Narrative:
 As a test engineer

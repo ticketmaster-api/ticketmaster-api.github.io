@@ -25,7 +25,8 @@
  1. Open project root and `serenity.properties` file and specify appropriate url  in `webdriver.base.url` property to run tests on.
  2. Open terminal, navigate to project root folder and run `mvn clean install` to compile and install modules into local repository.
  3. Run `mvn clean integration-test -Dmetafilter="-prod -NotImplemented" -DtestRunName="Release {numberOfRelease}(staging)"` to execute all tests in current module.
- 4. Open `serenity/target/site/serenity/index.html` with browser to see test execution report.
+ 4. Run `mvn clean integration-test -Dmetafilter="+regression-site"` to execute the tests with appropriate tag.
+ 5. Open `serenity/target/site/serenity/index.html` with browser to see test execution report.
 
 ### SonarQube
  It is recommended to run SonarQube static analysis prior to pushing new code to main branch.

@@ -1,4 +1,5 @@
 Meta:
+@regression-widgets
 
 Narrative:
 In order to setup Event Discovery Widget
