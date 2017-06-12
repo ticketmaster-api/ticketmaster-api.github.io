@@ -60,6 +60,6 @@ Examples:
 
 Scenario: (Pantheon|Delete App) Delete App positive [2.1.9 Delete application]
 Given open my Apps page
-When delete first App
+When delete application
 Then the message App Deleted! is displayed
 
