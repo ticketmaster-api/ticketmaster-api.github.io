@@ -8,6 +8,8 @@ import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.util.List;
+
 public class AddNewAppPage extends AncestorPage {
 
     @FindBy(xpath = "//input[@name='human']")
@@ -36,6 +38,13 @@ public class AddNewAppPage extends AncestorPage {
 
     @FindBy(xpath = "//h1")
     private WebElementFacade noAppsMessage;
+
+    public List<WebElementFacade> getListOfApps() {
+        return listOfApps;
+    }
+
+    @FindBy(xpath = "//a[@data-toggle='collapse']")
+    private List<WebElementFacade> listOfApps;
 
     public WebElementFacade getNameTextInput() {
         return nameTextInput;
@@ -80,6 +89,8 @@ public class AddNewAppPage extends AncestorPage {
 
     public void clickDelete() {
         deleteButton.click();
+        WebDriverWait wait = new WebDriverWait(getDriver(), 15);
+        wait.until(ExpectedConditions.elementToBeClickable(deleteApp));
         deleteApp.click();
     }
 

@@ -22,6 +22,11 @@ public class UserAccountDefinition {
         userAccountPage.navigateToAddNewAppPage();
     }
 
+    @Given("all the applications were deleted")
+    public void allAppsWereDeleted(){
+        userAccountPage.deleteAllApps();
+    }
+
     @Then("check general page elements for Pantheon User Account page")
     public void checkGeneralPageElements(){
         userAccountPage.checkIfTitleIsCorrect();

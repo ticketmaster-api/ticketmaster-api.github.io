@@ -13,12 +13,6 @@ public class UserAppsDefinition {
     @Steps
     UserAppsSteps addNewAppPage;
 
-    @Then("check general page elements for Pantheon Add New App page")
-    public void checkGeneralPageElements(){
-        addNewAppPage.checkIfSomeElementExist();
-        addNewAppPage.checkGeneralPageElements();
-    }
-
     @Given("open my Apps page")
     @When("open my Apps page")
     @Then("open my Apps page")
@@ -53,7 +47,7 @@ public class UserAppsDefinition {
         addNewAppPage.applyChanges();
     }
 
-    @When("delete first App")
+    @When("delete application")
     public void deleteApp(){
         addNewAppPage.removeApp();
     }

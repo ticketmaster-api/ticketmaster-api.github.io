@@ -1,4 +1,5 @@
 Meta:
+@smoke
 
 Narrative:
 As a test engineer

@@ -1,4 +1,6 @@
 Meta:
+@regression-site
+@smoke
 
 Narrative:
 As a test engineer
