@@ -1,5 +1,5 @@
 Meta:
-@regression-partners
+@smoke
 
 Narrative:
 As a test engineer

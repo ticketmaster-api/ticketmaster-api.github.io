@@ -8,6 +8,7 @@ I want to use the widget configurator to customize the layout of the widget,
 and have ability to grab a small code snippet to insert into 3-rd party websites
 
 Scenario: (/products-and-docs/widgets/map/) [3.7.1 Map widget : Check that required fields are not empty]
+Meta:@smoke
 Given open Map Widget page
 Then the required fields are not empty on the Map Widget page
 

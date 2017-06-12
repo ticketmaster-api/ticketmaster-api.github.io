@@ -7,6 +7,7 @@ I want to test Ticket Master Developer's site
 So that I test Widgets Page of Ticket Master Developer's site
 
 Scenario: (/products-and-docs/widgets/) Verification for general page's elements
+Meta: @smoke
 Given open Widgets page
 Then check general page elements for Widgets Page, where DISQUS = false and LeftMenu = true
 

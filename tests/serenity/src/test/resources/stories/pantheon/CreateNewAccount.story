@@ -13,6 +13,7 @@ When navigate to Pantheon LogIn page from Home page
 When navigate to Pantheon Create New Account page from LogIn page
 
 Scenario: (developer-acct.ticketmaster.com/user/register) Verification for general page's elements
+Meta: @smoke
 Then check general page elements for Pantheon Create New Account page
 
 Scenario: (developer-acct.ticketmaster.com/user/register) [2.2.3.14 Create New Account - fail the CAPTCHA check]

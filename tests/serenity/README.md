@@ -1,4 +1,4 @@
-# Test Automation Framework 
+# UI Test Automation Framework 
 
 ### Running tests
 
@@ -20,7 +20,12 @@
  3. Select test type `Class` and specify `com.tkmdpa.taf.AcceptanceTestSuite` as class to run.
  4. Specify VM options, i.e. `-ea -Dmetafilter=+debug`
  5. Run created configuration. This approach is also applicable for debugging purposes.
-
+ 
+ ####Process
+ 1. Run regression tests on staging with tag `mvn verify -Dmetafilter="-prod -NotImplemented` before every release.
+ 2. Run sanity tests on production with `mvn verify -Dmetafilter="+smoke +prod"`.
+ 3. In order not to run all the suite, you can define specific tests with tags : `@regression-site, @regression-pantheon, @regression-widgets`.
+ 
 #### Maven
  1. Open project root and `serenity.properties` file and specify appropriate url  in `webdriver.base.url` property to run tests on.
  2. Open terminal, navigate to project root folder and run `mvn clean install` to compile and install modules into local repository.

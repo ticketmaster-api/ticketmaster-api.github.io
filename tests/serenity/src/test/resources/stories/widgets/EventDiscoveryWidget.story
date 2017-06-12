@@ -8,6 +8,7 @@ I want to use the widget configurator to customize the layout of the widget,
 and have ability to grab a small code snippet to insert into 3-rd party websites
 
 Scenario: (/products-and-docs/widgets/event-discovery/) TECHNICAL TAB - Check that required fields are not empty and have default values
+Meta:@smoke
 Given open Event Discovery Widget page
 Then the required fields are not empty and have default values on the Event Discovery Widget page
 
