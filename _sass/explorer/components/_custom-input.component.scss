@@ -21,6 +21,9 @@
 				background: url("/assets/widgets/1.0.0/img/ic-show-map.svg") 0 0 no-repeat;
 				bottom: 10px;
 				right: 12px;
+				&:hover {
+				    background-position: 0 -28px;
+				}
 			}
 		}
 		&__field {

@@ -841,7 +841,7 @@ function RenderCssCal(bNewCal) {
 		}
 
 		vCalTime += "</td>\n<td align='right' valign='bottom' width='" + HourCellWidth + "px'></td></tr>";
-		vCalTime += "<tr><td height='5px' width='" + HourCellWidth + "'>&nbsp;</td><td colspan='3' style='text-align:center;border-top:1px solid #b7c9d3;'><input onClick='javascript:closewin(\"" + Cal.Ctrl + "\");'  type=\"button\" value=\"OK\">&nbsp;<input onClick='javascript:winclose()' type=\"button\" value=\"Cancel\"></td><td height='5px' width='" + HourCellWidth + "'>&nbsp;</td></tr>";
+		vCalTime += "<tr><td height='5px' width='" + HourCellWidth + "'>&nbsp;</td><td colspan='3' style='text-align:center;border-top:1px solid #b7c9d3;'><input class=\"button-blue\" onClick='javascript:closewin(\"" + Cal.Ctrl + "\");'  type=\"button\" value=\"OK\">&nbsp;<input onClick='javascript:winclose()' type=\"button\" value=\"Cancel\"></td><td height='5px' width='" + HourCellWidth + "'>&nbsp;</td></tr>";
 	}
 	else //if not to show time.
 	{
@@ -895,6 +895,9 @@ function RenderCssCal(bNewCal) {
 		cssStr += "#calBorder select { -webkit-appearance: menulist; -moz-appearance: menulist;}\n";
 		cssStr += "#calBorder table tr:nth-child(even) {background: none;}\n";
 		cssStr += '#calBorder input[type="button"], #calBorderinput[type="reset"], #calBorder input[type="submit"] {margin-top: 15px; font-family:"TMSans-Bold",Helvetica,Arial,sans-serif; font-size:12px; width:45%; border:2px solid #b7c9d3; border-radius:4px; text-transform:uppercase; color:#b7c9d3; padding:4px; margin-bottom:12px;}\n';
+		cssStr += '#calBorder input[type="button"]:hover {color: #00ade5; background-color: transparent; border-color: #00ade5;}\n';
+		cssStr += '#calBorder input.button-blue {background-color: #009cde; color: #fff; border-color: #009cde}\n';
+		cssStr += '#calBorder input.button-blue:hover {background-color: #2a7cc7; color: #fff; border-color: #2a7cc7}\n';
 		cssStr += '#calBorder .MonthSelectorTitle {position: relative; font-family: "TMSans-Bold", Arial, serif; font-size: 14px; color: #b7c9d3; display: block; float: left; margin-left: 5px; padding-right:24px; -webkit-transition: color 0.3s ease-in-out; -o-transition: color 0.3s ease-in-out; transition: color 0.3s ease-in-out; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none;}\n';
 		cssStr += '#calBorder .MonthSelectorTitle:hover {color: #189ddc; cursor: pointer;}\n';
 		cssStr += '#calBorder .MonthSelectorTitle:hover:before {opacity:1;}\n';
