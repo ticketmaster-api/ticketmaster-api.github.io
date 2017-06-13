@@ -5,7 +5,7 @@
     <groupId>com.tkmdpa.taf</groupId>
     <artifactId>testautomation</artifactId>
     <version>1.0</version>
-		<name>tkm-dpa_automation</name>
+		<name>TKM-DPA_Automation</name>
     <description>UI Test Automation Framework TKM-DPA</description>
 
     <properties>
