@@ -269,8 +269,7 @@
           "$ref" : "#/definitions/OfferDetails"
         },
         "offerType" : {
-          "type" : "string",
-          "enum" : [ "BASE_TICKET", "STANDARD_TICKET_TYPE", "SPECIAL_OFFER", "DEFAULT", "STANDARD", "SPECIAL" ]
+          "type" : "string"
         },
         "currency" : {
           "type" : "string"
