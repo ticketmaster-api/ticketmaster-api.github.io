@@ -124,11 +124,11 @@ public class AncestorPage extends PageObject {
         try {
             return footerMenu.isDisplayed();
         } catch (Exception e) {
-            LOGGER.error(String.valueOf(e));
+            LOGGER.error("footerMenu is not found");
             try {
                 return footerMenu2.isDisplayed();
             } catch  (Exception x) {
-                LOGGER.error(String.valueOf(x));
+                LOGGER.error("footerMenu2 is not found");
                 return footerMenu3.isDisplayed();
             }
         }
@@ -138,7 +138,7 @@ public class AncestorPage extends PageObject {
         try {
             return disqusOption.isDisplayed();
         } catch (NoSuchElementException e) {
-            LOGGER.error(String.valueOf(e));
+            LOGGER.error("disqusOption is not found");
             return false;
         }
     }
@@ -147,17 +147,17 @@ public class AncestorPage extends PageObject {
         try {
             return leftSideMenu.isDisplayed();
         } catch (NoSuchElementException e) {
-            LOGGER.error(String.valueOf(e));
+            LOGGER.error("leftSideMenu is not found");
             return false;
         }
     }
 
     public void checkGeneralPageElements(boolean disqus, boolean leftMenu){
-        headerMenu.shouldBeVisible();
-        isDisplayedFooterMenu();
-        feedbackButton.shouldBeVisible();
-        searchOption.shouldBeVisible();
-        logInLink.shouldBeVisible();
+        assertTrue(headerMenu.isDisplayed());
+        assertTrue(isDisplayedFooterMenu());
+        assertTrue(feedbackButton.isDisplayed());
+        assertTrue(searchOption.isDisplayed());
+        assertTrue(logInLink.isDisplayed());
         if (disqus){
             assertTrue(iSDisplayedDisqusFeature());
         }
@@ -173,13 +173,13 @@ public class AncestorPage extends PageObject {
     }
 
     public void checkGeneralPageElementsPantheon(){
-        headerMenuPantheon.shouldBeVisible();
+        assertTrue(headerMenuPantheon.isDisplayed());
         assertTrue(isDisplayedFooterMenu());
-        logInLinkPantheon.shouldBeVisible();
+        assertTrue(logInLinkPantheon.isDisplayed());
     }
 
     public void checkGeneralPageElementsPantheonLoggedIn(){
-        headerMenuPantheon.shouldBeVisible();
+        assertTrue(headerMenuPantheon.isDisplayed());
         assertTrue(isDisplayedFooterMenu());
     }
 
