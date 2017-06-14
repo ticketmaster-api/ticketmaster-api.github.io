@@ -3756,5 +3756,5 @@ let yearSchedulers = [];
 let controls = new TabsControls;
 
 if(typeof module !== "undefined") {
-    module.exports = { widgetsCalendar , weekSchedulers, monthSchedulers, yearSchedulers };
+    module.exports = { TicketmasterCalendarWidget, WeekScheduler, MonthScheduler, YearScheduler };
 }
