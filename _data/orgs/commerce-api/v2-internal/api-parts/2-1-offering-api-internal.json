@@ -435,6 +435,12 @@
         "prices" : {
           "$ref" : "#/definitions/ResponseObjectListOfferedPriceSimpleLinks"
         },
+        "debug" : {
+          "type" : "array",
+          "items" : {
+            "type" : "string"
+          }
+        },
         "metadata" : {
           "$ref" : "#/definitions/OfferingResponseMetadata"
         },
