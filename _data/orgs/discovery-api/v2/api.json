@@ -679,16 +679,6 @@
           "default" : "",
           "x-example" : ""
         }, {
-          "name" : "nlp",
-          "in" : "query",
-          "description" : "Semantic search events with nlp(experimental)",
-          "required" : false,
-          "type" : "string",
-          "default" : "",
-          "pattern" : "^\\s*|(?:(?:^|,)(location))+$",
-          "enum" : [ "location" ],
-          "x-example" : ""
-        }, {
           "name" : "latlong",
           "in" : "query",
           "description" : "Filter events by latitude and longitude, this filter is deprecated and maybe removed in a future release, please use geoPoint instead",
@@ -993,16 +983,6 @@
           "required" : false,
           "type" : "string",
           "default" : "",
-          "x-example" : ""
-        }, {
-          "name" : "nlp",
-          "in" : "query",
-          "description" : "Semantic search events with nlp(experimental)",
-          "required" : false,
-          "type" : "string",
-          "default" : "",
-          "pattern" : "^\\s*|(?:(?:^|,)(location))+$",
-          "enum" : [ "location" ],
           "x-example" : ""
         }, {
           "name" : "countryCode",
@@ -1627,10 +1607,10 @@
     "DateTimeFieldType" : {
       "type" : "object",
       "properties" : {
-        "rangeDurationType" : {
+        "durationType" : {
           "$ref" : "#/definitions/DurationFieldType"
         },
-        "durationType" : {
+        "rangeDurationType" : {
           "$ref" : "#/definitions/DurationFieldType"
         },
         "name" : {
