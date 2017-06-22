@@ -1575,10 +1575,10 @@
           "type" : "boolean",
           "default" : false
         },
-        "rangeDurationField" : {
+        "durationField" : {
           "$ref" : "#/definitions/DurationField"
         },
-        "durationField" : {
+        "rangeDurationField" : {
           "$ref" : "#/definitions/DurationField"
         },
         "minimumValue" : {
@@ -1834,6 +1834,14 @@
           "description" : "Event's promoters",
           "items" : {
             "$ref" : "#/definitions/Promoter"
+          }
+        },
+        "products" : {
+          "type" : "array",
+          "position" : 37,
+          "description" : "Related products informations",
+          "items" : {
+            "$ref" : "#/definitions/Product"
           }
         },
         "seatmap" : {
@@ -2366,6 +2374,32 @@
         }
       },
       "description" : "PriceRange"
+    },
+    "Product" : {
+      "type" : "object",
+      "properties" : {
+        "name" : {
+          "type" : "string",
+          "position" : 10,
+          "description" : "Name of the entity"
+        },
+        "id" : {
+          "type" : "string",
+          "position" : 10,
+          "description" : "Product's primary id"
+        },
+        "url" : {
+          "type" : "string",
+          "position" : 12,
+          "description" : "Product's url"
+        },
+        "type" : {
+          "type" : "string",
+          "position" : 13,
+          "description" : "Product's type"
+        }
+      },
+      "description" : "Product"
     },
     "Promoter" : {
       "type" : "object",
