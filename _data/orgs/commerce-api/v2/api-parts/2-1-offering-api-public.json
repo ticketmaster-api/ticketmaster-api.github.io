@@ -1,7 +1,7 @@
 {
   "swagger" : "2.0",
   "info" : {
-    "description" : "Use the Ticketmaster Commerce API to look up available offers and products on various platforms, including Ticketmaster's and TicketWeb's. Once offers and products are selected, you can use the API to cart and transact on those items.",
+    "description" : "Use the Ticketmaster Commerce API to look up available offers and products on various Ticketmaster platforms for North America markets. For formal partnerships and relationships, selected offers and products can be carted and transacted on through the cart, delivery, payment and purchase APIs – These APIs require approved access from Ticketmaster.",
     "version" : "v2",
     "title" : "Commerce API",
     "contact" : {
