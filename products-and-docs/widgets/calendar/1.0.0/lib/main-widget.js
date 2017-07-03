@@ -2759,7 +2759,7 @@ var TicketmasterCalendarWidget = function () {
         key: "formatDate",
         value: function formatDate(date) {
             var result = '';
-            if (!date.day) return result; // Day is required
+            if (date == undefined || !date.day || date.day == undefined) return result; // Day is required
 
             function LZ(x) {
                 return (x < 0 || x > 9 ? "" : "0") + x;
@@ -3162,12 +3162,10 @@ var TicketmasterCalendarWidget = function () {
     }, {
         key: "createBackgroundImage",
         value: function createBackgroundImage(event, img) {
-            if (!this.isListView) {
-                var image = document.createElement("span");
-                image.classList.add("bg-cover");
-                image.style.backgroundImage = "url('" + img + "')";
-                event.appendChild(image);
-            }
+            var image = document.createElement("span");
+            image.classList.add("bg-cover");
+            image.style.backgroundImage = "url('" + img + "')";
+            event.appendChild(image);
         }
     }, {
         key: "addBuyButton",
@@ -5877,6 +5875,6 @@ var yearSchedulers = [];
 var controls = new TabsControls();
 
 if (typeof module !== "undefined") {
-    module.exports = { widgetsCalendar: widgetsCalendar, weekSchedulers: weekSchedulers, monthSchedulers: monthSchedulers, yearSchedulers: yearSchedulers };
+    module.exports = { TicketmasterCalendarWidget: TicketmasterCalendarWidget, WeekScheduler: WeekScheduler, MonthScheduler: MonthScheduler, YearScheduler: YearScheduler, TabsControls: TabsControls, SelectorControls: SelectorControls };
 }
 //# sourceMappingURL=main-widget.js.map
