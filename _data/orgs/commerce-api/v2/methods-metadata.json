@@ -1,7 +1,9 @@
 {
     "before": {}
     ,
-    "after": {}
+    "after": {
+        "include": "commerse-api/after-api.md",
+    }
     ,
     "method": [
         {
