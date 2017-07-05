@@ -1,4 +1,6 @@
 language: java
+addons:
+  firefox: "latest"
 node_js:
   - "7.10.0"
 
@@ -56,7 +58,4 @@ before_install:
   - nvm install 7.10
 #  - npm install -g galenframework-cli ignored as not needed already
   - /usr/bin/Xvfb :99 -ac -screen 0 1600x1366x16 -extension RANDR &
-  
-addons:
-  - firefox: "51.0"
 
