@@ -81,6 +81,11 @@
 					<artifactId>logger-java-log4j</artifactId>
 					<version>3.0.2</version>
 				</dependency>
+				<dependency>
+					<groupId>io.github.bonigarcia</groupId>
+					<artifactId>webdrivermanager</artifactId>
+					<version>1.6.2</version>
+				</dependency>
     </dependencies>
     <build>
         <plugins>
