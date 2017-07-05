@@ -1,4 +1,5 @@
 language: java
+dist: trusty
 addons:
   firefox: "latest"
 node_js:
@@ -9,6 +10,7 @@ jdk:
 
 env:
   global:
+  - CHROME_SOURCE_URL=https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
   - NOKOGIRI_USE_SYSTEM_LIBRARIES=true # speeds up installation of html-proofer
   - TEST_SEVERITY=CRITICAL # set: LOW , MEDIUM , HIGH , CRITICAL
 
@@ -57,5 +59,10 @@ before_install:
   - gem install github-pages
   - nvm install 7.10
 #  - npm install -g galenframework-cli ignored as not needed already
+  - export CHROME_BIN=/usr/bin/google-chrome
   - /usr/bin/Xvfb :99 -ac -screen 0 1600x1366x16 -extension RANDR &
+  - sudo apt-get update
+  - sudo apt-get install -y libappindicator1 fonts-liberation
+  - wget CHROME_SOURCE_URL
+  - sudo dpkg -i google-chrome*.deb
 
