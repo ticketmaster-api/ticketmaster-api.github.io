@@ -2,11 +2,6 @@
 
 ### Running tests
 
-#### Browser
- 1. For successful running it is required to have Firefox version 29 - 38.
- 2. You can download appropriate version of Firefox here https://ftp.mozilla.org/pub/firefox/releases/
- 3. Disable auto update in Firefox.
- 
 #### JBehave plugin for IntelliJ IDEA
  1. Install JBehave for Java plugin for IntelliJ IDEA.
  2. Right-click on particular feature file and select 'Create run configuration from context'.
