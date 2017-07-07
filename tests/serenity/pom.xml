@@ -74,7 +74,7 @@
 				<dependency>
 					<groupId>com.epam.reportportal</groupId>
 					<artifactId>agent-java-jbehave</artifactId>
-					<version>3.0.0-BETA-3</version>
+					<version>3.0.0</version>
 				</dependency>
 				<dependency>
 					<groupId>com.epam.reportportal</groupId>
@@ -84,7 +84,7 @@
 				<dependency>
 					<groupId>io.github.bonigarcia</groupId>
 					<artifactId>webdrivermanager</artifactId>
-					<version>1.6.2</version>
+					<version>1.7.0</version>
 				</dependency>
     </dependencies>
     <build>
