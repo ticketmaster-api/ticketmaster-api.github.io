@@ -75,7 +75,9 @@
                 {% endif %}
             </li>
 {% endcomment %}-->
-            <li><a href="/products-and-docs/apis/commerce/">Commerce API</a>
+
+					<!--{% comment %}
+					<li><a href="/products-and-docs/apis/commerce-static/">Commerce API</a>
                 {% if page.categories[0] == "documentation" and page.categories[1] == "commerce" %}
                 <ul class="sections menu-highlight">
                     <li><a href="#event-offers">Event Offers</a></li>
@@ -94,12 +96,12 @@
                 </ul>
                 {% endif %}
             </li>
+            {% endcomment %}-->
 
 						<!--automenu for Swagger api-->
-						<li><a href="/products-and-docs/apis/commerce-api-5670/v2/">Commerce API(5670)</a>
+						<li><a href="/products-and-docs/apis/commerce/v2/">Commerce API</a>
 							{% if page.categories[0] == "documentation" and page.categories[1] == "generated" and page.categories[2] == "commerce-api" %}
 							{% include partials/autodoc/side-menu-generate.html%}
-
 							<!--{% comment %}<!--faq-api menu item can be here--><!--
 											{% include partials/autodoc/side-menu-faq.html %}
 									{% endcomment %}-->
