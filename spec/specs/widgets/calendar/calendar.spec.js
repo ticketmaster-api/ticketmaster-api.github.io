@@ -4,12 +4,14 @@ window.$ = window.jQuery = $;
 describe("CalendarWidget", () => {
 	let widget,
 		widgetWeek,
+		widgetMonth,
+		widgetYear,
 		tabsControls,
 		selectorControls,
 		module,
 		hideMessageDelay;
 	var setFixture = () => {
-		document.body.innerHTML = '<head></head><div w-type="calendar" w-tmapikey="y61xDc5xqUSIOz4ISjgCe5E9Lh0hfUH1" w-googleapikey="AIzaSyBQrJ5ECXDaXVlICIdUBOe8impKIGHDzdA" w-postalcodeapi="90015" w-keyword="" w-colorscheme="light" w-width="350" w-height="600" w-size="25" w-border="0" w-borderradius="4" w-postalcode="" w-radius="" w-period="week" w-layout="vertical" w-attractionid="" w-promoterid="" w-venueid="" w-affiliateid="" w-segmentid="" w-proportion="custom" w-titlelink="off" w-countrycode="US" w-source="" w-latlong=",">';
+		document.body.innerHTML = '<head></head><div w-type="calendar" w-tmapikey="y61xDc5xqUSIOz4ISjgCe5E9Lh0hfUH1" w-googleapikey="AIzaSyBQrJ5ECXDaXVlICIdUBOe8impKIGHDzdA" w-postalcodeapi="90015" w-keyword="" w-colorscheme="light" w-width="350" w-height="600" w-size="25" w-border="0" w-borderradius="4" w-postalcode="" w-radius="" w-period="" w-layout="vertical" w-attractionid="" w-promoterid="" w-venueid="" w-affiliateid="" w-segmentid="" w-proportion="custom" w-titlelink="off" w-countrycode="US" w-source="" w-latlong=",">';
 		document.body.innerHTML += '<div class="tabs"><span class="tb active">Day</span><span class="tb">Week</span><span class="tb">Month</span><span class="tb">Year</span></div>';
 		document.body.innerHTML += '<div class="tabs-container"><div class="tab active">';
 		document.body.innerHTML += '<div class="sliderLeftSelector"><span class="selector-title">June 27</span><span class="selector-content" tabindex="-1"><span class="active" w-period="Tue Jun 27 2017 17:28:24 GMT+0300 (FLE Daylight Time)">June 27</span><span w-period="Wed Jun 28 2017 17:28:24 GMT+0300 (FLE Daylight Time)">June 28</span><span w-period="Thu Jun 29 2017 17:28:24 GMT+0300 (FLE Daylight Time)">June 29</span><span w-period="Fri Jun 30 2017 17:28:24 GMT+0300 (FLE Daylight Time)">June 30</span><span w-period="Sat Jul 01 2017 17:28:24 GMT+0300 (FLE Daylight Time)">July 1</span><span w-period="Sun Jul 02 2017 17:28:24 GMT+0300 (FLE Daylight Time)">July 2</span><span w-period="Mon Jul 03 2017 17:28:24 GMT+0300 (FLE Daylight Time)">July 3</span></span></div>';
@@ -24,6 +26,8 @@ describe("CalendarWidget", () => {
 		widget = new module.TicketmasterCalendarWidget();
 		widget = new module.TicketmasterCalendarWidget(document.querySelector('div[w-type="calendar"]'));
 		widgetWeek = new module.WeekScheduler();
+		widgetMonth = new module.MonthScheduler();
+		widgetYear = new module.YearScheduler();
 		tabsControls = new module.TabsControls();
 		selectorControls = new module.SelectorControls();
 	});
@@ -180,6 +184,18 @@ describe("CalendarWidget", () => {
 		expect(widget.hideMessageDelay).toBe(5000);
 	});
 
+	it('#hideMessageDelay should be 500', function(){
+		expect(widgetWeek.hideMessageDelay).toBe(3000);
+	});
+
+	it('#hideMessageDelay should be 500', function(){
+		expect(widgetMonth.hideMessageDelay).toBe(3000);
+	});
+
+	it('#hideMessageDelay should be 500', function(){
+		expect(widgetYear.hideMessageDelay).toBe(3000);
+	});
+
 	it('widget #tmWidgetWhiteList should be BeDefined', function(){
 		expect(widget.tmWidgetWhiteList).toBeDefined();
 	});
@@ -275,6 +291,21 @@ describe("CalendarWidget", () => {
 		expect(typeof(widget.initMessage)).toBe('function');
 	});
 
+	it('#initMessage should be defined', () => {
+		document.querySelector('.event-message__btn').click();
+		expect(typeof(widgetWeek.initMessage)).toBe('function');
+	});
+
+	it('#initMessage should be defined', () => {
+		document.querySelector('.event-message__btn').click();
+		expect(typeof(widgetMonth.initMessage)).toBe('function');
+	});
+
+	it('#initMessage should be defined', () => {
+		document.querySelector('.event-message__btn').click();
+		expect(typeof(widgetYear.initMessage)).toBe('function');
+	});
+
 	it('#showMessage should be defined', () => {
 		let hideMessageWithoutDelay = function() {return true};
 		widget.massageDialog = widget.eventsRoot;
@@ -283,12 +314,96 @@ describe("CalendarWidget", () => {
 		expect(typeof(widget.showMessage)).toBe('function');
 	});
 
+	it('#showMessage should be defined', () => {
+		let hideMessageWithoutDelay = function() {return true};
+		widgetWeek.messageContent = {
+				innerHTML: function() {return true}
+		};
+		widgetWeek.messageDialog = {
+			  classList: {
+			  	add: function() {return true}
+				}
+		};
+		widgetWeek.massageDialog = widgetWeek.eventsRoot;
+		widgetWeek.messageTimeout = function() {return true};
+		widgetWeek.showMessage('Test message', hideMessageWithoutDelay);
+		expect(typeof(widgetWeek.showMessage)).toBe('function');
+	});
+
+	it('#showMessage should be defined', () => {
+		let hideMessageWithoutDelay = function() {return true};
+		widgetMonth.messageContent = {
+			innerHTML: function() {return true}
+		};
+		widgetMonth.messageDialog = {
+			classList: {
+				add: function() {return true}
+			}
+		};
+		widgetMonth.massageDialog = widgetMonth.eventsRoot;
+		widgetMonth.messageTimeout = function() {return true};
+		widgetMonth.showMessage('Test message', hideMessageWithoutDelay);
+		expect(typeof(widgetMonth.showMessage)).toBe('function');
+	});
+
+	it('#showMessage should be defined', () => {
+		let hideMessageWithoutDelay = function() {return true};
+		widgetYear.messageContent = {
+			innerHTML: function() {return true}
+		};
+		widgetYear.messageDialog = {
+			classList: {
+				add: function() {return true}
+			}
+		};
+		widgetYear.massageDialog = widgetYear.eventsRoot;
+		widgetYear.messageTimeout = function() {return true};
+		widgetYear.showMessage('Test message', hideMessageWithoutDelay);
+		expect(typeof(widgetYear.showMessage)).toBe('function');
+	});
+
 	it('#hideMessageWithDelay should be defined', () => {
 		widget.hideMessageWithDelay(500);
 		expect(typeof(widget.hideMessageWithDelay)).toBe('function');
 		widget.messageTimeout = function() {return false};
 		widget.hideMessageWithDelay(500);
-		expect(typeof(widget.hideMessageWithDelay)).toBe('function');
+		widget.hideMessageWithDelay.bind({
+			messageTimeout: false
+		})();
+		expect(typeof(widget.hideMessageWithDelay)).toBe('function')
+	});
+
+	it('#hideMessageWithDelay should be defined', () => {
+		widgetWeek.hideMessageWithDelay(500);
+		expect(typeof(widgetWeek.hideMessageWithDelay)).toBe('function');
+		widgetWeek.messageTimeout = function() {return false};
+		widgetWeek.hideMessageWithDelay(500);
+		widgetWeek.hideMessageWithDelay.bind({
+			messageTimeout: false
+		})();
+		expect(typeof(widgetWeek.hideMessageWithDelay)).toBe('function')
+	});
+
+	it('#hideMessageWithDelay should be defined', () => {
+		widgetMonth.hideMessageWithDelay(500);
+		expect(typeof(widgetMonth.hideMessageWithDelay)).toBe('function');
+		widgetMonth.messageTimeout = function() {return false};
+		widgetMonth.hideMessageWithDelay(500);
+		widgetMonth.hideMessageWithDelay.bind({
+			messageTimeout: false
+		})();
+		expect(typeof(widgetMonth.hideMessageWithDelay)).toBe('function')
+	});
+
+	it('#hideMessageWithDelay should be defined', () => {
+		widgetYear.hideMessageWithDelay(500);
+		expect(typeof(widgetYear.hideMessageWithDelay)).toBe('function');
+		widgetYear.messageTimeout = function() {return false};
+		widgetYear.hideMessageWithDelay(500);
+		widgetYear.hideMessageWithDelay.bind({
+			messageTimeout: false
+		})();
+		expect(typeof(widgetYear.hideMessageWithDelay)).toBe('function')
 	});
 
 	it('#clearEvents should be defined', () => {
@@ -302,6 +417,45 @@ describe("CalendarWidget", () => {
 		widget.messageTimeout = function() {return true};
 		widget.hideMessage();
 		expect(typeof(widget.hideMessage)).toBe('function');
+	});
+
+	it('#hideMessage should be defined', () => {
+		widgetWeek.messageDialog = {
+			classList: {
+				remove: function () {return true}
+			}
+		};
+		widgetWeek.hideMessage()
+		expect(typeof(widgetWeek.hideMessage)).toBe('function');
+		widgetWeek.messageTimeout = function() {return true};
+		widgetWeek.hideMessage();
+		expect(typeof(widgetWeek.hideMessage)).toBe('function');
+	});
+
+	it('#hideMessage should be defined', () => {
+		widgetMonth.messageDialog = {
+			classList: {
+				remove: function () {return true}
+			}
+		};
+		widgetMonth.hideMessage()
+		expect(typeof(widgetMonth.hideMessage)).toBe('function');
+		widgetMonth.messageTimeout = function() {return true};
+		widgetMonth.hideMessage();
+		expect(typeof(widgetMonth.hideMessage)).toBe('function');
+	});
+
+	it('#hideMessage should be defined', () => {
+		widgetYear.messageDialog = {
+			classList: {
+				remove: function () {return true}
+			}
+		};
+		widgetYear.hideMessage()
+		expect(typeof(widgetYear.hideMessage)).toBe('function');
+		widgetYear.messageTimeout = function() {return true};
+		widgetYear.hideMessage();
+		expect(typeof(widgetYear.hideMessage)).toBe('function');
 	});
 
 	it('#AdditionalElements should be defined', () => {
@@ -746,7 +900,7 @@ describe("CalendarWidget", () => {
 
 	/* Tabs Controls [END] */
 
-	/* Selector  Controls [END] */
+	/* Selector Controls [END] */
 	it('selectorContorls #selActiveTab should be BeDefined', function(){
 		let selCont = document.body.querySelector('.selector-content');
 		let selTitl = document.body.querySelector('.selector-title');
@@ -773,6 +927,16 @@ describe("CalendarWidget", () => {
 		expect(widgetWeek.messageRootContainer).toBe('weekSсheduler');
 	});
 
+	it('widget #tmWidgetWhiteList should be BeDefined', function(){
+		widgetMonth.messageRootContainer;
+		expect(widgetMonth.messageRootContainer).toBe('monthScheduler');
+	});
+
+	it('widget #tmWidgetWhiteList should be BeDefined', function(){
+		widgetYear.messageRootContainer;
+		expect(widgetYear.messageRootContainer).toBe('yearScheduler');
+	});
+
 	it('#formatDate should return result', function(){
 		let noneResult = widgetWeek.formatDate('date');
 		expect(noneResult).toBe('');
@@ -796,10 +960,79 @@ describe("CalendarWidget", () => {
 		expect(okResult).toEqual("Fri, Mar 17, 2017 12:00 AM");
 	});
 
-
-
-
 	/* WidgetWeek [END] */
+
+	/* WidgetMonth [START] */
+
+	it('widgetMonth #tmWidgetWhiteList should be BeDefined', function(){
+		widgetMonth.apiUrl;
+		expect(widgetMonth.apiUrl).toBe('https://app.ticketmaster.com/discovery/v2/events.json');
+	});
+
+	it('widgetMonth #tmWidgetWhiteList should be BeDefined', function(){
+		widgetMonth.messageRootContainer;
+		expect(widgetMonth.messageRootContainer).toBe('monthScheduler');
+	});
+
+	it('#formatDate should return result', function(){
+		let noneResult = widgetMonth.formatDate('date');
+		expect(noneResult).toBe('');
+
+		let noneTimeResult = widgetMonth.formatDate({day : "2017-03-17"});
+		expect(noneTimeResult).toEqual("Fri, Mar 17, 2017");
+
+		let mockDate = {
+			dateTime : "2017-03-18T00:30:00Z",
+			day : "2017-03-17",
+			time : "20:30:00"
+		};
+		let okResult = widgetMonth.formatDate(mockDate);
+		expect(okResult).toEqual("Fri, Mar 17, 2017 08:30 PM");
+		mockDate = {
+			dateTime : "2017-03-18T00:00:00Z",
+			day : "2017-03-17",
+			time : "00:00:00"
+		};
+		okResult = widgetMonth.formatDate(mockDate);
+		expect(okResult).toEqual("Fri, Mar 17, 2017 12:00 AM");
+	});
+
+	/* WidgetMonth [END] */
+
+	/* WidgetYear [START] */
+	it('widgetYear #tmWidgetWhiteList should be BeDefined', function(){
+		widgetYear.apiUrl;
+		expect(widgetYear.apiUrl).toBe('https://app.ticketmaster.com/discovery/v2/events.json');
+	});
+
+	it('widgetYear #tmWidgetWhiteList should be BeDefined', function(){
+		widgetYear.messageRootContainer;
+		expect(widgetYear.messageRootContainer).toBe('yearScheduler');
+	});
+
+	it('#formatDate should return result', function(){
+		let noneResult = widgetYear.formatDate('date');
+		expect(noneResult).toBe('');
+
+		let noneTimeResult = widgetYear.formatDate({day : "2017-03-17"});
+		expect(noneTimeResult).toEqual("Fri, Mar 17, 2017");
+
+		let mockDate = {
+			dateTime : "2017-03-18T00:30:00Z",
+			day : "2017-03-17",
+			time : "20:30:00"
+		};
+		let okResult = widgetYear.formatDate(mockDate);
+		expect(okResult).toEqual("Fri, Mar 17, 2017 08:30 PM");
+		mockDate = {
+			dateTime : "2017-03-18T00:00:00Z",
+			day : "2017-03-17",
+			time : "00:00:00"
+		};
+		okResult = widgetYear.formatDate(mockDate);
+		expect(okResult).toEqual("Fri, Mar 17, 2017 12:00 AM");
+	});
+	/* WidgetYear [END] */
 
 });
 
@@ -807,12 +1040,23 @@ describe("CalendarWidget", () => {
 describe("CalendarWidgetWithoutSpyOn", () => {
 	let widget,
 		widgetWeek,
+		widgetMonth,
+		widgetYear,
 		tabsControls,
 		module,
 		hideMessageDelay;
 	var setFixture = () => {
-		document.body.innerHTML =
-			'<head></head><div w-type="calendar" w-tmapikey="y61xDc5xqUSIOz4ISjgCe5E9Lh0hfUH1" w-googleapikey="AIzaSyBQrJ5ECXDaXVlICIdUBOe8impKIGHDzdA" w-postalcodeapi="90015" w-keyword="" w-colorscheme="light" w-width="350" w-height="600" w-size="25" w-border="0" w-borderradius="4" w-postalcode="" w-radius="" w-period="week" w-layout="vertical" w-attractionid="" w-promoterid="" w-venueid="" w-affiliateid="" w-segmentid="" w-proportion="custom" w-titlelink="off" w-countrycode="US" w-source="" w-latlong=","><div class="event-logo centered-logo"></div><div class="event-date centered-logo"></div></div>';
+		document.body.innerHTML = '<head></head><div w-type="calendar" w-tmapikey="y61xDc5xqUSIOz4ISjgCe5E9Lh0hfUH1" w-googleapikey="AIzaSyBQrJ5ECXDaXVlICIdUBOe8impKIGHDzdA" w-postalcodeapi="90015" w-keyword="" w-colorscheme="light" w-width="350" w-height="600" w-size="25" w-border="0" w-borderradius="4" w-postalcode="" w-radius="" w-period="2017-08" w-layout="vertical" w-attractionid="" w-promoterid="" w-venueid="" w-affiliateid="" w-segmentid="" w-proportion="custom" w-titlelink="off" w-countrycode="US" w-source="" w-latlong="">';
+		document.body.innerHTML += '<div class="tabs"><span class="tb active">Day</span><span class="tb">Week</span><span class="tb">Month</span><span class="tb">Year</span></div>';
+		document.body.innerHTML += '<div class="tabs-container"><div class="tab active">';
+		document.body.innerHTML += '<div class="sliderLeftSelector"><span class="selector-title">June 27</span><span class="selector-content" tabindex="-1"><span class="active" w-period="Tue Jun 27 2017 17:28:24 GMT+0300 (FLE Daylight Time)">June 27</span><span w-period="Wed Jun 28 2017 17:28:24 GMT+0300 (FLE Daylight Time)">June 28</span><span w-period="Thu Jun 29 2017 17:28:24 GMT+0300 (FLE Daylight Time)">June 29</span><span w-period="Fri Jun 30 2017 17:28:24 GMT+0300 (FLE Daylight Time)">June 30</span><span w-period="Sat Jul 01 2017 17:28:24 GMT+0300 (FLE Daylight Time)">July 1</span><span w-period="Sun Jul 02 2017 17:28:24 GMT+0300 (FLE Daylight Time)">July 2</span><span w-period="Mon Jul 03 2017 17:28:24 GMT+0300 (FLE Daylight Time)">July 3</span></span></div>';
+		document.body.innerHTML += '<div class="sliderRightSelector"><span class="selector-title">All Events</span><span class="selector-content" tabindex="-1"><span class="active" w-classificationid="">All Events</span><span w-classificationid="KZFzniwnSyZfZ7v7na">Arts &amp; Theatre</span><span w-classificationid="KZFzniwnSyZfZ7v7nn">Film</span><span w-classificationid="KZFzniwnSyZfZ7v7n1">Miscellaneous</span><span w-classificationid="KZFzniwnSyZfZ7v7nJ">Music</span><span w-classificationid="KZFzniwnSyZfZ7v7nE">Sports</span></span></div>';
+		document.body.innerHTML += '</div><div class="tab"></div><div class="tab">';
+		document.body.innerHTML += '<div class="events-root-container border"><div class="spinner-container"></div><div class="weekSсheduler"><div class="event-message-container">Message</div></div></div>';
+		document.body.innerHTML += '</div><div class="tab">';
+		document.body.innerHTML += '<div class="monthSсheduler"><div class="spinner-container"><div class="spinner"></div></div><div class="event-message-container">Message</div><div class="calendar"></div></div>';
+		document.body.innerHTML += '</div>';
+		document.body.innerHTML += '<div class="event-logo centered-logo"></div><div class="event-date centered-logo"></div></div>';
 	};
 	beforeAll(() => {
 		window.__VERSION__ = 'mockedVersion';
@@ -821,6 +1065,145 @@ describe("CalendarWidgetWithoutSpyOn", () => {
 		widget = new module.TicketmasterCalendarWidget();
 		widget = new module.TicketmasterCalendarWidget(document.querySelector('div[w-type="calendar"]'));
 		widgetWeek = new module.WeekScheduler();
+		widgetMonth = new module.MonthScheduler();
+		widgetYear = new module.YearScheduler();
+	});
+
+
+	it('widgetWeek # getCurrentMonth should be defined', () => {
+		widgetWeek.getCurrentMonth();
+		expect(typeof(widgetWeek.getCurrentMonth)).toBe('function');
+	});
+
+
+	it('widgetWeek #getWeekEventsHandler should be defined', () => {
+		document.body.querySelector('.weekSсheduler').innerHTML = document.body.querySelector('.weekSсheduler').innerHTML + '<div class="event-message-container">Message</div>';
+		widgetWeek.getWeekEventsHandler.bind({
+			widget: {
+				weekSchedulerRoot: document.body.querySelector('.weekSсheduler'),
+				eventsRootContainer: {
+					parentNode: {
+						parentNode: {
+							parentNode: document.body.querySelector('.events-root-container')
+						}
+					}
+				},
+				formatDate: function() {return true},
+				weekdaysRootContainer: {
+					innerHTML: function() {return true},
+					querySelectorAll: function() {return true},
+				},
+				addScroll: function() {return true},
+				eventReqAttrs: {
+					page: 1
+				},
+				getJsonAsync: function() {return true},
+				showMessage: function() {return true},
+				hideMessageWithDelay: function() {return true},
+			},
+			readyState: XMLHttpRequest.DONE,
+			status: 200,
+			responseText: '{"_embedded":{"events":[{"name":"High-Vibe Music Feat. Ray Davis & the Regenerates","type":"event","id":"1718v3G65b9L6d-","test":false,"url":"http://www.ticketweb.com/t3/sale/SaleEventDetail?dispatch=loadSelectionData&eventId=7458695&REFERRAL_ID=tmfeed","locale":"en-us","images":[{"ratio":"16_9","url":"https://s1.ticketm.net/dam/c/060/c5c08e7a-9912-456c-a060-2758be94e060_105881_RECOMENDATION_16_9.jpg","width":100,"height":56,"fallback":true},{"ratio":"3_2","url":"https://s1.ticketm.net/dam/c/060/c5c08e7a-9912-456c-a060-2758be94e060_105881_ARTIST_PAGE_3_2.jpg","width":305,"height":203,"fallback":true},{"ratio":"16_9","url":"https://s1.ticketm.net/dam/c/060/c5c08e7a-9912-456c-a060-2758be94e060_105881_TABLET_LANDSCAPE_LARGE_16_9.jpg","width":2048,"height":1152,"fallback":true},{"ratio":"16_9","url":"https://s1.ticketm.net/dam/c/060/c5c08e7a-9912-456c-a060-2758be94e060_105881_EVENT_DETAIL_PAGE_16_9.jpg","width":205,"height":115,"fallback":true},{"ratio":"4_3","url":"https://s1.ticketm.net/dam/c/060/c5c08e7a-9912-456c-a060-2758be94e060_105881_CUSTOM.jpg","width":305,"height":225,"fallback":true},{"ratio":"16_9","url":"https://s1.ticketm.net/dam/c/060/c5c08e7a-9912-456c-a060-2758be94e060_105881_RETINA_PORTRAIT_16_9.jpg","width":640,"height":360,"fallback":true},{"ratio":"3_2","url":"https://s1.ticketm.net/dam/c/060/c5c08e7a-9912-456c-a060-2758be94e060_105881_TABLET_LANDSCAPE_3_2.jpg","width":1024,"height":683,"fallback":true},{"ratio":"3_2","url":"https://s1.ticketm.net/dam/c/060/c5c08e7a-9912-456c-a060-2758be94e060_105881_RETINA_PORTRAIT_3_2.jpg","width":640,"height":427,"fallback":true},{"ratio":"16_9","url":"https://s1.ticketm.net/dam/c/060/c5c08e7a-9912-456c-a060-2758be94e060_105881_RETINA_LANDSCAPE_16_9.jpg","width":1136,"height":639,"fallback":true},{"ratio":"16_9","url":"https://s1.ticketm.net/dam/c/060/c5c08e7a-9912-456c-a060-2758be94e060_105881_TABLET_LANDSCAPE_16_9.jpg","width":1024,"height":576,"fallback":true}],"sales":{"public":{"startDateTime":"2017-05-23T01:30:01Z","startTBD":false,"endDateTime":"2017-05-23T01:33:00Z"}},"dates":{"start":{"localDate":"2017-07-03","localTime":"21:00:00","dateTime":"2017-07-04T04:00:00Z","dateTBD":false,"dateTBA":false,"timeTBA":false,"noSpecificTime":false},"timezone":"America/Los_Angeles","status":{"code":"offsale"},"spanMultipleDays":false},"classifications":[{"primary":true,"segment":{"id":"KZFzniwnSyZfZ7v7nJ","name":"Music"},"genre":{"id":"KnvZfZ7vAvl","name":"Other"},"subGenre":{"id":"KZazBEonSMnZfZ7vk1I","name":"Other"},"type":{"id":"KZAyXgnZfZ7v7nI","name":"Undefined"},"subType":{"id":"KZFzBErXgnZfZ7v7lJ","name":"Undefined"}}],"_links":{"self":{"href":"/discovery/v2/events/1718v3G65b9L6d-?locale=en-us"},"venues":[{"href":"/discovery/v2/venues/KovZpZAFJ71A?locale=en-us"}]},"_embedded":{"venues":[{"name":"Molly Malones","type":"venue","id":"KovZpZAFJ71A","test":false,"url":"http://www.ticketmaster.com/venue/337840","locale":"en-us","postalCode":"90036","timezone":"America/Los_Angeles","city":{"name":"Los Angeles"},"state":{"name":"California","stateCode":"CA"},"country":{"name":"United States Of America","countryCode":"US"},"address":{"line1":"575 South Fairfax Avenue"},"location":{"longitude":"-118.3615566","latitude":"34.0652923"},"markets":[{"id":"27"}],"dmas":[{"id":223},{"id":324},{"id":354},{"id":383}],"upcomingEvents":{"_total":67,"ticketmaster":67},"_links":{"self":{"href":"/discovery/v2/venues/KovZpZAFJ71A?locale=en-us"}}}]}},{"name":"Los Angeles Coliseum Historic Tours","type":"event","id":"vvG1IZflWvlK1Y","test":false,"url":"http://www.ticketmaster.com/event/0A0052BF41AD32B0","locale":"en-us","images":[{"ratio":"16_9","url":"https://s1.ticketm.net/dbimages/204958a.jpg","width":205,"height":115,"fallback":false},{"ratio":"16_9","url":"https://s1.ticketm.net/dam/c/03e/e15ef00f-2c87-4421-ae61-d740851a703e_105891_RETINA_PORTRAIT_16_9.jpg","width":640,"height":360,"fallback":true},{"ratio":"3_2","url":"https://s1.ticketm.net/dam/c/03e/e15ef00f-2c87-4421-ae61-d740851a703e_105891_ARTIST_PAGE_3_2.jpg","width":305,"height":203,"fallback":true},{"ratio":"16_9","url":"https://s1.ticketm.net/dam/c/03e/e15ef00f-2c87-4421-ae61-d740851a703e_105891_RECOMENDATION_16_9.jpg","width":100,"height":56,"fallback":true},{"ratio":"3_2","url":"https://s1.ticketm.net/dam/c/03e/e15ef00f-2c87-4421-ae61-d740851a703e_105891_TABLET_LANDSCAPE_3_2.jpg","width":1024,"height":683,"fallback":true},{"ratio":"16_9","url":"https://s1.ticketm.net/dam/c/03e/e15ef00f-2c87-4421-ae61-d740851a703e_105891_RETINA_LANDSCAPE_16_9.jpg","width":1136,"height":639,"fallback":true},{"ratio":"4_3","url":"https://s1.ticketm.net/dbimages/204957a.jpg","width":305,"height":225,"fallback":false},{"ratio":"16_9","url":"https://s1.ticketm.net/dam/c/03e/e15ef00f-2c87-4421-ae61-d740851a703e_105891_TABLET_LANDSCAPE_16_9.jpg","width":1024,"height":576,"fallback":true},{"ratio":"3_2","url":"https://s1.ticketm.net/dam/c/03e/e15ef00f-2c87-4421-ae61-d740851a703e_105891_RETINA_PORTRAIT_3_2.jpg","width":640,"height":427,"fallback":true},{"ratio":"16_9","url":"https://s1.ticketm.net/dam/c/03e/e15ef00f-2c87-4421-ae61-d740851a703e_105891_TABLET_LANDSCAPE_LARGE_16_9.jpg","width":2048,"height":1152,"fallback":true}],"sales":{"public":{"startTBD":false}},"dates":{"start":{"localDate":"2017-07-05","dateTBD":false,"dateTBA":false,"timeTBA":false,"noSpecificTime":true},"timezone":"America/Los_Angeles","status":{"code":"offsale"},"spanMultipleDays":false},"classifications":[{"primary":true,"segment":{"id":"KZFzniwnSyZfZ7v7n1","name":"Miscellaneous"},"genre":{"id":"KnvZfZ7v7ll","name":"Undefined"},"subGenre":{"id":"KZazBEonSMnZfZ7vAv1","name":"Undefined"},"type":{"id":"KZAyXgnZfZ7v7lt","name":"Event Style"},"subType":{"id":"KZFzBErXgnZfZ7vAvv","name":"Sightseeing/Facility"}}],"promoter":{"id":"494","name":"PROMOTED BY VENUE","description":"PROMOTED BY VENUE / NTL / USA"},"promoters":[{"id":"494","name":"PROMOTED BY VENUE","description":"PROMOTED BY VENUE / NTL / USA"}],"info":"Come take a tour of the GREATEST STADIUM IN THE WORLD with a history, legacy and connection like no other! The Los Angeles Memorial Coliseum complex is one of the most venerable sports monuments in America today with countless historic events & milestones taking place inside its walls during nine decades of celebrated history. The Coliseum has served as home field for the USC Football team since 1923 and is the only stadium that has played host to two Olympiads (X and XXIII), two Super Bowls (I and VII) and a World Series (1959). It was declared a National Historic Landmark on July 27, 1984. The Coliseum has also hosted Evil Knievel in 1973, a Papal Mass by Pope John Paul II in 1987, Nelson Mandelas Crusade against Apartheid in 1990 & countless sold out concerts including U2, Pink Floyd, The Who, Metallica, Bruce Springsteen & the Rolling Stones. The MLBs Los Angeles Dodgers as well as the NFLs St. Louis Rams and Oakland Raiders have also called the Coliseum home.","pleaseNote":"Public Tours are available Wednesday-Sunday, 10-4pm, with Private Tours available 7 days a week. To schedule a Private or Group Tour, please email colitour@usc.edu. Tickets can be purchased on Ticketmaster or at the Coliseum Box Office located at Gate 29. All Tours depart and conclude at Gate 29. The Self-Guided Tour is limited to the Peristyle and Court of Honor with a full view of the playing field. Self-Guided Tours DO NOT include entrance into the stadium seating area. There is no time limit on this tour. The Guided Tour includes the USC Recruit Lounge, Coliseum Boardroom, Press Box, Locker Rooms and Players Tunnel and lasts 90-100 minutes. All destinations on the tour are subject to availability. NO field access is allowed at any time. RAIN OUTS do apply and your ticket can be redeemed for a different tour date within 30 days of your originally scheduled tour. Kids 5 years & under are FREE!","priceRanges":[{"type":"standard","currency":"USD","min":5.0,"max":25.0}],"accessibility":{"info":"Accessible Ticket Buyers Should Purchase Regular Ticket"},"_links":{"self":{"href":"/discovery/v2/events/vvG1IZflWvlK1Y?locale=en-us"},"attractions":[{"href":"/discovery/v2/attractions/K8vZ917K5O7?locale=en-us"}],"venues":[{"href":"/discovery/v2/venues/KovZpZAIF7aA?locale=en-us"}]},"_embedded":{"venues":[{"name":"Los Angeles Memorial Coliseum","type":"venue","id":"KovZpZAIF7aA","test":false,"url":"http://www.ticketmaster.com/venue/82780","locale":"en-us","images":[{"ratio":"3_1","url":"https://s1.ticketm.net/dam/v/4ee/6acdb953-07f5-4841-9773-869123bd84ee_438371_SOURCE.jpg","width":1500,"height":500,"fallback":false,"attribution":"KovZpZAIF7aA"}],"postalCode":"90037","timezone":"America/Los_Angeles","city":{"name":"Los Angeles"},"state":{"name":"California","stateCode":"CA"},"country":{"name":"United States Of America","countryCode":"US"},"address":{"line1":"3911 S. Figueroa St"},"location":{"longitude":"-118.287865","latitude":"34.014053"},"markets":[{"id":"27"}],"dmas":[{"id":223},{"id":324},{"id":354},{"id":383}],"upcomingEvents":{"_total":38,"tmr":8,"ticketmaster":30},"_links":{"self":{"href":"/discovery/v2/venues/KovZpZAIF7aA?locale=en-us"}}}],"attractions":[{"name":"Los Angeles Coliseum Historic Tours","type":"attraction","id":"K8vZ917K5O7","test":false,"url":"http://www.ticketmaster.com/artist/2086550","locale":"en-us","images":[{"ratio":"16_9","url":"https://s1.ticketm.net/dbimages/204958a.jpg","width":205,"height":115,"fallback":false},{"ratio":"16_9","url":"https://s1.ticketm.net/dam/c/03e/e15ef00f-2c87-4421-ae61-d740851a703e_105891_RETINA_PORTRAIT_16_9.jpg","width":640,"height":360,"fallback":true},{"ratio":"3_2","url":"https://s1.ticketm.net/dam/c/03e/e15ef00f-2c87-4421-ae61-d740851a703e_105891_ARTIST_PAGE_3_2.jpg","width":305,"height":203,"fallback":true},{"ratio":"16_9","url":"https://s1.ticketm.net/dam/c/03e/e15ef00f-2c87-4421-ae61-d740851a703e_105891_RECOMENDATION_16_9.jpg","width":100,"height":56,"fallback":true},{"ratio":"3_2","url":"https://s1.ticketm.net/dam/c/03e/e15ef00f-2c87-4421-ae61-d740851a703e_105891_TABLET_LANDSCAPE_3_2.jpg","width":1024,"height":683,"fallback":true},{"ratio":"16_9","url":"https://s1.ticketm.net/dam/c/03e/e15ef00f-2c87-4421-ae61-d740851a703e_105891_RETINA_LANDSCAPE_16_9.jpg","width":1136,"height":639,"fallback":true},{"ratio":"4_3","url":"https://s1.ticketm.net/dbimages/204957a.jpg","width":305,"height":225,"fallback":false},{"ratio":"16_9","url":"https://s1.ticketm.net/dam/c/03e/e15ef00f-2c87-4421-ae61-d740851a703e_105891_TABLET_LANDSCAPE_16_9.jpg","width":1024,"height":576,"fallback":true},{"ratio":"3_2","url":"https://s1.ticketm.net/dam/c/03e/e15ef00f-2c87-4421-ae61-d740851a703e_105891_RETINA_PORTRAIT_3_2.jpg","width":640,"height":427,"fallback":true},{"ratio":"16_9","url":"https://s1.ticketm.net/dam/c/03e/e15ef00f-2c87-4421-ae61-d740851a703e_105891_TABLET_LANDSCAPE_LARGE_16_9.jpg","width":2048,"height":1152,"fallback":true}],"classifications":[{"primary":true,"segment":{"id":"KZFzniwnSyZfZ7v7n1","name":"Miscellaneous"},"genre":{"id":"KnvZfZ7v7ll","name":"Undefined"},"subGenre":{"id":"KZazBEonSMnZfZ7vAv1","name":"Undefined"},"type":{"id":"KZAyXgnZfZ7v7lt","name":"Event Style"},"subType":{"id":"KZFzBErXgnZfZ7vAvv","name":"Sightseeing/Facility"}}],"upcomingEvents":{"_total":16,"ticketmaster":16},"_links":{"self":{"href":"/discovery/v2/attractions/K8vZ917K5O7?locale=en-us"}}}]}},{"name":"Arizona Diamondbacks at Los Angeles Dodgers","type":"event","id":"Z7r9jZ1AvJF7x","test":false,"url":"http://www.ticketsnow.com/InventoryBrowse/TicketList.aspx?PID=1988122","locale":"en-us","images":[{"ratio":"16_9","url":"https://s1.ticketm.net/dam/c/25d/09139288-a226-487d-a98d-6136663e325d_106551_RETINA_LANDSCAPE_16_9.jpg","width":1136,"height":639,"fallback":true},{"ratio":"3_2","url":"https://s1.ticketm.net/dam/c/25d/09139288-a226-487d-a98d-6136663e325d_106551_TABLET_LANDSCAPE_3_2.jpg","width":1024,"height":683,"fallback":true},{"ratio":"4_3","url":"https://s1.ticketm.net/dam/c/25d/09139288-a226-487d-a98d-6136663e325d_106551_CUSTOM.jpg","width":305,"height":225,"fallback":true},{"ratio":"16_9","url":"https://s1.ticketm.net/dam/c/25d/09139288-a226-487d-a98d-6136663e325d_106551_TABLET_LANDSCAPE_16_9.jpg","width":1024,"height":576,"fallback":true},{"ratio":"16_9","url":"https://s1.ticketm.net/dam/c/25d/09139288-a226-487d-a98d-6136663e325d_106551_TABLET_LANDSCAPE_LARGE_16_9.jpg","width":2048,"height":1152,"fallback":true},{"ratio":"16_9","url":"https://s1.ticketm.net/dam/c/25d/09139288-a226-487d-a98d-6136663e325d_106551_EVENT_DETAIL_PAGE_16_9.jpg","width":205,"height":115,"fallback":true},{"ratio":"3_2","url":"https://s1.ticketm.net/dam/c/25d/09139288-a226-487d-a98d-6136663e325d_106551_RETINA_PORTRAIT_3_2.jpg","width":640,"height":427,"fallback":true},{"ratio":"16_9","url":"https://s1.ticketm.net/dam/c/25d/09139288-a226-487d-a98d-6136663e325d_106551_RETINA_PORTRAIT_16_9.jpg","width":640,"height":360,"fallback":true},{"ratio":"3_2","url":"https://s1.ticketm.net/dam/c/25d/09139288-a226-487d-a98d-6136663e325d_106551_ARTIST_PAGE_3_2.jpg","width":305,"height":203,"fallback":true},{"ratio":"16_9","url":"https://s1.ticketm.net/dam/c/25d/09139288-a226-487d-a98d-6136663e325d_106551_RECOMENDATION_16_9.jpg","width":100,"height":56,"fallback":true}],"sales":{"public":{"startDateTime":"1900-01-01T18:00:00Z","startTBD":false,"endDateTime":"2017-07-06T02:10:00Z"}},"dates":{"start":{"localDate":"2017-07-05","localTime":"19:10:00","dateTime":"2017-07-06T02:10:00Z","dateTBD":false,"dateTBA":false,"timeTBA":false,"noSpecificTime":false},"status":{"code":"onsale"},"spanMultipleDays":false},"classifications":[{"primary":true,"segment":{"id":"KZFzniwnSyZfZ7v7nE","name":"Sports"}}],"seatmap":{"staticUrl":"http://resale.ticketmaster.com.au/akamai-content/graphics/TMResale/2/VenueMaps/475-42275-0-0-Dodgerstadium_Theclassicwest.png"},"_links":{"self":{"href":"/discovery/v2/events/Z7r9jZ1AvJF7x?locale=en-us"},"attractions":[{"href":"/discovery/v2/attractions/Z6r9jZAaee?locale=en-us"},{"href":"/discovery/v2/attractions/Zkr9jZAeeq?locale=en-us"}],"venues":[{"href":"/discovery/v2/venues/Z6r9jZAFke?locale=en-us"}]},"_embedded":{"venues":[{"name":"Dodger Stadium","type":"venue","id":"Z6r9jZAFke","test":false,"locale":"en-us","postalCode":"90012","timezone":"America/Los_Angeles","city":{"name":"Los Angeles"},"state":{"name":"California","stateCode":"CA"},"country":{"name":"United States Of America","countryCode":"US"},"address":{"line1":"1000 Elysian Park Ave."},"location":{"longitude":"-118.2388","latitude":"34.0658"},"upcomingEvents":{"_total":40,"tmr":37,"ticketmaster":3},"_links":{"self":{"href":"/discovery/v2/venues/Z6r9jZAFke?locale=en-us"}}}],"attractions":[{"name":"Los Angeles Dodgers","type":"attraction","id":"Z6r9jZAaee","test":false,"locale":"en-us","images":[{"ratio":"16_9","url":"https://s1.ticketm.net/dam/c/25d/09139288-a226-487d-a98d-6136663e325d_106551_RETINA_LANDSCAPE_16_9.jpg","width":1136,"height":639,"fallback":true},{"ratio":"3_2","url":"https://s1.ticketm.net/dam/c/25d/09139288-a226-487d-a98d-6136663e325d_106551_TABLET_LANDSCAPE_3_2.jpg","width":1024,"height":683,"fallback":true},{"ratio":"4_3","url":"https://s1.ticketm.net/dam/c/25d/09139288-a226-487d-a98d-6136663e325d_106551_CUSTOM.jpg","width":305,"height":225,"fallback":true},{"ratio":"16_9","url":"https://s1.ticketm.net/dam/c/25d/09139288-a226-487d-a98d-6136663e325d_106551_TABLET_LANDSCAPE_16_9.jpg","width":1024,"height":576,"fallback":true},{"ratio":"16_9","url":"https://s1.ticketm.net/dam/c/25d/09139288-a226-487d-a98d-6136663e325d_106551_TABLET_LANDSCAPE_LARGE_16_9.jpg","width":2048,"height":1152,"fallback":true},{"ratio":"16_9","url":"https://s1.ticketm.net/dam/c/25d/09139288-a226-487d-a98d-6136663e325d_106551_EVENT_DETAIL_PAGE_16_9.jpg","width":205,"height":115,"fallback":true},{"ratio":"3_2","url":"https://s1.ticketm.net/dam/c/25d/09139288-a226-487d-a98d-6136663e325d_106551_RETINA_PORTRAIT_3_2.jpg","width":640,"height":427,"fallback":true},{"ratio":"16_9","url":"https://s1.ticketm.net/dam/c/25d/09139288-a226-487d-a98d-6136663e325d_106551_RETINA_PORTRAIT_16_9.jpg","width":640,"height":360,"fallback":true},{"ratio":"3_2","url":"https://s1.ticketm.net/dam/c/25d/09139288-a226-487d-a98d-6136663e325d_106551_ARTIST_PAGE_3_2.jpg","width":305,"height":203,"fallback":true},{"ratio":"16_9","url":"https://s1.ticketm.net/dam/c/25d/09139288-a226-487d-a98d-6136663e325d_106551_RECOMENDATION_16_9.jpg","width":100,"height":56,"fallback":true}],"classifications":[{"primary":true,"segment":{"id":"KZFzniwnSyZfZ7v7nE","name":"Sports"}}],"upcomingEvents":{"_total":96,"tmr":80,"ticketmaster":16},"_links":{"self":{"href":"/discovery/v2/attractions/Z6r9jZAaee?locale=en-us"}}},{"name":"Arizona Diamondbacks","type":"attraction","id":"Zkr9jZAeeq","test":false,"locale":"en-us","images":[{"ratio":"16_9","url":"https://s1.ticketm.net/dam/c/25d/09139288-a226-487d-a98d-6136663e325d_106551_RETINA_LANDSCAPE_16_9.jpg","width":1136,"height":639,"fallback":true},{"ratio":"3_2","url":"https://s1.ticketm.net/dam/c/25d/09139288-a226-487d-a98d-6136663e325d_106551_TABLET_LANDSCAPE_3_2.jpg","width":1024,"height":683,"fallback":true},{"ratio":"4_3","url":"https://s1.ticketm.net/dam/c/25d/09139288-a226-487d-a98d-6136663e325d_106551_CUSTOM.jpg","width":305,"height":225,"fallback":true},{"ratio":"16_9","url":"https://s1.ticketm.net/dam/c/25d/09139288-a226-487d-a98d-6136663e325d_106551_TABLET_LANDSCAPE_16_9.jpg","width":1024,"height":576,"fallback":true},{"ratio":"16_9","url":"https://s1.ticketm.net/dam/c/25d/09139288-a226-487d-a98d-6136663e325d_106551_TABLET_LANDSCAPE_LARGE_16_9.jpg","width":2048,"height":1152,"fallback":true},{"ratio":"16_9","url":"https://s1.ticketm.net/dam/c/25d/09139288-a226-487d-a98d-6136663e325d_106551_EVENT_DETAIL_PAGE_16_9.jpg","width":205,"height":115,"fallback":true},{"ratio":"3_2","url":"https://s1.ticketm.net/dam/c/25d/09139288-a226-487d-a98d-6136663e325d_106551_RETINA_PORTRAIT_3_2.jpg","width":640,"height":427,"fallback":true},{"ratio":"16_9","url":"https://s1.ticketm.net/dam/c/25d/09139288-a226-487d-a98d-6136663e325d_106551_RETINA_PORTRAIT_16_9.jpg","width":640,"height":360,"fallback":true},{"ratio":"3_2","url":"https://s1.ticketm.net/dam/c/25d/09139288-a226-487d-a98d-6136663e325d_106551_ARTIST_PAGE_3_2.jpg","width":305,"height":203,"fallback":true},{"ratio":"16_9","url":"https://s1.ticketm.net/dam/c/25d/09139288-a226-487d-a98d-6136663e325d_106551_RECOMENDATION_16_9.jpg","width":100,"height":56,"fallback":true}],"classifications":[{"primary":true,"segment":{"id":"KZFzniwnSyZfZ7v7nE","name":"Sports"}}],"upcomingEvents":{"_total":150,"tmr":81,"ticketmaster":69},"_links":{"self":{"href":"/discovery/v2/attractions/Zkr9jZAeeq?locale=en-us"}}}]}}]},"_links":{"first":{"href":"/discovery/v2/events.json?startDateTime=2017-07-02T00%3A00%3A00Z&city=Los+Angeles&countryCode=US&radius=25&endDateTime=2017-07-09T23%3A59%3A59Z&page=0&size=3&sort=date,asc"},"self":{"href":"/discovery/v2/events.json?startDateTime=2017-07-02T00%3A00%3A00Z&size=3&city=Los+Angeles&countryCode=US&sort=date%2Casc&radius=25&endDateTime=2017-07-09T23%3A59%3A59Z"},"next":{"href":"/discovery/v2/events.json?startDateTime=2017-07-02T00%3A00%3A00Z&city=Los+Angeles&countryCode=US&radius=25&endDateTime=2017-07-09T23%3A59%3A59Z&page=1&size=3&sort=date,asc"},"last":{"href":"/discovery/v2/events.json?startDateTime=2017-07-02T00%3A00%3A00Z&city=Los+Angeles&countryCode=US&radius=25&endDateTime=2017-07-09T23%3A59%3A59Z&page=18&size=3&sort=date,asc"}},"page":{"size":3,"totalElements":55,"totalPages":1,"number":0}}',
+		})();
+		widgetWeek.getWeekEventsHandler.bind({
+			widget: {
+				weekSchedulerRoot: document.body.querySelector('.weekSсheduler'),
+				eventsRootContainer: {
+					parentNode: {
+						parentNode: {
+							parentNode: document.body.querySelector('.events-root-container')
+						}
+					}
+				},
+				formatDate: function() {return true},
+				weekdaysRootContainer: {
+					innerHTML: function() {return true},
+					querySelectorAll: function() {return true},
+				},
+				addScroll: function() {return true},
+				eventReqAttrs: {
+					page: 1
+				},
+				getJsonAsync: function() {return true},
+				showMessage: function() {return true},
+				hideMessageWithDelay: function() {return true},
+			},
+			readyState: XMLHttpRequest.DONE,
+			status: 200,
+			responseText: '{"_embedded":{"events":[{"name":"High-Vibe Music Feat. Ray Davis & the Regenerates","type":"event","id":"1718v3G65b9L6d-","test":false,"url":"http://www.ticketweb.com/t3/sale/SaleEventDetail?dispatch=loadSelectionData&eventId=7458695&REFERRAL_ID=tmfeed","locale":"en-us","images":[{"ratio":"16_9","url":"https://s1.ticketm.net/dam/c/060/c5c08e7a-9912-456c-a060-2758be94e060_105881_RECOMENDATION_16_9.jpg","width":100,"height":56,"fallback":true},{"ratio":"3_2","url":"https://s1.ticketm.net/dam/c/060/c5c08e7a-9912-456c-a060-2758be94e060_105881_ARTIST_PAGE_3_2.jpg","width":305,"height":203,"fallback":true},{"ratio":"16_9","url":"https://s1.ticketm.net/dam/c/060/c5c08e7a-9912-456c-a060-2758be94e060_105881_TABLET_LANDSCAPE_LARGE_16_9.jpg","width":2048,"height":1152,"fallback":true},{"ratio":"16_9","url":"https://s1.ticketm.net/dam/c/060/c5c08e7a-9912-456c-a060-2758be94e060_105881_EVENT_DETAIL_PAGE_16_9.jpg","width":205,"height":115,"fallback":true},{"ratio":"4_3","url":"https://s1.ticketm.net/dam/c/060/c5c08e7a-9912-456c-a060-2758be94e060_105881_CUSTOM.jpg","width":305,"height":225,"fallback":true},{"ratio":"16_9","url":"https://s1.ticketm.net/dam/c/060/c5c08e7a-9912-456c-a060-2758be94e060_105881_RETINA_PORTRAIT_16_9.jpg","width":640,"height":360,"fallback":true},{"ratio":"3_2","url":"https://s1.ticketm.net/dam/c/060/c5c08e7a-9912-456c-a060-2758be94e060_105881_TABLET_LANDSCAPE_3_2.jpg","width":1024,"height":683,"fallback":true},{"ratio":"3_2","url":"https://s1.ticketm.net/dam/c/060/c5c08e7a-9912-456c-a060-2758be94e060_105881_RETINA_PORTRAIT_3_2.jpg","width":640,"height":427,"fallback":true},{"ratio":"16_9","url":"https://s1.ticketm.net/dam/c/060/c5c08e7a-9912-456c-a060-2758be94e060_105881_RETINA_LANDSCAPE_16_9.jpg","width":1136,"height":639,"fallback":true},{"ratio":"16_9","url":"https://s1.ticketm.net/dam/c/060/c5c08e7a-9912-456c-a060-2758be94e060_105881_TABLET_LANDSCAPE_16_9.jpg","width":1024,"height":576,"fallback":true}],"sales":{"public":{"startDateTime":"2017-05-23T01:30:01Z","startTBD":false,"endDateTime":"2017-05-23T01:33:00Z"}},"dates":{"start":{"localDate":"2017-07-03","localTime":"21:00:00","dateTime":"2017-07-04T04:00:00Z","dateTBD":false,"dateTBA":false,"timeTBA":false,"noSpecificTime":false},"timezone":"America/Los_Angeles","status":{"code":"offsale"},"spanMultipleDays":false},"classifications":[{"primary":true,"segment":{"id":"KZFzniwnSyZfZ7v7nJ","name":"Music"},"genre":{"id":"KnvZfZ7vAvl","name":"Other"},"subGenre":{"id":"KZazBEonSMnZfZ7vk1I","name":"Other"},"type":{"id":"KZAyXgnZfZ7v7nI","name":"Undefined"},"subType":{"id":"KZFzBErXgnZfZ7v7lJ","name":"Undefined"}}],"_links":{"self":{"href":"/discovery/v2/events/1718v3G65b9L6d-?locale=en-us"},"venues":[{"href":"/discovery/v2/venues/KovZpZAFJ71A?locale=en-us"}]},"_embedded":{"venues":[{"name":"Molly Malones","type":"venue","id":"KovZpZAFJ71A","test":false,"url":"http://www.ticketmaster.com/venue/337840","locale":"en-us","postalCode":"90036","timezone":"America/Los_Angeles","city":{"name":"Los Angeles"},"state":{"name":"California","stateCode":"CA"},"country":{"name":"United States Of America","countryCode":"US"},"address":{"line1":"575 South Fairfax Avenue"},"location":{"longitude":"-118.3615566","latitude":"34.0652923"},"markets":[{"id":"27"}],"dmas":[{"id":223},{"id":324},{"id":354},{"id":383}],"upcomingEvents":{"_total":67,"ticketmaster":67},"_links":{"self":{"href":"/discovery/v2/venues/KovZpZAFJ71A?locale=en-us"}}}]}},{"name":"Los Angeles Coliseum Historic Tours","type":"event","id":"vvG1IZflWvlK1Y","test":false,"url":"http://www.ticketmaster.com/event/0A0052BF41AD32B0","locale":"en-us","images":[{"ratio":"16_9","url":"https://s1.ticketm.net/dbimages/204958a.jpg","width":205,"height":115,"fallback":false},{"ratio":"16_9","url":"https://s1.ticketm.net/dam/c/03e/e15ef00f-2c87-4421-ae61-d740851a703e_105891_RETINA_PORTRAIT_16_9.jpg","width":640,"height":360,"fallback":true},{"ratio":"3_2","url":"https://s1.ticketm.net/dam/c/03e/e15ef00f-2c87-4421-ae61-d740851a703e_105891_ARTIST_PAGE_3_2.jpg","width":305,"height":203,"fallback":true},{"ratio":"16_9","url":"https://s1.ticketm.net/dam/c/03e/e15ef00f-2c87-4421-ae61-d740851a703e_105891_RECOMENDATION_16_9.jpg","width":100,"height":56,"fallback":true},{"ratio":"3_2","url":"https://s1.ticketm.net/dam/c/03e/e15ef00f-2c87-4421-ae61-d740851a703e_105891_TABLET_LANDSCAPE_3_2.jpg","width":1024,"height":683,"fallback":true},{"ratio":"16_9","url":"https://s1.ticketm.net/dam/c/03e/e15ef00f-2c87-4421-ae61-d740851a703e_105891_RETINA_LANDSCAPE_16_9.jpg","width":1136,"height":639,"fallback":true},{"ratio":"4_3","url":"https://s1.ticketm.net/dbimages/204957a.jpg","width":305,"height":225,"fallback":false},{"ratio":"16_9","url":"https://s1.ticketm.net/dam/c/03e/e15ef00f-2c87-4421-ae61-d740851a703e_105891_TABLET_LANDSCAPE_16_9.jpg","width":1024,"height":576,"fallback":true},{"ratio":"3_2","url":"https://s1.ticketm.net/dam/c/03e/e15ef00f-2c87-4421-ae61-d740851a703e_105891_RETINA_PORTRAIT_3_2.jpg","width":640,"height":427,"fallback":true},{"ratio":"16_9","url":"https://s1.ticketm.net/dam/c/03e/e15ef00f-2c87-4421-ae61-d740851a703e_105891_TABLET_LANDSCAPE_LARGE_16_9.jpg","width":2048,"height":1152,"fallback":true}],"sales":{"public":{"startTBD":false}},"dates":{"start":{"localDate":"2017-07-05","dateTBD":false,"dateTBA":false,"timeTBA":false,"noSpecificTime":true},"timezone":"America/Los_Angeles","status":{"code":"offsale"},"spanMultipleDays":false},"classifications":[{"primary":true,"segment":{"id":"KZFzniwnSyZfZ7v7n1","name":"Miscellaneous"},"genre":{"id":"KnvZfZ7v7ll","name":"Undefined"},"subGenre":{"id":"KZazBEonSMnZfZ7vAv1","name":"Undefined"},"type":{"id":"KZAyXgnZfZ7v7lt","name":"Event Style"},"subType":{"id":"KZFzBErXgnZfZ7vAvv","name":"Sightseeing/Facility"}}],"promoter":{"id":"494","name":"PROMOTED BY VENUE","description":"PROMOTED BY VENUE / NTL / USA"},"promoters":[{"id":"494","name":"PROMOTED BY VENUE","description":"PROMOTED BY VENUE / NTL / USA"}],"info":"Come take a tour of the GREATEST STADIUM IN THE WORLD with a history, legacy and connection like no other! The Los Angeles Memorial Coliseum complex is one of the most venerable sports monuments in America today with countless historic events & milestones taking place inside its walls during nine decades of celebrated history. The Coliseum has served as home field for the USC Football team since 1923 and is the only stadium that has played host to two Olympiads (X and XXIII), two Super Bowls (I and VII) and a World Series (1959). It was declared a National Historic Landmark on July 27, 1984. The Coliseum has also hosted Evil Knievel in 1973, a Papal Mass by Pope John Paul II in 1987, Nelson Mandelas Crusade against Apartheid in 1990 & countless sold out concerts including U2, Pink Floyd, The Who, Metallica, Bruce Springsteen & the Rolling Stones. The MLBs Los Angeles Dodgers as well as the NFLs St. Louis Rams and Oakland Raiders have also called the Coliseum home.","pleaseNote":"Public Tours are available Wednesday-Sunday, 10-4pm, with Private Tours available 7 days a week. To schedule a Private or Group Tour, please email colitour@usc.edu. Tickets can be purchased on Ticketmaster or at the Coliseum Box Office located at Gate 29. All Tours depart and conclude at Gate 29. The Self-Guided Tour is limited to the Peristyle and Court of Honor with a full view of the playing field. Self-Guided Tours DO NOT include entrance into the stadium seating area. There is no time limit on this tour. The Guided Tour includes the USC Recruit Lounge, Coliseum Boardroom, Press Box, Locker Rooms and Players Tunnel and lasts 90-100 minutes. All destinations on the tour are subject to availability. NO field access is allowed at any time. RAIN OUTS do apply and your ticket can be redeemed for a different tour date within 30 days of your originally scheduled tour. Kids 5 years & under are FREE!","priceRanges":[{"type":"standard","currency":"USD","min":5.0,"max":25.0}],"accessibility":{"info":"Accessible Ticket Buyers Should Purchase Regular Ticket"},"_links":{"self":{"href":"/discovery/v2/events/vvG1IZflWvlK1Y?locale=en-us"},"attractions":[{"href":"/discovery/v2/attractions/K8vZ917K5O7?locale=en-us"}],"venues":[{"href":"/discovery/v2/venues/KovZpZAIF7aA?locale=en-us"}]},"_embedded":{"venues":[{"name":"Los Angeles Memorial Coliseum","type":"venue","id":"KovZpZAIF7aA","test":false,"url":"http://www.ticketmaster.com/venue/82780","locale":"en-us","images":[{"ratio":"3_1","url":"https://s1.ticketm.net/dam/v/4ee/6acdb953-07f5-4841-9773-869123bd84ee_438371_SOURCE.jpg","width":1500,"height":500,"fallback":false,"attribution":"KovZpZAIF7aA"}],"postalCode":"90037","timezone":"America/Los_Angeles","city":{"name":"Los Angeles"},"state":{"name":"California","stateCode":"CA"},"country":{"name":"United States Of America","countryCode":"US"},"address":{"line1":"3911 S. Figueroa St"},"location":{"longitude":"-118.287865","latitude":"34.014053"},"markets":[{"id":"27"}],"dmas":[{"id":223},{"id":324},{"id":354},{"id":383}],"upcomingEvents":{"_total":38,"tmr":8,"ticketmaster":30},"_links":{"self":{"href":"/discovery/v2/venues/KovZpZAIF7aA?locale=en-us"}}}],"attractions":[{"name":"Los Angeles Coliseum Historic Tours","type":"attraction","id":"K8vZ917K5O7","test":false,"url":"http://www.ticketmaster.com/artist/2086550","locale":"en-us","images":[{"ratio":"16_9","url":"https://s1.ticketm.net/dbimages/204958a.jpg","width":205,"height":115,"fallback":false},{"ratio":"16_9","url":"https://s1.ticketm.net/dam/c/03e/e15ef00f-2c87-4421-ae61-d740851a703e_105891_RETINA_PORTRAIT_16_9.jpg","width":640,"height":360,"fallback":true},{"ratio":"3_2","url":"https://s1.ticketm.net/dam/c/03e/e15ef00f-2c87-4421-ae61-d740851a703e_105891_ARTIST_PAGE_3_2.jpg","width":305,"height":203,"fallback":true},{"ratio":"16_9","url":"https://s1.ticketm.net/dam/c/03e/e15ef00f-2c87-4421-ae61-d740851a703e_105891_RECOMENDATION_16_9.jpg","width":100,"height":56,"fallback":true},{"ratio":"3_2","url":"https://s1.ticketm.net/dam/c/03e/e15ef00f-2c87-4421-ae61-d740851a703e_105891_TABLET_LANDSCAPE_3_2.jpg","width":1024,"height":683,"fallback":true},{"ratio":"16_9","url":"https://s1.ticketm.net/dam/c/03e/e15ef00f-2c87-4421-ae61-d740851a703e_105891_RETINA_LANDSCAPE_16_9.jpg","width":1136,"height":639,"fallback":true},{"ratio":"4_3","url":"https://s1.ticketm.net/dbimages/204957a.jpg","width":305,"height":225,"fallback":false},{"ratio":"16_9","url":"https://s1.ticketm.net/dam/c/03e/e15ef00f-2c87-4421-ae61-d740851a703e_105891_TABLET_LANDSCAPE_16_9.jpg","width":1024,"height":576,"fallback":true},{"ratio":"3_2","url":"https://s1.ticketm.net/dam/c/03e/e15ef00f-2c87-4421-ae61-d740851a703e_105891_RETINA_PORTRAIT_3_2.jpg","width":640,"height":427,"fallback":true},{"ratio":"16_9","url":"https://s1.ticketm.net/dam/c/03e/e15ef00f-2c87-4421-ae61-d740851a703e_105891_TABLET_LANDSCAPE_LARGE_16_9.jpg","width":2048,"height":1152,"fallback":true}],"classifications":[{"primary":true,"segment":{"id":"KZFzniwnSyZfZ7v7n1","name":"Miscellaneous"},"genre":{"id":"KnvZfZ7v7ll","name":"Undefined"},"subGenre":{"id":"KZazBEonSMnZfZ7vAv1","name":"Undefined"},"type":{"id":"KZAyXgnZfZ7v7lt","name":"Event Style"},"subType":{"id":"KZFzBErXgnZfZ7vAvv","name":"Sightseeing/Facility"}}],"upcomingEvents":{"_total":16,"ticketmaster":16},"_links":{"self":{"href":"/discovery/v2/attractions/K8vZ917K5O7?locale=en-us"}}}]}},{"name":"Arizona Diamondbacks at Los Angeles Dodgers","type":"event","id":"Z7r9jZ1AvJF7x","test":false,"url":"http://www.ticketsnow.com/InventoryBrowse/TicketList.aspx?PID=1988122","locale":"en-us","images":[{"ratio":"16_9","url":"https://s1.ticketm.net/dam/c/25d/09139288-a226-487d-a98d-6136663e325d_106551_RETINA_LANDSCAPE_16_9.jpg","width":1136,"height":639,"fallback":true},{"ratio":"3_2","url":"https://s1.ticketm.net/dam/c/25d/09139288-a226-487d-a98d-6136663e325d_106551_TABLET_LANDSCAPE_3_2.jpg","width":1024,"height":683,"fallback":true},{"ratio":"4_3","url":"https://s1.ticketm.net/dam/c/25d/09139288-a226-487d-a98d-6136663e325d_106551_CUSTOM.jpg","width":305,"height":225,"fallback":true},{"ratio":"16_9","url":"https://s1.ticketm.net/dam/c/25d/09139288-a226-487d-a98d-6136663e325d_106551_TABLET_LANDSCAPE_16_9.jpg","width":1024,"height":576,"fallback":true},{"ratio":"16_9","url":"https://s1.ticketm.net/dam/c/25d/09139288-a226-487d-a98d-6136663e325d_106551_TABLET_LANDSCAPE_LARGE_16_9.jpg","width":2048,"height":1152,"fallback":true},{"ratio":"16_9","url":"https://s1.ticketm.net/dam/c/25d/09139288-a226-487d-a98d-6136663e325d_106551_EVENT_DETAIL_PAGE_16_9.jpg","width":205,"height":115,"fallback":true},{"ratio":"3_2","url":"https://s1.ticketm.net/dam/c/25d/09139288-a226-487d-a98d-6136663e325d_106551_RETINA_PORTRAIT_3_2.jpg","width":640,"height":427,"fallback":true},{"ratio":"16_9","url":"https://s1.ticketm.net/dam/c/25d/09139288-a226-487d-a98d-6136663e325d_106551_RETINA_PORTRAIT_16_9.jpg","width":640,"height":360,"fallback":true},{"ratio":"3_2","url":"https://s1.ticketm.net/dam/c/25d/09139288-a226-487d-a98d-6136663e325d_106551_ARTIST_PAGE_3_2.jpg","width":305,"height":203,"fallback":true},{"ratio":"16_9","url":"https://s1.ticketm.net/dam/c/25d/09139288-a226-487d-a98d-6136663e325d_106551_RECOMENDATION_16_9.jpg","width":100,"height":56,"fallback":true}],"sales":{"public":{"startDateTime":"1900-01-01T18:00:00Z","startTBD":false,"endDateTime":"2017-07-06T02:10:00Z"}},"dates":{"start":{"localDate":"2017-07-05","localTime":"19:10:00","dateTime":"2017-07-06T02:10:00Z","dateTBD":false,"dateTBA":false,"timeTBA":false,"noSpecificTime":false},"status":{"code":"onsale"},"spanMultipleDays":false},"classifications":[{"primary":true,"segment":{"id":"KZFzniwnSyZfZ7v7nE","name":"Sports"}}],"seatmap":{"staticUrl":"http://resale.ticketmaster.com.au/akamai-content/graphics/TMResale/2/VenueMaps/475-42275-0-0-Dodgerstadium_Theclassicwest.png"},"_links":{"self":{"href":"/discovery/v2/events/Z7r9jZ1AvJF7x?locale=en-us"},"attractions":[{"href":"/discovery/v2/attractions/Z6r9jZAaee?locale=en-us"},{"href":"/discovery/v2/attractions/Zkr9jZAeeq?locale=en-us"}],"venues":[{"href":"/discovery/v2/venues/Z6r9jZAFke?locale=en-us"}]},"_embedded":{"venues":[{"name":"Dodger Stadium","type":"venue","id":"Z6r9jZAFke","test":false,"locale":"en-us","postalCode":"90012","timezone":"America/Los_Angeles","city":{"name":"Los Angeles"},"state":{"name":"California","stateCode":"CA"},"country":{"name":"United States Of America","countryCode":"US"},"address":{"line1":"1000 Elysian Park Ave."},"location":{"longitude":"-118.2388","latitude":"34.0658"},"upcomingEvents":{"_total":40,"tmr":37,"ticketmaster":3},"_links":{"self":{"href":"/discovery/v2/venues/Z6r9jZAFke?locale=en-us"}}}],"attractions":[{"name":"Los Angeles Dodgers","type":"attraction","id":"Z6r9jZAaee","test":false,"locale":"en-us","images":[{"ratio":"16_9","url":"https://s1.ticketm.net/dam/c/25d/09139288-a226-487d-a98d-6136663e325d_106551_RETINA_LANDSCAPE_16_9.jpg","width":1136,"height":639,"fallback":true},{"ratio":"3_2","url":"https://s1.ticketm.net/dam/c/25d/09139288-a226-487d-a98d-6136663e325d_106551_TABLET_LANDSCAPE_3_2.jpg","width":1024,"height":683,"fallback":true},{"ratio":"4_3","url":"https://s1.ticketm.net/dam/c/25d/09139288-a226-487d-a98d-6136663e325d_106551_CUSTOM.jpg","width":305,"height":225,"fallback":true},{"ratio":"16_9","url":"https://s1.ticketm.net/dam/c/25d/09139288-a226-487d-a98d-6136663e325d_106551_TABLET_LANDSCAPE_16_9.jpg","width":1024,"height":576,"fallback":true},{"ratio":"16_9","url":"https://s1.ticketm.net/dam/c/25d/09139288-a226-487d-a98d-6136663e325d_106551_TABLET_LANDSCAPE_LARGE_16_9.jpg","width":2048,"height":1152,"fallback":true},{"ratio":"16_9","url":"https://s1.ticketm.net/dam/c/25d/09139288-a226-487d-a98d-6136663e325d_106551_EVENT_DETAIL_PAGE_16_9.jpg","width":205,"height":115,"fallback":true},{"ratio":"3_2","url":"https://s1.ticketm.net/dam/c/25d/09139288-a226-487d-a98d-6136663e325d_106551_RETINA_PORTRAIT_3_2.jpg","width":640,"height":427,"fallback":true},{"ratio":"16_9","url":"https://s1.ticketm.net/dam/c/25d/09139288-a226-487d-a98d-6136663e325d_106551_RETINA_PORTRAIT_16_9.jpg","width":640,"height":360,"fallback":true},{"ratio":"3_2","url":"https://s1.ticketm.net/dam/c/25d/09139288-a226-487d-a98d-6136663e325d_106551_ARTIST_PAGE_3_2.jpg","width":305,"height":203,"fallback":true},{"ratio":"16_9","url":"https://s1.ticketm.net/dam/c/25d/09139288-a226-487d-a98d-6136663e325d_106551_RECOMENDATION_16_9.jpg","width":100,"height":56,"fallback":true}],"classifications":[{"primary":true,"segment":{"id":"KZFzniwnSyZfZ7v7nE","name":"Sports"}}],"upcomingEvents":{"_total":96,"tmr":80,"ticketmaster":16},"_links":{"self":{"href":"/discovery/v2/attractions/Z6r9jZAaee?locale=en-us"}}},{"name":"Arizona Diamondbacks","type":"attraction","id":"Zkr9jZAeeq","test":false,"locale":"en-us","images":[{"ratio":"16_9","url":"https://s1.ticketm.net/dam/c/25d/09139288-a226-487d-a98d-6136663e325d_106551_RETINA_LANDSCAPE_16_9.jpg","width":1136,"height":639,"fallback":true},{"ratio":"3_2","url":"https://s1.ticketm.net/dam/c/25d/09139288-a226-487d-a98d-6136663e325d_106551_TABLET_LANDSCAPE_3_2.jpg","width":1024,"height":683,"fallback":true},{"ratio":"4_3","url":"https://s1.ticketm.net/dam/c/25d/09139288-a226-487d-a98d-6136663e325d_106551_CUSTOM.jpg","width":305,"height":225,"fallback":true},{"ratio":"16_9","url":"https://s1.ticketm.net/dam/c/25d/09139288-a226-487d-a98d-6136663e325d_106551_TABLET_LANDSCAPE_16_9.jpg","width":1024,"height":576,"fallback":true},{"ratio":"16_9","url":"https://s1.ticketm.net/dam/c/25d/09139288-a226-487d-a98d-6136663e325d_106551_TABLET_LANDSCAPE_LARGE_16_9.jpg","width":2048,"height":1152,"fallback":true},{"ratio":"16_9","url":"https://s1.ticketm.net/dam/c/25d/09139288-a226-487d-a98d-6136663e325d_106551_EVENT_DETAIL_PAGE_16_9.jpg","width":205,"height":115,"fallback":true},{"ratio":"3_2","url":"https://s1.ticketm.net/dam/c/25d/09139288-a226-487d-a98d-6136663e325d_106551_RETINA_PORTRAIT_3_2.jpg","width":640,"height":427,"fallback":true},{"ratio":"16_9","url":"https://s1.ticketm.net/dam/c/25d/09139288-a226-487d-a98d-6136663e325d_106551_RETINA_PORTRAIT_16_9.jpg","width":640,"height":360,"fallback":true},{"ratio":"3_2","url":"https://s1.ticketm.net/dam/c/25d/09139288-a226-487d-a98d-6136663e325d_106551_ARTIST_PAGE_3_2.jpg","width":305,"height":203,"fallback":true},{"ratio":"16_9","url":"https://s1.ticketm.net/dam/c/25d/09139288-a226-487d-a98d-6136663e325d_106551_RECOMENDATION_16_9.jpg","width":100,"height":56,"fallback":true}],"classifications":[{"primary":true,"segment":{"id":"KZFzniwnSyZfZ7v7nE","name":"Sports"}}],"upcomingEvents":{"_total":150,"tmr":81,"ticketmaster":69},"_links":{"self":{"href":"/discovery/v2/attractions/Zkr9jZAeeq?locale=en-us"}}}]}}]},"_links":{"first":{"href":"/discovery/v2/events.json?startDateTime=2017-07-02T00%3A00%3A00Z&city=Los+Angeles&countryCode=US&radius=25&endDateTime=2017-07-09T23%3A59%3A59Z&page=0&size=3&sort=date,asc"},"self":{"href":"/discovery/v2/events.json?startDateTime=2017-07-02T00%3A00%3A00Z&size=3&city=Los+Angeles&countryCode=US&sort=date%2Casc&radius=25&endDateTime=2017-07-09T23%3A59%3A59Z"},"next":{"href":"/discovery/v2/events.json?startDateTime=2017-07-02T00%3A00%3A00Z&city=Los+Angeles&countryCode=US&radius=25&endDateTime=2017-07-09T23%3A59%3A59Z&page=1&size=3&sort=date,asc"},"last":{"href":"/discovery/v2/events.json?startDateTime=2017-07-02T00%3A00%3A00Z&city=Los+Angeles&countryCode=US&radius=25&endDateTime=2017-07-09T23%3A59%3A59Z&page=18&size=3&sort=date,asc"}},"page":{"size":3,"totalElements":55,"totalPages":19,"number":0}}',
+		})();
+		widgetWeek.getWeekEventsHandler.bind({
+			widget: {
+				weekSchedulerRoot: document.body.querySelector('.weekSсheduler'),
+				eventsRootContainer: {
+					parentNode: {
+						parentNode: {
+							parentNode: document.body.querySelector('.events-root-container')
+						}
+					}
+				},
+				formatDate: function() {return true},
+				weekdaysRootContainer: {
+					innerHTML: function() {return true},
+					querySelectorAll: function() {return true},
+				},
+				addScroll: function() {return true},
+				eventReqAttrs: {
+					page: 1
+				},
+				getJsonAsync: function() {return true},
+				showMessage: function() {return true},
+				hideMessageWithDelay: function() {return true},
+			},
+			readyState: XMLHttpRequest.DONE,
+			status: 200,
+			responseText: '{"_embedded":{"events":[{"name":"High-Vibe Music Feat. Ray Davis & the Regenerates","type":"event","id":"1718v3G65b9L6d-","test":false,"url":"http://www.ticketweb.com/t3/sale/SaleEventDetail?dispatch=loadSelectionData&eventId=7458695&REFERRAL_ID=tmfeed","locale":"en-us","images":[{"ratio":"16_9","url":"https://s1.ticketm.net/dam/c/060/c5c08e7a-9912-456c-a060-2758be94e060_105881_RECOMENDATION_16_9.jpg","width":100,"height":56,"fallback":true},{"ratio":"3_2","url":"https://s1.ticketm.net/dam/c/060/c5c08e7a-9912-456c-a060-2758be94e060_105881_ARTIST_PAGE_3_2.jpg","width":305,"height":203,"fallback":true},{"ratio":"16_9","url":"https://s1.ticketm.net/dam/c/060/c5c08e7a-9912-456c-a060-2758be94e060_105881_TABLET_LANDSCAPE_LARGE_16_9.jpg","width":2048,"height":1152,"fallback":true},{"ratio":"16_9","url":"https://s1.ticketm.net/dam/c/060/c5c08e7a-9912-456c-a060-2758be94e060_105881_EVENT_DETAIL_PAGE_16_9.jpg","width":205,"height":115,"fallback":true},{"ratio":"4_3","url":"https://s1.ticketm.net/dam/c/060/c5c08e7a-9912-456c-a060-2758be94e060_105881_CUSTOM.jpg","width":305,"height":225,"fallback":true},{"ratio":"16_9","url":"https://s1.ticketm.net/dam/c/060/c5c08e7a-9912-456c-a060-2758be94e060_105881_RETINA_PORTRAIT_16_9.jpg","width":640,"height":360,"fallback":true},{"ratio":"3_2","url":"https://s1.ticketm.net/dam/c/060/c5c08e7a-9912-456c-a060-2758be94e060_105881_TABLET_LANDSCAPE_3_2.jpg","width":1024,"height":683,"fallback":true},{"ratio":"3_2","url":"https://s1.ticketm.net/dam/c/060/c5c08e7a-9912-456c-a060-2758be94e060_105881_RETINA_PORTRAIT_3_2.jpg","width":640,"height":427,"fallback":true},{"ratio":"16_9","url":"https://s1.ticketm.net/dam/c/060/c5c08e7a-9912-456c-a060-2758be94e060_105881_RETINA_LANDSCAPE_16_9.jpg","width":1136,"height":639,"fallback":true},{"ratio":"16_9","url":"https://s1.ticketm.net/dam/c/060/c5c08e7a-9912-456c-a060-2758be94e060_105881_TABLET_LANDSCAPE_16_9.jpg","width":1024,"height":576,"fallback":true}],"sales":{"public":{"startDateTime":"2017-05-23T01:30:01Z","startTBD":false,"endDateTime":"2017-05-23T01:33:00Z"}},"dates":{"start":{"localDate":"2017-07-03","localTime":"21:00:00","dateTime":"2017-07-04T04:00:00Z","dateTBD":false,"dateTBA":false,"timeTBA":false,"noSpecificTime":false},"timezone":"America/Los_Angeles","status":{"code":"offsale"},"spanMultipleDays":false},"classifications":[{"primary":true,"segment":{"id":"KZFzniwnSyZfZ7v7nJ","name":"Music"},"genre":{"id":"KnvZfZ7vAvl","name":"Other"},"subGenre":{"id":"KZazBEonSMnZfZ7vk1I","name":"Other"},"type":{"id":"KZAyXgnZfZ7v7nI","name":"Undefined"},"subType":{"id":"KZFzBErXgnZfZ7v7lJ","name":"Undefined"}}],"_links":{"self":{"href":"/discovery/v2/events/1718v3G65b9L6d-?locale=en-us"},"venues":[{"href":"/discovery/v2/venues/KovZpZAFJ71A?locale=en-us"}]},"_embedded":{"venues":[{"name":"Molly Malones","type":"venue","id":"KovZpZAFJ71A","test":false,"url":"http://www.ticketmaster.com/venue/337840","locale":"en-us","postalCode":"90036","timezone":"America/Los_Angeles","city":{"name":"Los Angeles"},"state":{"name":"California","stateCode":"CA"},"country":{"name":"United States Of America","countryCode":"US"},"address":{"line1":"575 South Fairfax Avenue"},"location":{"longitude":"-118.3615566","latitude":"34.0652923"},"markets":[{"id":"27"}],"dmas":[{"id":223},{"id":324},{"id":354},{"id":383}],"upcomingEvents":{"_total":67,"ticketmaster":67},"_links":{"self":{"href":"/discovery/v2/venues/KovZpZAFJ71A?locale=en-us"}}}]}},{"name":"Los Angeles Coliseum Historic Tours","type":"event","id":"vvG1IZflWvlK1Y","test":false,"url":"http://www.ticketmaster.com/event/0A0052BF41AD32B0","locale":"en-us","images":[{"ratio":"16_9","url":"https://s1.ticketm.net/dbimages/204958a.jpg","width":205,"height":115,"fallback":false},{"ratio":"16_9","url":"https://s1.ticketm.net/dam/c/03e/e15ef00f-2c87-4421-ae61-d740851a703e_105891_RETINA_PORTRAIT_16_9.jpg","width":640,"height":360,"fallback":true},{"ratio":"3_2","url":"https://s1.ticketm.net/dam/c/03e/e15ef00f-2c87-4421-ae61-d740851a703e_105891_ARTIST_PAGE_3_2.jpg","width":305,"height":203,"fallback":true},{"ratio":"16_9","url":"https://s1.ticketm.net/dam/c/03e/e15ef00f-2c87-4421-ae61-d740851a703e_105891_RECOMENDATION_16_9.jpg","width":100,"height":56,"fallback":true},{"ratio":"3_2","url":"https://s1.ticketm.net/dam/c/03e/e15ef00f-2c87-4421-ae61-d740851a703e_105891_TABLET_LANDSCAPE_3_2.jpg","width":1024,"height":683,"fallback":true},{"ratio":"16_9","url":"https://s1.ticketm.net/dam/c/03e/e15ef00f-2c87-4421-ae61-d740851a703e_105891_RETINA_LANDSCAPE_16_9.jpg","width":1136,"height":639,"fallback":true},{"ratio":"4_3","url":"https://s1.ticketm.net/dbimages/204957a.jpg","width":305,"height":225,"fallback":false},{"ratio":"16_9","url":"https://s1.ticketm.net/dam/c/03e/e15ef00f-2c87-4421-ae61-d740851a703e_105891_TABLET_LANDSCAPE_16_9.jpg","width":1024,"height":576,"fallback":true},{"ratio":"3_2","url":"https://s1.ticketm.net/dam/c/03e/e15ef00f-2c87-4421-ae61-d740851a703e_105891_RETINA_PORTRAIT_3_2.jpg","width":640,"height":427,"fallback":true},{"ratio":"16_9","url":"https://s1.ticketm.net/dam/c/03e/e15ef00f-2c87-4421-ae61-d740851a703e_105891_TABLET_LANDSCAPE_LARGE_16_9.jpg","width":2048,"height":1152,"fallback":true}],"sales":{"public":{"startTBD":false}},"dates":{"start":{"localDate":"2017-07-05","dateTBD":false,"dateTBA":false,"timeTBA":false,"noSpecificTime":true},"timezone":"America/Los_Angeles","status":{"code":"offsale"},"spanMultipleDays":false},"classifications":[{"primary":true,"segment":{"id":"KZFzniwnSyZfZ7v7n1","name":"Miscellaneous"},"genre":{"id":"KnvZfZ7v7ll","name":"Undefined"},"subGenre":{"id":"KZazBEonSMnZfZ7vAv1","name":"Undefined"},"type":{"id":"KZAyXgnZfZ7v7lt","name":"Event Style"},"subType":{"id":"KZFzBErXgnZfZ7vAvv","name":"Sightseeing/Facility"}}],"promoter":{"id":"494","name":"PROMOTED BY VENUE","description":"PROMOTED BY VENUE / NTL / USA"},"promoters":[{"id":"494","name":"PROMOTED BY VENUE","description":"PROMOTED BY VENUE / NTL / USA"}],"info":"Come take a tour of the GREATEST STADIUM IN THE WORLD with a history, legacy and connection like no other! The Los Angeles Memorial Coliseum complex is one of the most venerable sports monuments in America today with countless historic events & milestones taking place inside its walls during nine decades of celebrated history. The Coliseum has served as home field for the USC Football team since 1923 and is the only stadium that has played host to two Olympiads (X and XXIII), two Super Bowls (I and VII) and a World Series (1959). It was declared a National Historic Landmark on July 27, 1984. The Coliseum has also hosted Evil Knievel in 1973, a Papal Mass by Pope John Paul II in 1987, Nelson Mandelas Crusade against Apartheid in 1990 & countless sold out concerts including U2, Pink Floyd, The Who, Metallica, Bruce Springsteen & the Rolling Stones. The MLBs Los Angeles Dodgers as well as the NFLs St. Louis Rams and Oakland Raiders have also called the Coliseum home.","pleaseNote":"Public Tours are available Wednesday-Sunday, 10-4pm, with Private Tours available 7 days a week. To schedule a Private or Group Tour, please email colitour@usc.edu. Tickets can be purchased on Ticketmaster or at the Coliseum Box Office located at Gate 29. All Tours depart and conclude at Gate 29. The Self-Guided Tour is limited to the Peristyle and Court of Honor with a full view of the playing field. Self-Guided Tours DO NOT include entrance into the stadium seating area. There is no time limit on this tour. The Guided Tour includes the USC Recruit Lounge, Coliseum Boardroom, Press Box, Locker Rooms and Players Tunnel and lasts 90-100 minutes. All destinations on the tour are subject to availability. NO field access is allowed at any time. RAIN OUTS do apply and your ticket can be redeemed for a different tour date within 30 days of your originally scheduled tour. Kids 5 years & under are FREE!","priceRanges":[{"type":"standard","currency":"USD","min":5.0,"max":25.0}],"accessibility":{"info":"Accessible Ticket Buyers Should Purchase Regular Ticket"},"_links":{"self":{"href":"/discovery/v2/events/vvG1IZflWvlK1Y?locale=en-us"},"attractions":[{"href":"/discovery/v2/attractions/K8vZ917K5O7?locale=en-us"}],"venues":[{"href":"/discovery/v2/venues/KovZpZAIF7aA?locale=en-us"}]},"_embedded":{"venues":[{"name":"Los Angeles Memorial Coliseum","type":"venue","id":"KovZpZAIF7aA","test":false,"url":"http://www.ticketmaster.com/venue/82780","locale":"en-us","images":[{"ratio":"3_1","url":"https://s1.ticketm.net/dam/v/4ee/6acdb953-07f5-4841-9773-869123bd84ee_438371_SOURCE.jpg","width":1500,"height":500,"fallback":false,"attribution":"KovZpZAIF7aA"}],"postalCode":"90037","timezone":"America/Los_Angeles","city":{"name":"Los Angeles"},"state":{"name":"California","stateCode":"CA"},"country":{"name":"United States Of America","countryCode":"US"},"address":{"line1":"3911 S. Figueroa St"},"location":{"longitude":"-118.287865","latitude":"34.014053"},"markets":[{"id":"27"}],"dmas":[{"id":223},{"id":324},{"id":354},{"id":383}],"upcomingEvents":{"_total":38,"tmr":8,"ticketmaster":30},"_links":{"self":{"href":"/discovery/v2/venues/KovZpZAIF7aA?locale=en-us"}}}],"attractions":[{"name":"Los Angeles Coliseum Historic Tours","type":"attraction","id":"K8vZ917K5O7","test":false,"url":"http://www.ticketmaster.com/artist/2086550","locale":"en-us","images":[{"ratio":"16_9","url":"https://s1.ticketm.net/dbimages/204958a.jpg","width":205,"height":115,"fallback":false},{"ratio":"16_9","url":"https://s1.ticketm.net/dam/c/03e/e15ef00f-2c87-4421-ae61-d740851a703e_105891_RETINA_PORTRAIT_16_9.jpg","width":640,"height":360,"fallback":true},{"ratio":"3_2","url":"https://s1.ticketm.net/dam/c/03e/e15ef00f-2c87-4421-ae61-d740851a703e_105891_ARTIST_PAGE_3_2.jpg","width":305,"height":203,"fallback":true},{"ratio":"16_9","url":"https://s1.ticketm.net/dam/c/03e/e15ef00f-2c87-4421-ae61-d740851a703e_105891_RECOMENDATION_16_9.jpg","width":100,"height":56,"fallback":true},{"ratio":"3_2","url":"https://s1.ticketm.net/dam/c/03e/e15ef00f-2c87-4421-ae61-d740851a703e_105891_TABLET_LANDSCAPE_3_2.jpg","width":1024,"height":683,"fallback":true},{"ratio":"16_9","url":"https://s1.ticketm.net/dam/c/03e/e15ef00f-2c87-4421-ae61-d740851a703e_105891_RETINA_LANDSCAPE_16_9.jpg","width":1136,"height":639,"fallback":true},{"ratio":"4_3","url":"https://s1.ticketm.net/dbimages/204957a.jpg","width":305,"height":225,"fallback":false},{"ratio":"16_9","url":"https://s1.ticketm.net/dam/c/03e/e15ef00f-2c87-4421-ae61-d740851a703e_105891_TABLET_LANDSCAPE_16_9.jpg","width":1024,"height":576,"fallback":true},{"ratio":"3_2","url":"https://s1.ticketm.net/dam/c/03e/e15ef00f-2c87-4421-ae61-d740851a703e_105891_RETINA_PORTRAIT_3_2.jpg","width":640,"height":427,"fallback":true},{"ratio":"16_9","url":"https://s1.ticketm.net/dam/c/03e/e15ef00f-2c87-4421-ae61-d740851a703e_105891_TABLET_LANDSCAPE_LARGE_16_9.jpg","width":2048,"height":1152,"fallback":true}],"classifications":[{"primary":true,"segment":{"id":"KZFzniwnSyZfZ7v7n1","name":"Miscellaneous"},"genre":{"id":"KnvZfZ7v7ll","name":"Undefined"},"subGenre":{"id":"KZazBEonSMnZfZ7vAv1","name":"Undefined"},"type":{"id":"KZAyXgnZfZ7v7lt","name":"Event Style"},"subType":{"id":"KZFzBErXgnZfZ7vAvv","name":"Sightseeing/Facility"}}],"upcomingEvents":{"_total":16,"ticketmaster":16},"_links":{"self":{"href":"/discovery/v2/attractions/K8vZ917K5O7?locale=en-us"}}}]}},{"name":"Arizona Diamondbacks at Los Angeles Dodgers","type":"event","id":"Z7r9jZ1AvJF7x","test":false,"url":"http://www.ticketsnow.com/InventoryBrowse/TicketList.aspx?PID=1988122","locale":"en-us","images":[{"ratio":"16_9","url":"https://s1.ticketm.net/dam/c/25d/09139288-a226-487d-a98d-6136663e325d_106551_RETINA_LANDSCAPE_16_9.jpg","width":1136,"height":639,"fallback":true},{"ratio":"3_2","url":"https://s1.ticketm.net/dam/c/25d/09139288-a226-487d-a98d-6136663e325d_106551_TABLET_LANDSCAPE_3_2.jpg","width":1024,"height":683,"fallback":true},{"ratio":"4_3","url":"https://s1.ticketm.net/dam/c/25d/09139288-a226-487d-a98d-6136663e325d_106551_CUSTOM.jpg","width":305,"height":225,"fallback":true},{"ratio":"16_9","url":"https://s1.ticketm.net/dam/c/25d/09139288-a226-487d-a98d-6136663e325d_106551_TABLET_LANDSCAPE_16_9.jpg","width":1024,"height":576,"fallback":true},{"ratio":"16_9","url":"https://s1.ticketm.net/dam/c/25d/09139288-a226-487d-a98d-6136663e325d_106551_TABLET_LANDSCAPE_LARGE_16_9.jpg","width":2048,"height":1152,"fallback":true},{"ratio":"16_9","url":"https://s1.ticketm.net/dam/c/25d/09139288-a226-487d-a98d-6136663e325d_106551_EVENT_DETAIL_PAGE_16_9.jpg","width":205,"height":115,"fallback":true},{"ratio":"3_2","url":"https://s1.ticketm.net/dam/c/25d/09139288-a226-487d-a98d-6136663e325d_106551_RETINA_PORTRAIT_3_2.jpg","width":640,"height":427,"fallback":true},{"ratio":"16_9","url":"https://s1.ticketm.net/dam/c/25d/09139288-a226-487d-a98d-6136663e325d_106551_RETINA_PORTRAIT_16_9.jpg","width":640,"height":360,"fallback":true},{"ratio":"3_2","url":"https://s1.ticketm.net/dam/c/25d/09139288-a226-487d-a98d-6136663e325d_106551_ARTIST_PAGE_3_2.jpg","width":305,"height":203,"fallback":true},{"ratio":"16_9","url":"https://s1.ticketm.net/dam/c/25d/09139288-a226-487d-a98d-6136663e325d_106551_RECOMENDATION_16_9.jpg","width":100,"height":56,"fallback":true}],"sales":{"public":{"startDateTime":"1900-01-01T18:00:00Z","startTBD":false,"endDateTime":"2017-07-06T02:10:00Z"}},"dates":{"start":{"localDate":"2017-07-05","localTime":"19:10:00","dateTime":"2017-07-06T02:10:00Z","dateTBD":false,"dateTBA":false,"timeTBA":false,"noSpecificTime":false},"status":{"code":"onsale"},"spanMultipleDays":false},"classifications":[{"primary":true,"segment":{"id":"KZFzniwnSyZfZ7v7nE","name":"Sports"}}],"seatmap":{"staticUrl":"http://resale.ticketmaster.com.au/akamai-content/graphics/TMResale/2/VenueMaps/475-42275-0-0-Dodgerstadium_Theclassicwest.png"},"_links":{"self":{"href":"/discovery/v2/events/Z7r9jZ1AvJF7x?locale=en-us"},"attractions":[{"href":"/discovery/v2/attractions/Z6r9jZAaee?locale=en-us"},{"href":"/discovery/v2/attractions/Zkr9jZAeeq?locale=en-us"}],"venues":[{"href":"/discovery/v2/venues/Z6r9jZAFke?locale=en-us"}]},"_embedded":{"venues":[{"name":"Dodger Stadium","type":"venue","id":"Z6r9jZAFke","test":false,"locale":"en-us","postalCode":"90012","timezone":"America/Los_Angeles","city":{"name":"Los Angeles"},"state":{"name":"California","stateCode":"CA"},"country":{"name":"United States Of America","countryCode":"US"},"address":{"line1":"1000 Elysian Park Ave."},"location":{"longitude":"-118.2388","latitude":"34.0658"},"upcomingEvents":{"_total":40,"tmr":37,"ticketmaster":3},"_links":{"self":{"href":"/discovery/v2/venues/Z6r9jZAFke?locale=en-us"}}}],"attractions":[{"name":"Los Angeles Dodgers","type":"attraction","id":"Z6r9jZAaee","test":false,"locale":"en-us","images":[{"ratio":"16_9","url":"https://s1.ticketm.net/dam/c/25d/09139288-a226-487d-a98d-6136663e325d_106551_RETINA_LANDSCAPE_16_9.jpg","width":1136,"height":639,"fallback":true},{"ratio":"3_2","url":"https://s1.ticketm.net/dam/c/25d/09139288-a226-487d-a98d-6136663e325d_106551_TABLET_LANDSCAPE_3_2.jpg","width":1024,"height":683,"fallback":true},{"ratio":"4_3","url":"https://s1.ticketm.net/dam/c/25d/09139288-a226-487d-a98d-6136663e325d_106551_CUSTOM.jpg","width":305,"height":225,"fallback":true},{"ratio":"16_9","url":"https://s1.ticketm.net/dam/c/25d/09139288-a226-487d-a98d-6136663e325d_106551_TABLET_LANDSCAPE_16_9.jpg","width":1024,"height":576,"fallback":true},{"ratio":"16_9","url":"https://s1.ticketm.net/dam/c/25d/09139288-a226-487d-a98d-6136663e325d_106551_TABLET_LANDSCAPE_LARGE_16_9.jpg","width":2048,"height":1152,"fallback":true},{"ratio":"16_9","url":"https://s1.ticketm.net/dam/c/25d/09139288-a226-487d-a98d-6136663e325d_106551_EVENT_DETAIL_PAGE_16_9.jpg","width":205,"height":115,"fallback":true},{"ratio":"3_2","url":"https://s1.ticketm.net/dam/c/25d/09139288-a226-487d-a98d-6136663e325d_106551_RETINA_PORTRAIT_3_2.jpg","width":640,"height":427,"fallback":true},{"ratio":"16_9","url":"https://s1.ticketm.net/dam/c/25d/09139288-a226-487d-a98d-6136663e325d_106551_RETINA_PORTRAIT_16_9.jpg","width":640,"height":360,"fallback":true},{"ratio":"3_2","url":"https://s1.ticketm.net/dam/c/25d/09139288-a226-487d-a98d-6136663e325d_106551_ARTIST_PAGE_3_2.jpg","width":305,"height":203,"fallback":true},{"ratio":"16_9","url":"https://s1.ticketm.net/dam/c/25d/09139288-a226-487d-a98d-6136663e325d_106551_RECOMENDATION_16_9.jpg","width":100,"height":56,"fallback":true}],"classifications":[{"primary":true,"segment":{"id":"KZFzniwnSyZfZ7v7nE","name":"Sports"}}],"upcomingEvents":{"_total":96,"tmr":80,"ticketmaster":16},"_links":{"self":{"href":"/discovery/v2/attractions/Z6r9jZAaee?locale=en-us"}}},{"name":"Arizona Diamondbacks","type":"attraction","id":"Zkr9jZAeeq","test":false,"locale":"en-us","images":[{"ratio":"16_9","url":"https://s1.ticketm.net/dam/c/25d/09139288-a226-487d-a98d-6136663e325d_106551_RETINA_LANDSCAPE_16_9.jpg","width":1136,"height":639,"fallback":true},{"ratio":"3_2","url":"https://s1.ticketm.net/dam/c/25d/09139288-a226-487d-a98d-6136663e325d_106551_TABLET_LANDSCAPE_3_2.jpg","width":1024,"height":683,"fallback":true},{"ratio":"4_3","url":"https://s1.ticketm.net/dam/c/25d/09139288-a226-487d-a98d-6136663e325d_106551_CUSTOM.jpg","width":305,"height":225,"fallback":true},{"ratio":"16_9","url":"https://s1.ticketm.net/dam/c/25d/09139288-a226-487d-a98d-6136663e325d_106551_TABLET_LANDSCAPE_16_9.jpg","width":1024,"height":576,"fallback":true},{"ratio":"16_9","url":"https://s1.ticketm.net/dam/c/25d/09139288-a226-487d-a98d-6136663e325d_106551_TABLET_LANDSCAPE_LARGE_16_9.jpg","width":2048,"height":1152,"fallback":true},{"ratio":"16_9","url":"https://s1.ticketm.net/dam/c/25d/09139288-a226-487d-a98d-6136663e325d_106551_EVENT_DETAIL_PAGE_16_9.jpg","width":205,"height":115,"fallback":true},{"ratio":"3_2","url":"https://s1.ticketm.net/dam/c/25d/09139288-a226-487d-a98d-6136663e325d_106551_RETINA_PORTRAIT_3_2.jpg","width":640,"height":427,"fallback":true},{"ratio":"16_9","url":"https://s1.ticketm.net/dam/c/25d/09139288-a226-487d-a98d-6136663e325d_106551_RETINA_PORTRAIT_16_9.jpg","width":640,"height":360,"fallback":true},{"ratio":"3_2","url":"https://s1.ticketm.net/dam/c/25d/09139288-a226-487d-a98d-6136663e325d_106551_ARTIST_PAGE_3_2.jpg","width":305,"height":203,"fallback":true},{"ratio":"16_9","url":"https://s1.ticketm.net/dam/c/25d/09139288-a226-487d-a98d-6136663e325d_106551_RECOMENDATION_16_9.jpg","width":100,"height":56,"fallback":true}],"classifications":[{"primary":true,"segment":{"id":"KZFzniwnSyZfZ7v7nE","name":"Sports"}}],"upcomingEvents":{"_total":150,"tmr":81,"ticketmaster":69},"_links":{"self":{"href":"/discovery/v2/attractions/Zkr9jZAeeq?locale=en-us"}}}]}}]},"_links":{"first":{"href":"/discovery/v2/events.json?startDateTime=2017-07-02T00%3A00%3A00Z&city=Los+Angeles&countryCode=US&radius=25&endDateTime=2017-07-09T23%3A59%3A59Z&page=0&size=3&sort=date,asc"},"self":{"href":"/discovery/v2/events.json?startDateTime=2017-07-02T00%3A00%3A00Z&size=3&city=Los+Angeles&countryCode=US&sort=date%2Casc&radius=25&endDateTime=2017-07-09T23%3A59%3A59Z"},"next":{"href":"/discovery/v2/events.json?startDateTime=2017-07-02T00%3A00%3A00Z&city=Los+Angeles&countryCode=US&radius=25&endDateTime=2017-07-09T23%3A59%3A59Z&page=1&size=3&sort=date,asc"},"last":{"href":"/discovery/v2/events.json?startDateTime=2017-07-02T00%3A00%3A00Z&city=Los+Angeles&countryCode=US&radius=25&endDateTime=2017-07-09T23%3A59%3A59Z&page=18&size=3&sort=date,asc"}},"page":{"size":3,"totalElements":0,"totalPages":19,"number":0}}',
+		})();
+		expect(typeof(widgetWeek.getWeekEventsHandler)).toBe('function');
+	});
+
+	it('widgetWeek #getJsonAsync should be defined', () => {
+		widgetWeek.getJsonAsync('https://app.ticketmaster.com/discovery/v2/events.json?apikey=TQMbqzKDBbcCjAxC9SaKS1lg9D5Eousb&latlong=&keyword=&countryCode=US&city=Los%20Angeles&startDateTime=2017-07-02T00:00:00Z&endDateTime=2017-07-09T23:59:59Z&classificationId=&radius=25&size=500&sort=date,asc');
+		expect(typeof(widgetWeek.getJsonAsync)).toBe('function');
+	});
+
+	it('widgetMonth #getJsonAsync should be defined', () => {
+		widgetMonth.getJsonAsync('https://app.ticketmaster.com/discovery/v2/events.json?apikey=TQMbqzKDBbcCjAxC9SaKS1lg9D5Eousb&latlong=&keyword=&countryCode=US&city=Los%20Angeles&startDateTime=2017-07-02T00:00:00Z&endDateTime=2017-07-09T23:59:59Z&classificationId=&radius=25&size=500&sort=date,asc');
+		expect(typeof(widgetMonth.getJsonAsync)).toBe('function');
+	});
+
+	it('widgetWeek #hideMessage should be defined', () => {
+		widgetWeek.hideMessageDelay;
+		widgetWeek.hideMessage.bind({
+			messageDialog: {
+				classList: {
+					remove: function () {return true}
+				}
+			}
+		})();
+		widgetWeek.hideMessage.bind({
+			messageTimeout: 30,
+			messageDialog: {
+				classList: {
+					remove: function () {return true}
+				}
+			}
+		})();
+		expect(typeof(widgetWeek.hideMessage)).toBe('function');
+	});
+
+	it('widgetWeek #update should be defined', () => {
+		widgetWeek.update.bind({
+			eventsRootContainer: {
+				querySelector: function() {return true},
+				removeChild: function() {return true},
+			},
+			startMonth: function() {return true},
+			weekSchedulerRoot: {
+				appendChild: function() {return true},
+			}
+		})();
+		expect(typeof(widgetWeek.update)).toBe('function');
 	});
 
 	it('#clear should be defined', () => {
@@ -860,6 +1243,26 @@ describe("CalendarWidgetWithoutSpyOn", () => {
 		widgetWeek.initMessage(widgetWeek.weekSchedulerRoot);
 	});
 
+	it('#initMessage should be defined', () => {
+		document.querySelector('.event-message__btn').click();
+		expect(typeof(widgetMonth.initMessage)).toBe('function');
+		widgetMonth.monthSchedulerRoot = {
+			innerHTML: '<div class="monthSсheduler"></div>',
+			appendChild: function() {return true}
+		}
+		widgetMonth.initMessage(widgetMonth.monthSchedulerRoot);
+	});
+
+	it('#initMessage should be defined', () => {
+		document.querySelector('.event-message__btn').click();
+		expect(typeof(widgetYear.initMessage)).toBe('function');
+		widgetYear.yearSchedulerRoot = {
+			innerHTML: '<div class="yearSсheduler"></div>',
+			appendChild: function() {return true}
+		}
+		widgetYear.initMessage(widgetYear.yearSchedulerRoot);
+	});
+
 	it('#showMessage should be defined', () => {
 		let hideMessageWithoutDelay = function() {return true};
 		widgetWeek.massageDialog = widget.eventsRoot;
@@ -872,15 +1275,6 @@ describe("CalendarWidgetWithoutSpyOn", () => {
 		let evt = JSON.parse('[[{"id":"Z1lMVSyiJynZ177dJa","url":"https://qapurchasetest.nbp.frontgatetickets.com/event/lwln7sy8bni2h448","name":"No Longer on Sale for Web","date":{"day":"2014-03-31","time":"19:15:00"},"address":{"line1":"1711 S. Congress","line2":"2nd Floor","name":"FGS - Selenium (With enough text for 2nd"},"img":"https://s1.ticketm.net/dam/c/8cf/a6653880-7899-4f67-8067-1f95f4d158cf_124761_TABLET_LANDSCAPE_3_2.jpg"}],[{"id":"vv1AdZAa4GkdE0_X3","url":"http://www.ticketmaster.com/event/03005255E7919F92","name":"FIAF Presents - Wine Tour de France - 4 Tasting Class Package","date":{"day":"2017-03-20","time":"19:00:00"},"address":{"line1":"22 East 60th St","line2":"8th Floor (Between Park & Madison Aves)","name":"Le Skyroom at FIAF"},"img":"https://s1.ticketm.net/dam/c/7e6/22f24b33-e33a-4ee1-87ba-9c3aece497e6_105841_TABLET_LANDSCAPE_3_2.jpg"}],[{"id":"vvG1HZf0T55fH1","url":"http://www.ticketmaster.com/event/0F00524FCB2D4F0A","name":"DMX & Zeds Dead Two Show Combo","date":{"day":"2017-03-31","time":"20:00:00"},"address":{"line1":"555 W 5th Avenue","name":"William a Egan Civic and Convention Center"},"img":"https://s1.ticketm.net/dam/a/835/16ceaa41-585f-4bc5-b376-a56d2e9a3835_298451_TABLET_LANDSCAPE_16_9.jpg"}]]');
 		widget.publishEvent(evt, widget.widgetRoot);
 		expect(typeof(widget.publishEvent)).toBe('function');
-	});
-
-	it('#getWeekEventsHandler should be defined', () => {
-		widget.weekSchedulerRoot = {
-			innerHTML: '<div class="weekSсheduler"></div>',
-			appendChild: function() {return true}
-		}
-		widgetWeek.getWeekEventsHandler();
-		expect(typeof(widgetWeek.getWeekEventsHandler)).toBe('function');
 	});
 
 	it('#createDOMItem should be defined', () => {
@@ -913,6 +1307,16 @@ describe("CalendarWidgetWithoutSpyOn", () => {
 	it('#addScroll should be defined', () => {
 		widgetWeek.addScroll();
 		expect(typeof(widgetWeek.addScroll)).toBe('function');
+	});
+
+	it('#addScroll should be defined', () => {
+		widgetMonth.addScroll();
+		expect(typeof(widgetMonth.addScroll)).toBe('function');
+	});
+
+	it('#addScroll should be defined', () => {
+		widgetYear.addScroll();
+		expect(typeof(widgetYear.addScroll)).toBe('function');
 	});
 
 });

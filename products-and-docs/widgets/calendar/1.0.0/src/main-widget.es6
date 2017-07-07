@@ -2660,6 +2660,7 @@ class MonthScheduler {
                     spinner.classList.add('hide');
 
                     if (events.page.totalElements != 0) {
+                        console.log(calendarWidgetRoot);
                         let currentMonth = calendarWidgetRoot.getAttribute('w-period').substr(5, 2);
                         let currentMonthDef = new Date(calendarWidgetRoot.getAttribute('w-period')).getMonth() + 1;
                         if (currentMonthDef <= 9) currentMonthDef = '0' + currentMonthDef;
