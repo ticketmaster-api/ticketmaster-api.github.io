@@ -91,6 +91,40 @@
         <plugins>
 						<plugin>
 							<groupId>org.apache.maven.plugins</groupId>
+							<artifactId>maven-clean-plugin</artifactId>
+							<version>2.6.1</version>
+							<configuration>
+								<filesets>
+									<fileset>
+										<directory>src/test/resources/</directory>
+										<includes>
+											<include>serenity.properties</include>
+										</includes>
+										<followSymlinks>false</followSymlinks>
+									</fileset>
+								</filesets>
+							</configuration>
+						</plugin>
+						<plugin>
+							<groupId>org.codehaus.mojo</groupId>
+							<artifactId>properties-maven-plugin</artifactId>
+							<version>1.0-alpha-2</version>
+							<executions>
+								<execution>
+									<goals>
+										<goal>read-project-properties</goal>
+									</goals>
+									<phase>verify</phase>
+									<configuration>
+										<files>
+											<file>src/test/resources/environment/${env}/serenity.properties</file>
+										</files>
+									</configuration>
+								</execution>
+							</executions>
+						</plugin>
+						<plugin>
+							<groupId>org.apache.maven.plugins</groupId>
 							<artifactId>maven-compiler-plugin</artifactId>
 							<version>${maven-compiler-plugin.version}</version>
 							<configuration>
@@ -103,10 +137,7 @@
                 <version>${maven-failsafe-plugin.version}</version>
                 <configuration>
                     <includes>
-                        <include>**/*Test.java</include>
                         <include>**/*TestSuite.java</include>
-                        <include>**/Test*.java</include>
-                        <include>**/When*.java</include>
                     </includes>
                     <argLine>-Xmx512m</argLine>
                     <systemPropertyVariables>
@@ -141,6 +172,9 @@
 						<artifactId>maven-surefire-plugin</artifactId>
 						<version>${maven-failsafe-plugin.version}</version>
 						<configuration>
+							<systemProperties>
+								<env>${env}</env>
+							</systemProperties>
 							<properties>
 								<property>
 									<name>listener</name>
