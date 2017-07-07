@@ -1575,10 +1575,10 @@
           "type" : "boolean",
           "default" : false
         },
-        "durationField" : {
+        "rangeDurationField" : {
           "$ref" : "#/definitions/DurationField"
         },
-        "rangeDurationField" : {
+        "durationField" : {
           "$ref" : "#/definitions/DurationField"
         },
         "minimumValue" : {
