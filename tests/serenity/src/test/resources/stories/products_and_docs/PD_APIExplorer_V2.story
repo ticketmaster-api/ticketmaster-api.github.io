@@ -11,7 +11,9 @@ Meta: @smoke
 Given open API Explorer V2 page
 Then check general page elements for API Explorer V2 Page, where DISQUS = true and LeftMenu = false
 
-Scenario: (/api-explorer/v2) Open Graph support [1.1.51 Verify tags are present in source code]
+Scenario: TKMDPA-5334 (Open Graph Support) [1.1.51 Verify tags are present in source code]
+Meta:
+@issue #TKMDPA-5334
 Given open API Explorer V2 page
 Then check <tag> is present in the source code page
 Examples:
@@ -24,7 +26,9 @@ Examples:
 |og:image:width |
 |og:image:height|
 
-Scenario: (/api-explorer/v2) [5.2.2 API Explorer V2 : The parameters section is opened]
+Scenario: TKMDPA-5346 (The parameters section is opened) [5.2.2 API Explorer V2 : The parameters section is opened]
+Meta:
+@issues #TKMDPA-5346
 Given open API Explorer V2 page
 When I choose <apiGetMethod> to send request
 And click GET button
@@ -38,7 +42,9 @@ Examples:
 |Get Classification Details|
 |Get Venue Details         |
 
-Scenario: (/api-explorer/v2) [5.2.3 API Explorer V2 : The request list contains url and block]
+Scenario: TKMDPA-5351 (The request list contains url and block) [5.2.3 API Explorer V2 : The request list contains url and block]
+Meta:
+@issues #TKMDPA-5351
 Given open API Explorer V2 page
 When I choose <apiGetMethod> to send request
 And click GET button

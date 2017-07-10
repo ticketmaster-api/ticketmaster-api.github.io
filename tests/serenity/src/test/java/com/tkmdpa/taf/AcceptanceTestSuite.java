@@ -10,13 +10,20 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class AcceptanceTestSuite extends SerenityStories {
+
     private static final Logger LOG = LoggerFactory.getLogger(AcceptanceTestSuite.class.getSimpleName());
     private static final String X64_ARCH = "amd64";
-    public static String baseTestedUrl = new SerenityStories().getEnvironmentVariables().getProperty("webdriver.base.url");
+    public static String baseTestedUrl;
 
     public AcceptanceTestSuite() {
+        try {
+            Class.forName("com.tkmdpa.taf.utils.DpaProperties");
+        } catch (ClassNotFoundException e) {
+            LOG.error("Error instantiating DpaProperties", e);
+        }
         setDriverAccordingToOS();
         new SerenityStories().getSystemConfiguration().getEnvironmentVariables().setProperty("webdriver.chrome.driver", System.getProperty("webdriver.chrome.driver"));
+        baseTestedUrl = new SerenityStories().getEnvironmentVariables().getProperty("webdriver.base.url");
     }
 
     private void setDriverAccordingToOS() {
@@ -57,6 +64,10 @@ public class AcceptanceTestSuite extends SerenityStories {
         ChromeDriverManager.getInstance().setup();
     }
 
+    /**
+     * Configuration for report portal
+     * @return
+     */
     public Configuration configuration() {
         final Configuration configuration = super.configuration();
         return configuration

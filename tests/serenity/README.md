@@ -4,8 +4,6 @@
 
 #### JBehave plugin for IntelliJ IDEA
  1. Install JBehave for Java plugin for IntelliJ IDEA.
- 2. Right-click on particular feature file and select 'Create run configuration from context'.
- 3. Run created configuration.
  
  Known issue: JBehave for Java plugin does not handle WebDriver instance properly , so can not create run configuration, clicking on story file and execute it from context'.
 
@@ -13,7 +11,7 @@
  1. Create a JUnit run configuration.
  2. Specify particular story or scenario with tag `@debug`.
  3. Select test type `Class` and specify `com.tkmdpa.taf.AcceptanceTestSuite` as class to run.
- 4. Specify VM options, i.e. `-ea -Dmetafilter=+debug`
+ 4. Specify VM options, i.e. `-ea -Denv=local -Dmetafilter=+debug`
  5. Run created configuration. This approach is also applicable for debugging purposes.
  
  ####Process

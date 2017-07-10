@@ -3,3 +3,4 @@
 *.log
 .sonar
 /src/test/resources/reportportal.properties
+/src/test/resources/serenity.properties
