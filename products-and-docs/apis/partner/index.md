@@ -96,6 +96,10 @@ The following headers to the availability response add more information about th
 ### Channel Partners
 See ["Channel Partners"](#channel-partner-overview)
 
+### Support/FAQs
+
+You can visit our support/FAQ page  [here](/support/partner-api-faq).
+
 ### Contact
 
 Ticketmaster Developer Program [developer@ticketmaster.com](mailto:developer@ticketmaster.com).
@@ -1036,6 +1040,9 @@ For use by Channel Partners only. Discover events available to transact on. For 
         * `eventDate` (date) - Event Date is Local Date YYYY-MM-DD format
         * `eventTime` (time) - Event Time is Local Time HH:MM:SS format
         * `timeZone` (text) - Time zone of the event venue location Eg: "America/Los_Angeles"
+        * `seatLocationMapRestrict`(boolean) - when true, host's ascii map through the sell prompt in tmwin will not be displayed.
+        * `locRowSeatRestrict`(boolean) - when true, requires any client/partner to hide row and seat names from the customer. 
+        * `locXnumAddescRestrict`(boolean) - when true, Xnumbers, ADDDESC, section on the event will not be displayed.
         * `offers` (array) - Offers on the Event
             - {arrayitemobject} - offer
                 * `repName` (text) - Offer name. Eg: "GPAS4"
@@ -1060,6 +1067,9 @@ Status 200
             "eventDate" : "2015-07-26",
             "eventTime" : "18:30:00",
             "timeZone" : "America/Los_Angeles",
+            "seatLocationMapRestrict": false,
+            "locXnumAddescRestrict": false,
+            "locRowSeatRestrict": false,
             "offers": [
                 { "repName": "GPAS4", "ticketType": "00004C440003" }
             ]
@@ -1113,6 +1123,9 @@ For inventory that has been exclusively set aside, Channel partners are expected
     * `onsale` (datetime) - Event onsale date and time in UTC format
     *  `offsale` (datetime) - Event off sale date and time in UTC format
     * `eventDateTime` (datetime) - Event Date & Time in UTC format
+    * `seatLocationMapRestrict`(boolean) - when true, host's ascii map through the sell prompt in tmwin will not be displayed.
+    * `locRowSeatRestrict`(boolean) - when true, requires any client/partner to hide row and seat names from the customer. 
+    * `locXnumAddescRestrict`(boolean) - when true, Xnumbers, ADDDESC, section on the event will not be displayed.
     - `tickets` (array) - tickets
         - {arrayitemobject} - ticket
             * `offers` (array) - Offers
@@ -1160,6 +1173,9 @@ Status 200
         "id":"3F004CBB88958BF9",
         "restrictSingle" : true,  // indicates a reserve cannot leave 1 seat remaining among a contiguous set of seats
         "eventTicketLimit" : 10,  // 0 = unlimited for this event, but reserves may still be limited by current seat inventory (currentTicketLimit) 
+        "seatLocationMapRestrict": false,
+        "locXnumAddescRestrict": false,
+        "locRowSeatRestrict": false,
         "tickets":[
             {
 
