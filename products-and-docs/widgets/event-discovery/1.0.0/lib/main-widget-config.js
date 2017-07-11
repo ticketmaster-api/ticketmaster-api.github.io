@@ -143,7 +143,7 @@
         tooltip: 'always',
         handle: 'square'
       }),
-        $borderRadiusController = $('#w-borderradius').slider({
+       $borderRadiusController = $('#w-borderradius').slider({
         tooltip: 'always',
         handle: 'square'
       }),
@@ -291,7 +291,7 @@
        var numInputClass = document.getElementById('w-radius');
        var incArrow = event.target.parentNode.nextElementSibling.querySelector('div').querySelector('.arrow__inc');
        var decArrow = event.target.parentNode.nextElementSibling.querySelector('div').querySelector('.arrow__dec');
-         if (targetValue == '') {
+        if (targetValue == '') {
        numInputClass.setAttribute('disabled', 'disabled');
        numInputClass.value = '';
        incArrow.classList.add('disabled');
@@ -522,6 +522,7 @@
   });
 
   $('.js_get_widget_code').on('click', function () {
+    var googleKey = 'YOUR_GOOGLE_API_KEY';
     var codeCont = document.querySelector(".language-html.widget_dialog__code");
     var htmlCode = document.createElement("div");
     widget.config.latlong = document.getElementById('w-latlong').value.replace(/\s+/g, '');
@@ -532,6 +533,13 @@
     }
     // Use only Key from config form
     htmlCode.setAttribute('w-googleapikey', getGooleApiKey());
+    htmlCode.setAttribute('w-latlong', document.getElementById('w-latlong').value.replace(/\s+/g, ''));
+    if (document.getElementById('w-googleapikey').value != '') {
+      googleKey = document.getElementById('w-googleapikey').value;
+      htmlCode.setAttribute('w-googleapikey', googleKey);
+    } else {
+      htmlCode.setAttribute('w-googleapikey', googleKey);
+    }
     var tmp = document.createElement("div");
     tmp.appendChild(htmlCode);
     codeCont.textContent = tmp.innerHTML;

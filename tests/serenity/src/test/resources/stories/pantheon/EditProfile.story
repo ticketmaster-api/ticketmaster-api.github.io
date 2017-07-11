@@ -1,4 +1,6 @@
 Meta:
+@regression-pantheon
+@smoke
 
 Narrative:
 As a test engineer

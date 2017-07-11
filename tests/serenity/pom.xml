@@ -5,41 +5,29 @@
     <groupId>com.tkmdpa.taf</groupId>
     <artifactId>testautomation</artifactId>
     <version>1.0</version>
-    <name>UI Test Automation Framework TKM-DPA</name>
+		<name>TKM-DPA_Automation</name>
+    <description>UI Test Automation Framework TKM-DPA</description>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <serenity.version>1.4.0</serenity.version>
+        <serenity.version>1.5.0-rc.1</serenity.version>
         <serenity.jbehave.version>1.24.0</serenity.jbehave.version>
         <jbehave.version>4.1</jbehave.version>
-				<slf4j.version>1.7.7</slf4j.version>
+				<slf4j.version>1.7.25</slf4j.version>
         <java.version>1.8</java.version>
         <maven-failsafe-plugin.version>2.19.1</maven-failsafe-plugin.version>
         <maven-compiler-plugin.version>3.6.1</maven-compiler-plugin.version>
-        <webdriver.driver>firefox</webdriver.driver>
+        <webdriver.driver>chrome</webdriver.driver>
     </properties>
 
-    <repositories>
-      <repository>
-        <snapshots>
-        <enabled>false</enabled>
-        </snapshots>
-        <id>central</id>
-        <name>bintray</name>
-        <url>http://jcenter.bintray.com</url>
-      </repository>
-    </repositories>
-    <pluginRepositories>
-      <pluginRepository>
-        <snapshots>
-        <enabled>false</enabled>
-        </snapshots>
-        <id>central</id>
-        <name>bintray-plugins</name>
-        <url>http://jcenter.bintray.com</url>
-      </pluginRepository>
-    </pluginRepositories>
+		<repositories>
+			<repository>
+				<id>bintray-epam-reportportal</id>
+				<name>bintray</name>
+				<url>http://dl.bintray.com/epam/reportportal</url>
+			</repository>
+		</repositories>
 
     <dependencies>
         <dependency>
@@ -53,22 +41,12 @@
             <version>${serenity.jbehave.version}</version>
             <scope>test</scope>
         </dependency>
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
-            <version>${slf4j.version}</version>
-        </dependency>
 				<dependency>
 					<groupId>org.slf4j</groupId>
 					<artifactId>slf4j-log4j12</artifactId>
 					<version>${slf4j.version}</version>
 				</dependency>
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.12</version>
-        </dependency>
-        <dependency>
+			<dependency>
             <groupId>org.assertj</groupId>
             <artifactId>assertj-core</artifactId>
             <version>1.7.0</version>
@@ -93,26 +71,55 @@
             <artifactId>json-simple</artifactId>
             <version>1.1.1</version>
         </dependency>
+				<dependency>
+					<groupId>com.epam.reportportal</groupId>
+					<artifactId>agent-java-jbehave</artifactId>
+					<version>3.0.0</version>
+				</dependency>
+				<dependency>
+					<groupId>com.epam.reportportal</groupId>
+					<artifactId>logger-java-log4j</artifactId>
+					<version>3.0.2</version>
+				</dependency>
+				<dependency>
+					<groupId>io.github.bonigarcia</groupId>
+					<artifactId>webdrivermanager</artifactId>
+					<version>1.7.0</version>
+				</dependency>
     </dependencies>
     <build>
         <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-plugin</artifactId>
-                <version>2.19.1</version>
-                <configuration>
-                    <skip>true</skip>
-                </configuration>
-            </plugin>
+						<plugin>
+							<groupId>org.apache.maven.plugins</groupId>
+							<artifactId>maven-clean-plugin</artifactId>
+							<version>3.0.0</version>
+							<configuration>
+								<filesets>
+									<fileset>
+										<directory>src/test/resources/</directory>
+										<includes>
+											<include>serenity.properties</include>
+										</includes>
+										<followSymlinks>false</followSymlinks>
+									</fileset>
+								</filesets>
+							</configuration>
+						</plugin>
+						<plugin>
+							<groupId>org.apache.maven.plugins</groupId>
+							<artifactId>maven-compiler-plugin</artifactId>
+							<version>${maven-compiler-plugin.version}</version>
+							<configuration>
+								<source>${java.version}</source>
+								<target>${java.version}</target>
+							</configuration>
+						</plugin>
             <plugin>
                 <artifactId>maven-failsafe-plugin</artifactId>
                 <version>${maven-failsafe-plugin.version}</version>
                 <configuration>
                     <includes>
-                        <include>**/*Test.java</include>
                         <include>**/*TestSuite.java</include>
-                        <include>**/Test*.java</include>
-                        <include>**/When*.java</include>
                     </includes>
                     <argLine>-Xmx512m</argLine>
                     <systemPropertyVariables>
@@ -129,15 +136,6 @@
                 </executions>
             </plugin>
             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.2</version>
-                <configuration>
-                    <source>${java.version}</source>
-                    <target>${java.version}</target>
-                </configuration>
-            </plugin>
-            <plugin>
                 <groupId>net.serenity-bdd.maven.plugins</groupId>
                 <artifactId>serenity-maven-plugin</artifactId>
                 <version>${serenity.version}</version>
@@ -151,6 +149,22 @@
                     </execution>
                 </executions>
             </plugin>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-surefire-plugin</artifactId>
+						<version>${maven-failsafe-plugin.version}</version>
+						<configuration>
+							<systemProperties>
+								<env>${env}</env>
+							</systemProperties>
+							<properties>
+								<property>
+									<name>listener</name>
+									<value>com.epam.reportportal.jbehave.ReportPortalStoryReporter</value>
+								</property>
+							</properties>
+						</configuration>
+					</plugin>
         </plugins>
     </build>
     <profiles>

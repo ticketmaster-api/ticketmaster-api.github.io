@@ -1400,20 +1400,6 @@
         "selectedItems" : {
           "$ref" : "#/definitions/SelectedPaymentItems"
         },
-        "accountNumber" : {
-          "type" : "string"
-        },
-        "expirationMonth" : {
-          "type" : "integer",
-          "format" : "int32"
-        },
-        "expirationYear" : {
-          "type" : "integer",
-          "format" : "int32"
-        },
-        "cin" : {
-          "type" : "string"
-        },
         "addRequest" : {
           "type" : "boolean",
           "default" : false

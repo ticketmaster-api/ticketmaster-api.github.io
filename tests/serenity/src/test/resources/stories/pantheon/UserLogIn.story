@@ -1,4 +1,5 @@
 Meta:
+@regression-pantheon
 
 Narrative:
 As a test engineer
@@ -11,6 +12,7 @@ Given open Home page
 When navigate to Pantheon LogIn page from Home page
 
 Scenario: (developer-acct.ticketmaster.com/user/login) Verification for general page's elements
+Meta: @smoke
 Then check general page elements for Pantheon User LogIn page
 
 Scenario: (developer-acct.ticketmaster.com/user/login) [2.2.3.2 Login - Username/Email field - enter invalid username]

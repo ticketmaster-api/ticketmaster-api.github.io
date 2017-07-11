@@ -6,7 +6,9 @@ ko.bindingHandlers.lazyLoader = {
 			'startDateTime',
 			'endDateTime',
 			'onsaleStartDateTime',
-			'onsaleEndDateTime'
+			'onsaleEndDateTime',
+			'onsaleOnStartDate',
+			'onsaleOnAfterStartDate'
 		];
 		let dateIndex = datesArr.indexOf(params.name);
 

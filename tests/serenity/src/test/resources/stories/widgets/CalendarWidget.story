@@ -1,4 +1,5 @@
 Meta:
+@regression-widgets
 
 Narrative:
 In order to setup Calendar Widget
@@ -7,6 +8,7 @@ I want to use the widget configurator to customize the layout of the widget,
 and have ability to grab a small code snippet to insert into 3-rd party websites
 
 Scenario: (/products-and-docs/widgets/calendar/) TECHNICAL TAB - Check that required fields are not empty
+Meta:@smoke
 Given open Calendar Widget page
 Then the required fields are not empty on the Calendar Widget page
 
