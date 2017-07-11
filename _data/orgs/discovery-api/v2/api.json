@@ -119,6 +119,26 @@
           "pattern" : "^\\s*|yes|no$",
           "enum" : [ "yes", " no" ],
           "x-example" : ""
+        }, {
+          "name" : "includeSpellcheck",
+          "in" : "query",
+          "description" : "yes, to include spell check suggestions in the response.",
+          "required" : false,
+          "type" : "string",
+          "default" : "no",
+          "pattern" : "^\\s*|yes|no",
+          "enum" : [ "yes", " no" ],
+          "x-example" : ""
+        }, {
+          "name" : "autocorrect",
+          "in" : "query",
+          "description" : "yes, to re-execute the query based on the best spellcheck suggestion",
+          "required" : false,
+          "type" : "string",
+          "default" : "no",
+          "pattern" : "^\\s*|yes|no",
+          "enum" : [ "yes", " no" ],
+          "x-example" : ""
         } ],
         "responses" : {
           "200" : {
@@ -259,6 +279,26 @@
           "type" : "string",
           "default" : "no",
           "pattern" : "^\\s*|yes|no$",
+          "enum" : [ "yes", " no" ],
+          "x-example" : ""
+        }, {
+          "name" : "includeSpellcheck",
+          "in" : "query",
+          "description" : "yes, to include spell check suggestions in the response.",
+          "required" : false,
+          "type" : "string",
+          "default" : "no",
+          "pattern" : "^\\s*|yes|no",
+          "enum" : [ "yes", " no" ],
+          "x-example" : ""
+        }, {
+          "name" : "autocorrect",
+          "in" : "query",
+          "description" : "yes, to re-execute the query based on the best spellcheck suggestion",
+          "required" : false,
+          "type" : "string",
+          "default" : "no",
+          "pattern" : "^\\s*|yes|no",
           "enum" : [ "yes", " no" ],
           "x-example" : ""
         } ],
@@ -639,16 +679,6 @@
           "default" : "",
           "x-example" : ""
         }, {
-          "name" : "nlp",
-          "in" : "query",
-          "description" : "Semantic search events with nlp(experimental)",
-          "required" : false,
-          "type" : "string",
-          "default" : "",
-          "pattern" : "^\\s*|(?:(?:^|,)(location))+$",
-          "enum" : [ "location" ],
-          "x-example" : ""
-        }, {
           "name" : "latlong",
           "in" : "query",
           "description" : "Filter events by latitude and longitude, this filter is deprecated and maybe removed in a future release, please use geoPoint instead",
@@ -756,6 +786,26 @@
           "type" : "string",
           "default" : "no",
           "pattern" : "^\\s*|yes|no$",
+          "enum" : [ "yes", " no" ],
+          "x-example" : ""
+        }, {
+          "name" : "includeSpellcheck",
+          "in" : "query",
+          "description" : "yes, to include spell check suggestions in the response.",
+          "required" : false,
+          "type" : "string",
+          "default" : "no",
+          "pattern" : "^\\s*|yes|no",
+          "enum" : [ "yes", " no" ],
+          "x-example" : ""
+        }, {
+          "name" : "autocorrect",
+          "in" : "query",
+          "description" : "yes, to re-execute the query based on the best spellcheck suggestion",
+          "required" : false,
+          "type" : "string",
+          "default" : "no",
+          "pattern" : "^\\s*|yes|no",
           "enum" : [ "yes", " no" ],
           "x-example" : ""
         } ],
@@ -935,36 +985,6 @@
           "default" : "",
           "x-example" : ""
         }, {
-          "name" : "nlp",
-          "in" : "query",
-          "description" : "Semantic search events with nlp(experimental)",
-          "required" : false,
-          "type" : "string",
-          "default" : "",
-          "pattern" : "^\\s*|(?:(?:^|,)(location))+$",
-          "enum" : [ "location" ],
-          "x-example" : ""
-        }, {
-          "name" : "includeSpellcheck",
-          "in" : "query",
-          "description" : "yes, to include spell check suggestions in the response.",
-          "required" : false,
-          "type" : "string",
-          "default" : "no",
-          "pattern" : "^\\s*|yes|no",
-          "enum" : [ "yes", " no" ],
-          "x-example" : ""
-        }, {
-          "name" : "autocorrect",
-          "in" : "query",
-          "description" : "yes, to re-execute the query based on the best spellcheck suggestion",
-          "required" : false,
-          "type" : "string",
-          "default" : "no",
-          "pattern" : "^\\s*|yes|no",
-          "enum" : [ "yes", " no" ],
-          "x-example" : ""
-        }, {
           "name" : "countryCode",
           "in" : "query",
           "description" : "Filter suggestions by country code",
@@ -1010,15 +1030,6 @@
           "pattern" : "^\\s*$|^-?(90(\\.0+)?|[0-8]?[0-9](\\.\\d+)?),-?(180(\\.0+)?|(1[0-7][0-9]|\\d{1,2})(\\.\\d+)?)$|^[a-zA-Z0-9]{1,9}$",
           "x-example" : "dr5rh"
         }, {
-          "name" : "view",
-          "in" : "query",
-          "description" : "Change the fields returned in the response",
-          "required" : false,
-          "type" : "string",
-          "default" : "suggest",
-          "enum" : [ "suggest", " internal" ],
-          "x-example" : ""
-        }, {
           "name" : "locale",
           "in" : "query",
           "description" : "The locale in ISO code format. Multiple comma-separated values can be provided. When omitting the country part of the code (e.g. only 'en' or 'fr') then the first matching locale is used.",
@@ -1035,6 +1046,26 @@
           "type" : "string",
           "default" : "no",
           "pattern" : "^\\s*|yes|no$",
+          "enum" : [ "yes", " no" ],
+          "x-example" : ""
+        }, {
+          "name" : "includeSpellcheck",
+          "in" : "query",
+          "description" : "yes, to include spell check suggestions in the response.",
+          "required" : false,
+          "type" : "string",
+          "default" : "no",
+          "pattern" : "^\\s*|yes|no",
+          "enum" : [ "yes", " no" ],
+          "x-example" : ""
+        }, {
+          "name" : "autocorrect",
+          "in" : "query",
+          "description" : "yes, to re-execute the query based on the best spellcheck suggestion",
+          "required" : false,
+          "type" : "string",
+          "default" : "no",
+          "pattern" : "^\\s*|yes|no",
           "enum" : [ "yes", " no" ],
           "x-example" : ""
         } ],
@@ -1186,6 +1217,26 @@
           "type" : "string",
           "default" : "no",
           "pattern" : "^\\s*|yes|no$",
+          "enum" : [ "yes", " no" ],
+          "x-example" : ""
+        }, {
+          "name" : "includeSpellcheck",
+          "in" : "query",
+          "description" : "yes, to include spell check suggestions in the response.",
+          "required" : false,
+          "type" : "string",
+          "default" : "no",
+          "pattern" : "^\\s*|yes|no",
+          "enum" : [ "yes", " no" ],
+          "x-example" : ""
+        }, {
+          "name" : "autocorrect",
+          "in" : "query",
+          "description" : "yes, to re-execute the query based on the best spellcheck suggestion",
+          "required" : false,
+          "type" : "string",
+          "default" : "no",
+          "pattern" : "^\\s*|yes|no",
           "enum" : [ "yes", " no" ],
           "x-example" : ""
         } ],
@@ -1538,9 +1589,6 @@
           "type" : "integer",
           "format" : "int32"
         },
-        "rangeDurationField" : {
-          "$ref" : "#/definitions/DurationField"
-        },
         "leapDurationField" : {
           "$ref" : "#/definitions/DurationField"
         },
@@ -1559,10 +1607,10 @@
     "DateTimeFieldType" : {
       "type" : "object",
       "properties" : {
-        "rangeDurationType" : {
+        "durationType" : {
           "$ref" : "#/definitions/DurationFieldType"
         },
-        "durationType" : {
+        "rangeDurationType" : {
           "$ref" : "#/definitions/DurationFieldType"
         },
         "name" : {
@@ -1786,6 +1834,14 @@
           "description" : "Event's promoters",
           "items" : {
             "$ref" : "#/definitions/Promoter"
+          }
+        },
+        "products" : {
+          "type" : "array",
+          "position" : 37,
+          "description" : "Related products informations",
+          "items" : {
+            "$ref" : "#/definitions/Product"
           }
         },
         "seatmap" : {
@@ -2071,6 +2127,9 @@
     "LocalTime" : {
       "type" : "object",
       "properties" : {
+        "chronology" : {
+          "$ref" : "#/definitions/Chronology"
+        },
         "millisOfSecond" : {
           "type" : "integer",
           "format" : "int32"
@@ -2090,9 +2149,6 @@
         "hourOfDay" : {
           "type" : "integer",
           "format" : "int32"
-        },
-        "chronology" : {
-          "$ref" : "#/definitions/Chronology"
         },
         "values" : {
           "type" : "array",
@@ -2318,6 +2374,32 @@
         }
       },
       "description" : "PriceRange"
+    },
+    "Product" : {
+      "type" : "object",
+      "properties" : {
+        "name" : {
+          "type" : "string",
+          "position" : 10,
+          "description" : "Name of the entity"
+        },
+        "id" : {
+          "type" : "string",
+          "position" : 10,
+          "description" : "Product's primary id"
+        },
+        "url" : {
+          "type" : "string",
+          "position" : 12,
+          "description" : "Product's url"
+        },
+        "type" : {
+          "type" : "string",
+          "position" : 13,
+          "description" : "Product's type"
+        }
+      },
+      "description" : "Product"
     },
     "Promoter" : {
       "type" : "object",

@@ -811,7 +811,7 @@ class TicketmasterCalendarWidget {
 
     formatDate(date) {
         var result = '';
-        if(!date.day) return result; // Day is required
+        if(date == undefined || !date.day || date.day == undefined) return result; // Day is required
 
         function LZ(x) {
             return (x < 0 || x > 9 ? "" : "0") + x
@@ -1215,12 +1215,10 @@ class TicketmasterCalendarWidget {
     }
 
     createBackgroundImage(event, img) {
-        if (!this.isListView) {
-            var image = document.createElement("span");
-            image.classList.add("bg-cover");
-            image.style.backgroundImage = `url('${img}')`;
-            event.appendChild(image);
-        }
+        var image = document.createElement("span");
+        image.classList.add("bg-cover");
+        image.style.backgroundImage = `url('${img}')`;
+        event.appendChild(image);
     }
 
     addBuyButton(domNode, url) {
@@ -3753,8 +3751,8 @@ let yearSchedulers = [];
 
 })();
 
-let controls = new TabsControls;
+let controls = new TabsControls();
 
 if(typeof module !== "undefined") {
-    module.exports = { widgetsCalendar , weekSchedulers, monthSchedulers, yearSchedulers };
+    module.exports = { TicketmasterCalendarWidget, WeekScheduler, MonthScheduler, YearScheduler, TabsControls, SelectorControls };
 }

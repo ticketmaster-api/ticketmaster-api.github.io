@@ -1,0 +1,16 @@
+{
+  "basePath": "/commerce/v2",
+  "paths": {
+    "/commerce/v2/cart/events/{eventId}/offers": "mockPathData",
+    "/commerce/v2/cart/events/{eventId}": "mockPathData",
+    "/commerce/v2/shopping/events/{eventId}/shopping": "mockPathData",
+    "/commerce/v2/shopping/events/{eventId}": "mockPathData",
+    "/commerce/v2/checkout/events/{eventId}/checkout": "mockPathData",
+    "/commerce/v2/checkout/events/{eventId}": "mockPathData"
+  },
+  "definitions": {
+    "api1": "def",
+    "api2": "def2",
+    "api3": "def3"
+  }
+}

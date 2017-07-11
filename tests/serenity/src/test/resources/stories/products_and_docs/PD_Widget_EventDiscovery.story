@@ -1,4 +1,6 @@
 Meta:
+@regression-widgets
+@smoke
 
 Narrative:
 As a test engineer

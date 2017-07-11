@@ -17,7 +17,7 @@ namespace 'travis' do
     result = 0
     if ENV['TRAVIS_BRANCH'] == 'master'
       puts "UI Automation tests Serenity-JBehave"
-      resultS = system("mvn verify -f ./tests/serenity/pom.xml -Dmetafilter=\"-prod -NotImplemented\"")
+      resultS = system("mvn verify -f ./tests/serenity/pom.xml -Denv=local -Dmetafilter=\"-prod -NotImplemented\"")
       puts resultS
       if (resultS) == false
         puts 'test failed'
