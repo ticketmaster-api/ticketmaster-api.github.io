@@ -1,4 +1,4 @@
-Meta: @debug
+Meta:
 @regression-widgets
 
 Narrative:
