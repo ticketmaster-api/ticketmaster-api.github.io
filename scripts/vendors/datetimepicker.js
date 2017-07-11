@@ -32,7 +32,7 @@ window.TimeMode = 24;// TimeMode value. 12 or 24
 window.StartYear = parseInt(new Date().getFullYear()); //First Year in drop down year selection
 window.EndYear = 5; // The last year of pickable date. if current year is 2011, the last year that still picker will be 2016 (2011+5)
 window.CalPosOffsetX = -227; //X position offset relative to calendar icon, can be negative value
-window.CalPosOffsetY = -230; //Y position offset relative to calendar icon, can be negative value
+window.CalPosOffsetY = -253; //Y position offset relative to calendar icon, can be negative value
 window.showMonthInHead = "display:none;";
 //Configurable parameters start
 window.SpanBorderColor = "#cccccc";//span border color
