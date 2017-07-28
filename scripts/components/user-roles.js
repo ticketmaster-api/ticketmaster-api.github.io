@@ -1,6 +1,6 @@
-var apiKeyService = {};
-
 (function () {
+
+var apiKeyService = {};
 
 	var LIVE_KEYS = {
 		apiExplore: '7elxdku9GGG5k8j0Xm8KWdANDgecHMV0',
@@ -91,7 +91,8 @@ var apiKeyService = {};
 
 	if (location.href.indexOf('oauth') !== -1) {
 		if (listApiKeys && listApiKeys.indexOf("Internal User") !== -1) {
-		  document.querySelector('.aside-menu li.off').classList.remove('off');
+			if (document.querySelector('.documentation').classList.contains('oauth')) document.querySelector('.documentation.oauth').classList.remove('oauth');
+			if (document.querySelector('.aside-menu li').classList.contains('off')) document.querySelector('.aside-menu li.off').classList.remove('off');
 		}
 		else {
 			location.assign('/products-and-docs/apis/getting-started/');
