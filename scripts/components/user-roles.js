@@ -86,7 +86,7 @@ var apiKeyService = {};
 
 	// Oauth API redirect
 	if (listApiKeys && listApiKeys.indexOf("Internal User") !== -1) {
-		if (document.querySelector('.aside-menu li').classList.contains('off')) document.querySelector('.aside-menu li.off').classList.remove('off');
+		document.querySelector('.aside-menu li.off').classList.remove('off');
 	}
 
 	if (location.href.indexOf('oauth') !== -1) {
