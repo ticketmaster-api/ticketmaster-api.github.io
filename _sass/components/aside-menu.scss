@@ -305,6 +305,9 @@ h3.menu-header {
     list-style: none;
     line-height: 1em;
     margin-bottom: 1em;
+		&.off {
+			display: none;
+		}
   }
   .sections {
     padding-left: 12px;
