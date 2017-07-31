@@ -60,7 +60,6 @@ layout: default
 {% if page.categories[0] == "documentation" and page.categories[1] == "changelog" %}
 <script src="{{'/scripts/vendors/jstree.min.js' | prepend: site.baseurl }}"></script>
 <script src="{{'/scripts/components/list-collapse.js' | prepend: site.baseurl }}"></script>
-
 {% endif %}
 
 {% if page.categories contains "replace_apikey" %}
@@ -68,6 +67,7 @@ layout: default
 	<script src="{{'/scripts/components/api-key-service-testKeys.js' | prepend: site.baseurl }}"></script>
 {%else%}
 	<script src="{{'/scripts/components/api-key-service.js' | prepend: site.baseurl }}"></script>
+  <script src="{{'/scripts/components/user-roles.js' | prepend: site.baseurl }}"></script>
 {%endif%}
 <script>
     var userKey = apiKeyService.checkApiKeyCookie();
