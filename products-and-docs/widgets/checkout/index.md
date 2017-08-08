@@ -12,17 +12,68 @@ keywords: ticketmaster, universal checkout, widget, sell tickets, javascript, de
 # TICKETMASTER UNIVERSAL CHECKOUT
 
 {: .lead}
-Ticketmaster Universal Checkout ("Universal Checkout") allows clients, artists, and partners to setup and provide an enhanced experience for consumers within copy/paste distance.
+Ticketmaster Universal Checkout ("Universal Checkout") allows clients, artists, and partners to setup and provide an enhanced purchase experience for consumers within copy/paste distance.
+
+| Document   | Last Modified | Download |
+|:------------------------------------------------------------------------------------|
+| One Sheet  | 2017-08-08    | <a href="/products-and-docs/widgets/checkout/docs/Universal Checkout_One Sheet_Client_Ready.pdf" target="_blank">PDF</a> |
+| FAQ        | 2017-08-08    | <a href="/products-and-docs/widgets/checkout/docs/FAQs_Client_Universal_Checkout.pdf" target="_blank">PDF</a> |
 
 ## Sell tickets directly on your website with no redirect
 
 Grab a small code snippet to insert into your website
 
-<div class="col-lg-12 config-block">
+<h3>Installation</h3>
 
+<h4 id="embedded-code">Embedded Code</h4>
+
+<ul>
+	<li><strong>Step 1:</strong> Copy this snippet:</li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;script </span><span class="na">type=</span><span class="s">"text/javascript"</span> <span class="na">src=</span><span class="s">"https://embed.ticketmaster.com/tm.js"</span><span class="nt">&gt;&lt;/script&gt;</span></code></pre></figure>
+
+<ul>
+	<li><strong>Step 2:</strong> Next, paste the snippet within the <em>&lt;head&gt;</em> tag of your website.</li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;head&gt;</span>
+    <span class="nt">&lt;script </span><span class="na">type=</span><span class="s">"text/javascript"</span> <span class="na">src=</span><span class="s">"https://embed.ticketmaster.com/tm.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+<span class="nt">&lt;/head&gt;</span></code></pre></figure>
+
+<ul>
+	<li><strong>Step 3:</strong> Refresh your page. Ticketmaster event links will now be activated.</li>
+</ul>
+          
+<h3>Google Chrome Extension</h3>
+
+<p>Preview Universal Checkout using our Widget Simulator extension for Google Chrome.  View the checkout experience on your browser only without making any code changes to your live website.</p>
+
+<ul>
+	<li>
+		<p><strong>Step 1:</strong> Open your Chrome browser on a PC or Mac</p>
+	</li>
+	<li>
+		<p><strong>Step 2:</strong> Visit: <a href="http://www.ticketmaster.com/widgetsimulator">http://www.ticketmaster.com/widgetsimulator</a></p>
+	</li>
+	<li>
+		<p><strong>Step 3:</strong> Click the Add To Chrome button</p>
+	</li>
+	<li>
+		<p><strong>Step 4:</strong> Visit the website where you’d like to preview Universal Checkout</p>
+	</li>
+	<li>
+		<p><strong>Step 5:</strong> Click the blue “TM” button in the top right of your Chrome browser, then click “Inject Widget” - you will see a pop up to let you know how many events were detected on this page</p>
+	</li>
+</ul>
+
+<p>Ticketmaster.com and livenation.com links that are eligible for the widget will glow blue, and clicking them will result in opening Universal Checkout.</p>
+
+{% comment %}
+<div class="col-lg-12 config-block">
 <form accept-charset="UTF-8" class="main-widget-config-form common_tabs" method="post" autocomplete="off">
 
-    <!--Use for mobile devices 'Go' button-->
+    <!--Use for mobile devices 'Go' button -->
     <button type="submit" class="hidden"></button>
 
     <ul class="nav nav-tabs" data-tabs="tabs">
@@ -87,23 +138,25 @@ Grab a small code snippet to insert into your website
 
 </form>
 </div>
+{% endcomment %}
+
 
 ## Tutorial
 
 <iframe src="https://player.vimeo.com/video/189647021" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
 
-## Checkout Flow
+## Purchase Flow
 
 <script src="{{"/scripts/vendors/carousel.min.js" | prepend: site.baseurl }}"></script>
 <script src="{{"/scripts/components/checkout-widget.js" | prepend: site.baseurl }}"></script>
 
-### Step 1: Ticket Types
+### Step 1: Select Tickets and Sign In
 
-Buyers select their desired ticket types, can sign in, or register, and fill out the CAPTCHA
+Users can select their ticket type, quantity and price level, then sign in or create a new account.
 
 ### Step 2: Payment Information
 
-Buyers review their order, and enter payment information
+Buyers review their order, than use stored payment information from their Ticketmaster account or enter new card.
 
 ### Step 3: Order Confirmed.
 
@@ -195,15 +248,7 @@ If the debug tool may indicates the event cannot be transacted using Universal C
   <li>• The event has ended</li>
   <li>• The event has sold out or has very low ticket availability</li>
   <li>• The event is in presale mode and there is no DID on the link</li>
-  <li>• e-Tickets / print-at-home delivery is not available</li>
-  <li>• Transacting on free events ($0 tickets) is not available<li>
+  <li>• Transacting on free events ($0 tickets) is not available</li>
 </ul>
-
-## Additional Resources
-
-| Document   | Last Modified | Download |
-|:------------------------------------------------------------------------------------|
-| One Sheet  | 2016-10-03    | <a href="https://lne.box.com/s/kh1d9gm3h75eqs2gzpd20v78ljv5njhy" target="_blank">PDF</a> |
-| FAQ        | 2016-10-03    | <a href="https://lne.box.com/s/eg6s3qfmdtsz8t7mvrsjr9zufaqxqd9o" target="_blank">PDF</a> |
 
 {% include disqus.html add_disqusDIV='true' %}
