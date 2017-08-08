@@ -103,11 +103,11 @@
         }, {
           "name" : "locale",
           "in" : "query",
-          "description" : "The locale in ISO code format. Multiple comma-separated values can be provided. When omitting the country part of the code (e.g. only 'en' or 'fr') then the first matching locale is used.",
+          "description" : "The locale in ISO code format. Multiple comma-separated values can be provided. When omitting the country part of the code (e.g. only 'en' or 'fr') then the first matching locale is used. When using a '*' it matches all locales. '*' can only be used at the end (e.g. 'en-us,en,*') ",
           "required" : false,
           "type" : "string",
           "default" : "en",
-          "pattern" : "(?i)^\\s*$|^\\s*[a-z]{2}(-[a-z]{2})?(\\s*,\\s*[a-z]{2}(-[a-z]{2})?)*\\s*$",
+          "pattern" : "(?i)^(\\s*|\\*)$|^\\s*[a-z]{2}(-[a-z]{2})?(\\s*,\\s*[a-z]{2}(-[a-z]{2})?)*\\s*(,\\s*\\*{0,1}+\\s*)?$",
           "x-example" : "en-us,en,fr"
         }, {
           "name" : "includeLicensedContent",
@@ -123,16 +123,6 @@
           "name" : "includeSpellcheck",
           "in" : "query",
           "description" : "yes, to include spell check suggestions in the response.",
-          "required" : false,
-          "type" : "string",
-          "default" : "no",
-          "pattern" : "^\\s*|yes|no",
-          "enum" : [ "yes", " no" ],
-          "x-example" : ""
-        }, {
-          "name" : "autocorrect",
-          "in" : "query",
-          "description" : "yes, to re-execute the query based on the best spellcheck suggestion",
           "required" : false,
           "type" : "string",
           "default" : "no",
@@ -167,11 +157,11 @@
         }, {
           "name" : "locale",
           "in" : "query",
-          "description" : "The locale in ISO code format. Multiple comma-separated values can be provided. When omitting the country part of the code (e.g. only 'en' or 'fr') then the first matching locale is used.",
+          "description" : "The locale in ISO code format. Multiple comma-separated values can be provided. When omitting the country part of the code (e.g. only 'en' or 'fr') then the first matching locale is used. When using a '*' it matches all locales. '*' can only be used at the end (e.g. 'en-us,en,*') ",
           "required" : false,
           "type" : "string",
           "default" : "en",
-          "pattern" : "(?i)^\\s*$|^\\s*[a-z]{2}(-[a-z]{2})?(\\s*,\\s*[a-z]{2}(-[a-z]{2})?)*\\s*$",
+          "pattern" : "(?i)^(\\s*|\\*)$|^\\s*[a-z]{2}(-[a-z]{2})?(\\s*,\\s*[a-z]{2}(-[a-z]{2})?)*\\s*(,\\s*\\*{0,1}+\\s*)?$",
           "x-example" : "en-us,en,fr"
         }, {
           "name" : "includeLicensedContent",
@@ -265,11 +255,11 @@
         }, {
           "name" : "locale",
           "in" : "query",
-          "description" : "The locale in ISO code format. Multiple comma-separated values can be provided. When omitting the country part of the code (e.g. only 'en' or 'fr') then the first matching locale is used.",
+          "description" : "The locale in ISO code format. Multiple comma-separated values can be provided. When omitting the country part of the code (e.g. only 'en' or 'fr') then the first matching locale is used. When using a '*' it matches all locales. '*' can only be used at the end (e.g. 'en-us,en,*') ",
           "required" : false,
           "type" : "string",
           "default" : "en",
-          "pattern" : "(?i)^\\s*$|^\\s*[a-z]{2}(-[a-z]{2})?(\\s*,\\s*[a-z]{2}(-[a-z]{2})?)*\\s*$",
+          "pattern" : "(?i)^(\\s*|\\*)$|^\\s*[a-z]{2}(-[a-z]{2})?(\\s*,\\s*[a-z]{2}(-[a-z]{2})?)*\\s*(,\\s*\\*{0,1}+\\s*)?$",
           "x-example" : "en-us,en,fr"
         }, {
           "name" : "includeLicensedContent",
@@ -285,16 +275,6 @@
           "name" : "includeSpellcheck",
           "in" : "query",
           "description" : "yes, to include spell check suggestions in the response.",
-          "required" : false,
-          "type" : "string",
-          "default" : "no",
-          "pattern" : "^\\s*|yes|no",
-          "enum" : [ "yes", " no" ],
-          "x-example" : ""
-        }, {
-          "name" : "autocorrect",
-          "in" : "query",
-          "description" : "yes, to re-execute the query based on the best spellcheck suggestion",
           "required" : false,
           "type" : "string",
           "default" : "no",
@@ -329,11 +309,11 @@
         }, {
           "name" : "locale",
           "in" : "query",
-          "description" : "The locale in ISO code format. Multiple comma-separated values can be provided. When omitting the country part of the code (e.g. only 'en' or 'fr') then the first matching locale is used.",
+          "description" : "The locale in ISO code format. Multiple comma-separated values can be provided. When omitting the country part of the code (e.g. only 'en' or 'fr') then the first matching locale is used. When using a '*' it matches all locales. '*' can only be used at the end (e.g. 'en-us,en,*') ",
           "required" : false,
           "type" : "string",
           "default" : "en",
-          "pattern" : "(?i)^\\s*$|^\\s*[a-z]{2}(-[a-z]{2})?(\\s*,\\s*[a-z]{2}(-[a-z]{2})?)*\\s*$",
+          "pattern" : "(?i)^(\\s*|\\*)$|^\\s*[a-z]{2}(-[a-z]{2})?(\\s*,\\s*[a-z]{2}(-[a-z]{2})?)*\\s*(,\\s*\\*{0,1}+\\s*)?$",
           "x-example" : "en-us,en,fr"
         }, {
           "name" : "includeLicensedContent",
@@ -370,11 +350,11 @@
         }, {
           "name" : "locale",
           "in" : "query",
-          "description" : "The locale in ISO code format. Multiple comma-separated values can be provided. When omitting the country part of the code (e.g. only 'en' or 'fr') then the first matching locale is used.",
+          "description" : "The locale in ISO code format. Multiple comma-separated values can be provided. When omitting the country part of the code (e.g. only 'en' or 'fr') then the first matching locale is used. When using a '*' it matches all locales. '*' can only be used at the end (e.g. 'en-us,en,*') ",
           "required" : false,
           "type" : "string",
           "default" : "en",
-          "pattern" : "(?i)^\\s*$|^\\s*[a-z]{2}(-[a-z]{2})?(\\s*,\\s*[a-z]{2}(-[a-z]{2})?)*\\s*$",
+          "pattern" : "(?i)^(\\s*|\\*)$|^\\s*[a-z]{2}(-[a-z]{2})?(\\s*,\\s*[a-z]{2}(-[a-z]{2})?)*\\s*(,\\s*\\*{0,1}+\\s*)?$",
           "x-example" : "en-us,en,fr"
         }, {
           "name" : "includeLicensedContent",
@@ -411,11 +391,11 @@
         }, {
           "name" : "locale",
           "in" : "query",
-          "description" : "The locale in ISO code format. Multiple comma-separated values can be provided. When omitting the country part of the code (e.g. only 'en' or 'fr') then the first matching locale is used.",
+          "description" : "The locale in ISO code format. Multiple comma-separated values can be provided. When omitting the country part of the code (e.g. only 'en' or 'fr') then the first matching locale is used. When using a '*' it matches all locales. '*' can only be used at the end (e.g. 'en-us,en,*') ",
           "required" : false,
           "type" : "string",
           "default" : "en",
-          "pattern" : "(?i)^\\s*$|^\\s*[a-z]{2}(-[a-z]{2})?(\\s*,\\s*[a-z]{2}(-[a-z]{2})?)*\\s*$",
+          "pattern" : "(?i)^(\\s*|\\*)$|^\\s*[a-z]{2}(-[a-z]{2})?(\\s*,\\s*[a-z]{2}(-[a-z]{2})?)*\\s*(,\\s*\\*{0,1}+\\s*)?$",
           "x-example" : "en-us,en,fr"
         }, {
           "name" : "includeLicensedContent",
@@ -452,11 +432,11 @@
         }, {
           "name" : "locale",
           "in" : "query",
-          "description" : "The locale in ISO code format. Multiple comma-separated values can be provided. When omitting the country part of the code (e.g. only 'en' or 'fr') then the first matching locale is used.",
+          "description" : "The locale in ISO code format. Multiple comma-separated values can be provided. When omitting the country part of the code (e.g. only 'en' or 'fr') then the first matching locale is used. When using a '*' it matches all locales. '*' can only be used at the end (e.g. 'en-us,en,*') ",
           "required" : false,
           "type" : "string",
           "default" : "en",
-          "pattern" : "(?i)^\\s*$|^\\s*[a-z]{2}(-[a-z]{2})?(\\s*,\\s*[a-z]{2}(-[a-z]{2})?)*\\s*$",
+          "pattern" : "(?i)^(\\s*|\\*)$|^\\s*[a-z]{2}(-[a-z]{2})?(\\s*,\\s*[a-z]{2}(-[a-z]{2})?)*\\s*(,\\s*\\*{0,1}+\\s*)?$",
           "x-example" : "en-us,en,fr"
         }, {
           "name" : "includeLicensedContent",
@@ -772,11 +752,11 @@
         }, {
           "name" : "locale",
           "in" : "query",
-          "description" : "The locale in ISO code format. Multiple comma-separated values can be provided. When omitting the country part of the code (e.g. only 'en' or 'fr') then the first matching locale is used.",
+          "description" : "The locale in ISO code format. Multiple comma-separated values can be provided. When omitting the country part of the code (e.g. only 'en' or 'fr') then the first matching locale is used. When using a '*' it matches all locales. '*' can only be used at the end (e.g. 'en-us,en,*') ",
           "required" : false,
           "type" : "string",
           "default" : "en",
-          "pattern" : "(?i)^\\s*$|^\\s*[a-z]{2}(-[a-z]{2})?(\\s*,\\s*[a-z]{2}(-[a-z]{2})?)*\\s*$",
+          "pattern" : "(?i)^(\\s*|\\*)$|^\\s*[a-z]{2}(-[a-z]{2})?(\\s*,\\s*[a-z]{2}(-[a-z]{2})?)*\\s*(,\\s*\\*{0,1}+\\s*)?$",
           "x-example" : "en-us,en,fr"
         }, {
           "name" : "includeLicensedContent",
@@ -792,16 +772,6 @@
           "name" : "includeSpellcheck",
           "in" : "query",
           "description" : "yes, to include spell check suggestions in the response.",
-          "required" : false,
-          "type" : "string",
-          "default" : "no",
-          "pattern" : "^\\s*|yes|no",
-          "enum" : [ "yes", " no" ],
-          "x-example" : ""
-        }, {
-          "name" : "autocorrect",
-          "in" : "query",
-          "description" : "yes, to re-execute the query based on the best spellcheck suggestion",
           "required" : false,
           "type" : "string",
           "default" : "no",
@@ -836,11 +806,11 @@
         }, {
           "name" : "locale",
           "in" : "query",
-          "description" : "The locale in ISO code format. Multiple comma-separated values can be provided. When omitting the country part of the code (e.g. only 'en' or 'fr') then the first matching locale is used.",
+          "description" : "The locale in ISO code format. Multiple comma-separated values can be provided. When omitting the country part of the code (e.g. only 'en' or 'fr') then the first matching locale is used. When using a '*' it matches all locales. '*' can only be used at the end (e.g. 'en-us,en,*') ",
           "required" : false,
           "type" : "string",
           "default" : "en",
-          "pattern" : "(?i)^\\s*$|^\\s*[a-z]{2}(-[a-z]{2})?(\\s*,\\s*[a-z]{2}(-[a-z]{2})?)*\\s*$",
+          "pattern" : "(?i)^(\\s*|\\*)$|^\\s*[a-z]{2}(-[a-z]{2})?(\\s*,\\s*[a-z]{2}(-[a-z]{2})?)*\\s*(,\\s*\\*{0,1}+\\s*)?$",
           "x-example" : "en-us,en,fr"
         }, {
           "name" : "includeLicensedContent",
@@ -877,11 +847,11 @@
         }, {
           "name" : "locale",
           "in" : "query",
-          "description" : "The locale in ISO code format. Multiple comma-separated values can be provided. When omitting the country part of the code (e.g. only 'en' or 'fr') then the first matching locale is used.",
+          "description" : "The locale in ISO code format. Multiple comma-separated values can be provided. When omitting the country part of the code (e.g. only 'en' or 'fr') then the first matching locale is used. When using a '*' it matches all locales. '*' can only be used at the end (e.g. 'en-us,en,*') ",
           "required" : false,
           "type" : "string",
           "default" : "en",
-          "pattern" : "(?i)^\\s*$|^\\s*[a-z]{2}(-[a-z]{2})?(\\s*,\\s*[a-z]{2}(-[a-z]{2})?)*\\s*$",
+          "pattern" : "(?i)^(\\s*|\\*)$|^\\s*[a-z]{2}(-[a-z]{2})?(\\s*,\\s*[a-z]{2}(-[a-z]{2})?)*\\s*(,\\s*\\*{0,1}+\\s*)?$",
           "x-example" : "en-us,en,fr"
         }, {
           "name" : "includeLicensedContent",
@@ -1032,11 +1002,11 @@
         }, {
           "name" : "locale",
           "in" : "query",
-          "description" : "The locale in ISO code format. Multiple comma-separated values can be provided. When omitting the country part of the code (e.g. only 'en' or 'fr') then the first matching locale is used.",
+          "description" : "The locale in ISO code format. Multiple comma-separated values can be provided. When omitting the country part of the code (e.g. only 'en' or 'fr') then the first matching locale is used. When using a '*' it matches all locales. '*' can only be used at the end (e.g. 'en-us,en,*') ",
           "required" : false,
           "type" : "string",
           "default" : "en",
-          "pattern" : "(?i)^\\s*$|^\\s*[a-z]{2}(-[a-z]{2})?(\\s*,\\s*[a-z]{2}(-[a-z]{2})?)*\\s*$",
+          "pattern" : "(?i)^(\\s*|\\*)$|^\\s*[a-z]{2}(-[a-z]{2})?(\\s*,\\s*[a-z]{2}(-[a-z]{2})?)*\\s*(,\\s*\\*{0,1}+\\s*)?$",
           "x-example" : "en-us,en,fr"
         }, {
           "name" : "includeLicensedContent",
@@ -1052,16 +1022,6 @@
           "name" : "includeSpellcheck",
           "in" : "query",
           "description" : "yes, to include spell check suggestions in the response.",
-          "required" : false,
-          "type" : "string",
-          "default" : "no",
-          "pattern" : "^\\s*|yes|no",
-          "enum" : [ "yes", " no" ],
-          "x-example" : ""
-        }, {
-          "name" : "autocorrect",
-          "in" : "query",
-          "description" : "yes, to re-execute the query based on the best spellcheck suggestion",
           "required" : false,
           "type" : "string",
           "default" : "no",
@@ -1203,11 +1163,11 @@
         }, {
           "name" : "locale",
           "in" : "query",
-          "description" : "The locale in ISO code format. Multiple comma-separated values can be provided. When omitting the country part of the code (e.g. only 'en' or 'fr') then the first matching locale is used.",
+          "description" : "The locale in ISO code format. Multiple comma-separated values can be provided. When omitting the country part of the code (e.g. only 'en' or 'fr') then the first matching locale is used. When using a '*' it matches all locales. '*' can only be used at the end (e.g. 'en-us,en,*') ",
           "required" : false,
           "type" : "string",
           "default" : "en",
-          "pattern" : "(?i)^\\s*$|^\\s*[a-z]{2}(-[a-z]{2})?(\\s*,\\s*[a-z]{2}(-[a-z]{2})?)*\\s*$",
+          "pattern" : "(?i)^(\\s*|\\*)$|^\\s*[a-z]{2}(-[a-z]{2})?(\\s*,\\s*[a-z]{2}(-[a-z]{2})?)*\\s*(,\\s*\\*{0,1}+\\s*)?$",
           "x-example" : "en-us,en,fr"
         }, {
           "name" : "includeLicensedContent",
@@ -1223,16 +1183,6 @@
           "name" : "includeSpellcheck",
           "in" : "query",
           "description" : "yes, to include spell check suggestions in the response.",
-          "required" : false,
-          "type" : "string",
-          "default" : "no",
-          "pattern" : "^\\s*|yes|no",
-          "enum" : [ "yes", " no" ],
-          "x-example" : ""
-        }, {
-          "name" : "autocorrect",
-          "in" : "query",
-          "description" : "yes, to re-execute the query based on the best spellcheck suggestion",
           "required" : false,
           "type" : "string",
           "default" : "no",
@@ -1267,11 +1217,11 @@
         }, {
           "name" : "locale",
           "in" : "query",
-          "description" : "The locale in ISO code format. Multiple comma-separated values can be provided. When omitting the country part of the code (e.g. only 'en' or 'fr') then the first matching locale is used.",
+          "description" : "The locale in ISO code format. Multiple comma-separated values can be provided. When omitting the country part of the code (e.g. only 'en' or 'fr') then the first matching locale is used. When using a '*' it matches all locales. '*' can only be used at the end (e.g. 'en-us,en,*') ",
           "required" : false,
           "type" : "string",
           "default" : "en",
-          "pattern" : "(?i)^\\s*$|^\\s*[a-z]{2}(-[a-z]{2})?(\\s*,\\s*[a-z]{2}(-[a-z]{2})?)*\\s*$",
+          "pattern" : "(?i)^(\\s*|\\*)$|^\\s*[a-z]{2}(-[a-z]{2})?(\\s*,\\s*[a-z]{2}(-[a-z]{2})?)*\\s*(,\\s*\\*{0,1}+\\s*)?$",
           "x-example" : "en-us,en,fr"
         }, {
           "name" : "includeLicensedContent",
@@ -1575,7 +1525,7 @@
           "type" : "boolean",
           "default" : false
         },
-        "rangeDurationField" : {
+        "leapDurationField" : {
           "$ref" : "#/definitions/DurationField"
         },
         "durationField" : {
@@ -1589,7 +1539,7 @@
           "type" : "integer",
           "format" : "int32"
         },
-        "leapDurationField" : {
+        "rangeDurationField" : {
           "$ref" : "#/definitions/DurationField"
         },
         "name" : {
@@ -1607,10 +1557,10 @@
     "DateTimeFieldType" : {
       "type" : "object",
       "properties" : {
-        "durationType" : {
+        "rangeDurationType" : {
           "$ref" : "#/definitions/DurationFieldType"
         },
-        "rangeDurationType" : {
+        "durationType" : {
           "$ref" : "#/definitions/DurationFieldType"
         },
         "name" : {
