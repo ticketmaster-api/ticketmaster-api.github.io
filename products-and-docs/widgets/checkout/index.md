@@ -19,6 +19,23 @@ Ticketmaster Universal Checkout ("Universal Checkout") allows clients, artists, 
 | One Sheet  | 2017-08-08    | <a href="/products-and-docs/widgets/checkout/docs/Universal Checkout_One Sheet_Client_Ready.pdf" target="_blank">PDF</a> |
 | FAQ        | 2017-08-08    | <a href="/products-and-docs/widgets/checkout/docs/FAQs_Client_Universal_Checkout.pdf" target="_blank">PDF</a> |
 
+
+{% capture slider %}
+[![Step1](/assets/img/products-and-docs/checkout-widget-step-1.png)](/assets/img/products-and-docs/checkout-widget-step-1.png)
+[![Step2](/assets/img/products-and-docs/checkout-widget-step-2.png)](/assets/img/products-and-docs/checkout-widget-step-2.png)
+[![Step3](/assets/img/products-and-docs/checkout-widget-step-3.png)](/assets/img/products-and-docs/checkout-widget-step-3.png)
+{% endcapture %}
+
+<div id="carousel" class="col-xs-12" markdown="1" style="margin-top: 0px; margin-bottom: 0px;">
+  <div class="carousel-controls">
+    <div class="carousel-prev"></div>
+    <div class="carousel-next"></div>
+  </div>
+  {{slider}}
+</div>
+
+<div class="clearfix"></div>
+
 ## Sell tickets directly on your website with no redirect
 
 Grab a small code snippet to insert into your website
@@ -162,22 +179,6 @@ Buyers review their order, than use stored payment information from their Ticket
 
 Buyers see their order details
 
-
-{% capture slider %}
-[![Step1](/assets/img/products-and-docs/checkout-widget-step-1.png)](/assets/img/products-and-docs/checkout-widget-step-1.png)
-[![Step2](/assets/img/products-and-docs/checkout-widget-step-2.png)](/assets/img/products-and-docs/checkout-widget-step-2.png)
-[![Step3](/assets/img/products-and-docs/checkout-widget-step-3.png)](/assets/img/products-and-docs/checkout-widget-step-3.png)
-{% endcapture %}
-
-<div id="carousel" class="col-xs-12" markdown="1" style="margin-top: 0px; margin-bottom: 0px;">
-  <div class="carousel-controls">
-    <div class="carousel-prev"></div>
-    <div class="carousel-next"></div>
-  </div>
-  {{slider}}
-</div>
-
-<div class="clearfix"></div>
 
 ## Configuration Flags
 
