@@ -1525,9 +1525,6 @@
           "type" : "boolean",
           "default" : false
         },
-        "leapDurationField" : {
-          "$ref" : "#/definitions/DurationField"
-        },
         "durationField" : {
           "$ref" : "#/definitions/DurationField"
         },
@@ -1535,11 +1532,14 @@
           "type" : "integer",
           "format" : "int32"
         },
+        "rangeDurationField" : {
+          "$ref" : "#/definitions/DurationField"
+        },
         "maximumValue" : {
           "type" : "integer",
           "format" : "int32"
         },
-        "rangeDurationField" : {
+        "leapDurationField" : {
           "$ref" : "#/definitions/DurationField"
         },
         "name" : {
@@ -1557,10 +1557,10 @@
     "DateTimeFieldType" : {
       "type" : "object",
       "properties" : {
-        "rangeDurationType" : {
+        "durationType" : {
           "$ref" : "#/definitions/DurationFieldType"
         },
-        "durationType" : {
+        "rangeDurationType" : {
           "$ref" : "#/definitions/DurationFieldType"
         },
         "name" : {
@@ -1786,9 +1786,17 @@
             "$ref" : "#/definitions/Promoter"
           }
         },
-        "products" : {
+        "outlets" : {
           "type" : "array",
           "position" : 37,
+          "description" : "Related outlets informations",
+          "items" : {
+            "$ref" : "#/definitions/Outlet"
+          }
+        },
+        "products" : {
+          "type" : "array",
+          "position" : 38,
           "description" : "Related products informations",
           "items" : {
             "$ref" : "#/definitions/Product"
@@ -2203,6 +2211,22 @@
         }
       },
       "description" : "Market"
+    },
+    "Outlet" : {
+      "type" : "object",
+      "properties" : {
+        "url" : {
+          "type" : "string",
+          "position" : 1,
+          "description" : "Outlet's url"
+        },
+        "type" : {
+          "type" : "string",
+          "position" : 2,
+          "description" : "Outlet's type"
+        }
+      },
+      "description" : "A selling point for tickets."
     },
     "Parking" : {
       "type" : "object",
