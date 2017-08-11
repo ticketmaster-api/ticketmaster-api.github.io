@@ -40,7 +40,7 @@ Ticketmaster Universal Checkout ("Universal Checkout") allows clients, artists, 
 
 Grab a small code snippet to insert into your website
 
-<h3>Installation</h3>
+<h2 class="article_h" id="installation">Installation</h2>
 
 <h4 id="embedded-code">Embedded Code</h4>
 
@@ -158,11 +158,11 @@ Grab a small code snippet to insert into your website
 {% endcomment %}
 
 
-## Tutorial
+<h2 class="article_h" id="tutorial">Tutorial</h2>
 
 <iframe src="https://player.vimeo.com/video/189647021" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
 
-## Purchase Flow
+<h2 class="article_h" id="purchase-flow">Purchase Flow</h2>
 
 <script src="{{"/scripts/vendors/carousel.min.js" | prepend: site.baseurl }}"></script>
 <script src="{{"/scripts/components/checkout-widget.js" | prepend: site.baseurl }}"></script>
@@ -180,7 +180,7 @@ Buyers review their order, than use stored payment information from their Ticket
 Buyers see their order details
 
 
-## Configuration Flags
+<h2 class="article_h" id="configuration-flags">Configuration Flags</h2>
 
 Additional configuration flags are available which can modify Universal Checkout's behavior on a per-event basis.  These flags are passed in either of 2 ways: using query parameters on the Event URL, or HTML data attributes on the link itself.
 
@@ -204,37 +204,37 @@ The following configuration flags are currently supported:
 | `?disable-widget=true` | `data-disable-widget="true"` | Prevents a link from opening in Universal Checkout every time |
 
 
-## Affiliate Tracking
+<h2 class="article_h" id="affiliate-tracking">Affiliate Tracking</h2>
 
 Any Impact Radius links on your site in the `ticketmaster.evyy.net` format will be treated just like any other Ticketmaster link. When buyers click the link, Universal Checkout will attribute any sales to your existing partner account with no redirect.
 
-## Client Tracking / Came From Codes
+<h2 class="article_h" id="client-tracking--came-from-codes">Client Tracking / Came From Codes</h2>
 
 Universal Checkout supports _Came From Codes (CFC)_, which are commonly used by Ticketmaster clients to tag and identify the order source (i.e. ad campaign, or A/B test).  Any link which includes a `?camefrom=YOURCODE` URL parameter will be attributed to the order.
 
-## Password-Protected Offers, Presales, and DID Codes
+<h2 class="article_h" id="password-protected-offers-presales-and-did-codes">Password-Protected Offers, Presales, and DID Codes</h2>
 
 Universal Checkout supports password-protected offers and presales.  Events which support passwords will show a password entry field with event-specific messaging.
 
 Ticketmaster _DID Codes_ are also supported.  Any link which includes a `?did=YOURCODE` URL parameter will be used to unlock any additional offers as well.
 
-## Deep Linking: Ticket Types
+<h2 class="article_h" id="deep-linking-ticket-types">Deep Linking: Ticket Types</h2>
 
 Universal Checkout supports passing in a specific _Ticket Type ID_, ensuring it is the default Ticket Type when the widget opens.  This is specifically useful in combination with a _DID Code_, if you want to pre-select the newly-unlocked _Ticket Type ID_ on Step 1 of the checkout process.  To enable this behaviour, append the`?ticket=TICKET_TYPE_ID` URL parameter on the Ticketmaster event link.
 
-## Analytics Reports
+<h2 class="article_h" id="analytics-reports">Analytics Reports</h2>
 
 Analytics for Universal Checkout are available through TM One.  The "Sales by Platform" report will show sales over time which originated through the "Universal Checkout" platform, along with a summary of "Total Sold" and "Total Face Value".
 
 [![Sales by Platform](/assets/img/products-and-docs/checkout-widget-analytics.png)](/assets/img/products-and-docs/checkout-widget-analytics.png)
 
-## Security Recommendations
+<h2 class="article_h" id="security-recommendations">Security Recommendations</h2>
 
 Universal Checkout is secured by bank-grade 256-byte SSL encryption for all communications.  The architecture of Universal Checkout ensures the entire checkout flow happens securely via HTTPS, even when the 3rd party site (which is embedding the widget) only uses HTTP.
 
 As a security best practice, we strongly recommend that all pages which embed Universal Checkout __also__ implement SSL / HTTPS.  As of Fall 2016, browsers are beginning to encourage the use of SSL / HTTPS everywhere, and in 2017 will begin to show HTTP as "Insecure" in the browser's toolbar.  This is important for all websites to prevent "man in the middle" attacks, which are theoretically possible on all insecure webpages when on an untrusted Internet connection (public wifi, Internet cafe, etc).  Fortunately, [Let's Encrypt](https://letsencrypt.org/) is an open project sponsored by Google, Facebook, Mozilla, and others, which offers free SSL/TLS certificates to all.
 
-## Troubleshooting
+<h2 class="article_h" id="troubleshooting">Troubleshooting</h2>
 
 To check whether an Universal Checkout will attempt to transact on a specific event, enter the event ID in the tool below:
 
