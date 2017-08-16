@@ -1459,10 +1459,10 @@ https://app.ticketmaster.com/partners/v1/events/0B004ED9FC825ACB/cart?apikey=GkB
 
         // Optional.  For reserving best available within a specific area discovered in Event Details
         "areas" : [ { "id" : 2 } ],
-
-        // Optional.  These are place ids from the ticket availability output which correspond to exact seat locations
+        
+				// Optional.  These are place ids from the ticket availability output which correspond to exact seat locations
         "places" : ["INGEEMRQHE5E2ORRG4", "INGEEMRQHE5E2ORRGA"],
-
+				
         // Optional. Section/Row/Seat identifiers.  Using 'places' is preferred over this.
         "section": "CLB239",
         "row": "C",
