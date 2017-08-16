@@ -61,5 +61,8 @@
             "reqres": "commerse-api/reqres-get-payments.md"
         }
     ],
-    "extraMethodsInfo" : {}
+    "extraMethodsInfo" : {
+        "base": "https://app.ticketmaster.com",
+        "category": "Commerce API v2"
+    }
 }
