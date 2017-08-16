@@ -322,7 +322,23 @@
         <h4><a href="/products-and-docs/widgets/" {% if page.categories[0] == "documentation" and page.categories[1] == "widgets" %} class="active" {% endif %} >Widgets</a></h4>
         {% if page.categories[0] == "documentation" and page.categories[1] == "widgets" %}
             <ul class="categories menu-highlight">
-                <li><a href="/products-and-docs/widgets/checkout/"{% if page.categories[2] == "widget-checkout"%} class="active" {% endif %}>Ticketmaster Universal Checkout</a></li>
+                <li><a href="/products-and-docs/widgets/checkout/"{% if page.categories[2] == "widget-checkout"%} class="active" {% endif %}>Ticketmaster Universal Checkout</a>
+									{% if page.categories[2] == "widget-checkout"%}
+									<ul class="sections menu-highlight">
+										<li><a href="#installation">Installation</a></li>
+										<li><a href="#tutorial">Tutorial</a></li>
+										<li><a href="#purchase-flow">Purchase Flow</a></li>
+										<li><a href="#configuration-flags">Configuration Flags</a></li>
+										<li><a href="#affiliate-tracking">Affiliate Tracking</a></li>
+										<li><a href="#client-tracking--came-from-codes">Client Tracking / Came From Codes</a></li>
+										<li><a href="#password-protected-offers-presales-and-did-codes">Password-Protected Offers, Presales, and DID Codes</a></li>
+										<li><a href="#deep-linking-ticket-types">Deep Linking: Ticket Types</a></li>
+										<li><a href="#analytics-reports">Analytics Reports</a></li>
+										<li><a href="#security-recommendations">Security Recommendations</a></li>
+										<li><a href="#troubleshooting">Troubleshooting</a></li>
+									</ul>
+									{% endif %}
+								</li>
                 <li><a href="/products-and-docs/widgets/event-discovery/"{% if page.categories[2] == "widget-event-discovery"%} class="active" {% endif %}>Event Discovery Widget</a></li>
                 <li><a href="/products-and-docs/widgets/countdown/"{% if page.categories[2] == "widget-countdown"%} class="active" {% endif %}>Countdown Widget</a></li>
                 <li><a href="/products-and-docs/widgets/calendar/"{% if  page.categories[2] == "widget-calendar"%} class="active" {% endif %}>Calendar Widget</a></li>
