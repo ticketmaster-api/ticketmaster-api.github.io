@@ -1724,6 +1724,77 @@ Status 200
 {% endhighlight %}
 
 {: .article}
+## Generate Wallet Token for Accountless Payment [POST]
+{: #generate-wallettoken}
+
+The ticketmaster payment service will allow partners to add credit card for anonymous user.It adds credit card data to an anonymous wallet.
+
+https://payment.ticketmaster.com/wallet/v1/token?apiKey={apikey}
+{: .code .red}
+
+>[Request](#req)
+>[Response](#res)
+{: .reqres}
+
+
+{% highlight bash %}
+https://payment.ticketmaster.com/wallet/v1/token?apiKey=GkB8Z037ZfqbLCNtZViAgrEegbsrZ6Ne
+
+{
+   "flow_attributes" : {
+       "channel" : "external.ecommerce.consumer.dc.ticketmaster.us",
+       "market" : "PRIMARY"  // This could be "PRIMARY" or "RESALE".
+      },
+   "funding_source_details" : {
+       "account_number" : "4588883206000011",
+       "expiration_month" : 12,
+       "expiration_year" : 2020,
+       "billing_address" : {
+		"first_name" : "Joe",
+		"last_name" : "Brown",
+		"address_line1" : "7060 Hollywood Blvd",
+		"address_line2" : "suite 202",
+		"city" : "Hollywood",
+		"state" : "CA",
+		"country" : "US",
+		"postal_code" : "91344",
+		"mobile_phone" : "3104458988",
+		"email" : "rc@tm.com"
+			 } },
+   "funding_source" : "creditcard"
+}
+{% endhighlight %}
+
+
+
+{% highlight js %}
+Status 200
+{
+  "token": "wallet-wallet-0eb60d8aa4994bc8a6aa6aa4b330f996",
+  "validated": false,
+  "billing_address": {
+    "city": "Hollywood",
+    "state": "CA",
+    "country": "US",
+    "email": "rc@tm.com",
+    "first_name": "Joe",
+    "last_name": "Brown",
+    "address_line1": "7060 Hollywood Blvd",
+    "address_line2": "suite 202",
+    "postal_code": "91344",
+    "mobile_phone": "3104458988"
+  },
+  "funding_method": "VISA",
+  "funding_source": "creditcard",
+  "expiration_month": 12,
+  "expiration_year": 2020
+}
+{% endhighlight %}
+
+
+The wallet token "wallet-wallet-0eb60d8aa4994bc8a6aa6aa4b330f996" returned can then be used to add payment in the Partner API using the add billing endpoint. The wallet token will be passed as card number along with the cin. The token and the cin need not be encrypted in this case.
+
+{: .article}
 ## Add Billing Information [PUT]
 {: #post-card}
 
@@ -1782,7 +1853,7 @@ Sample credit-card information for use in the production environment for event i
         * `unit` (string) - Unit number
         * `city` (string) - City
         * `country` (object) - Country
-            * `id` (number) - Required, use 840 for United States. See Appendix for other supported country codes
+            * `code` (string) - Required, use ISO country abbreviations http://www.nationsonline.org/oneworld/country_code_list.htm
         * `region` (object) - Region
             * `abbreb` (string) Region abbreviation
         * `postal_code` (string) - Postal/Zip code
@@ -1821,7 +1892,7 @@ https://app.ticketmaster.com/partners/v1/events/0B004ED9FC825ACB/cart/payment?ap
             "unit": "1h"                
             "city": "Los Angeles",      
             "country": {                
-                "id": 840
+                "code": "US"
             },
             "region": {                 
                 "abbrev": "CA"
@@ -1882,6 +1953,54 @@ https://app.ticketmaster.com/partners/v1/events/0B004ED9FC825ACB/cart/payment?ap
             "encryption_key": "paysys-dev.0.us.999"
         }
     }
+}
+{% endhighlight %}
+
+
+
+{% highlight js %}
+Status 200
+{
+    "cart" : {
+        ...
+    }
+}
+{% endhighlight %}
+
+
+#### This request is used to add a wallet token as payment method to the cart.
+
+*Polling: No*
+
+>[Request](#req)
+>[Response](#res)
+{: .reqres}
+
+{% highlight bash %}
+https://app.ticketmaster.com/partners/v1/events/0B004ED9FC825ACB/cart/payment?apikey=GkB8Z037ZfqbLCNtZViAgrEegbsrZ6Ne
+
+{
+  "cart_id": "3d7e57b4-7030-4600-9725-bfa62f44a9d6",
+  "payment": {
+    "address": {
+      "city": "",
+      "country": {"code": "US"},
+      "line1": "123 Main Street",
+      "line2": "",
+      "postal_code": "",
+      "region": {"abbrev":"CA"}
+    },
+    "amount": "69.00",
+    "card": {
+      "cin": "123",
+      "number": "wallet-wallet-442d8c3e20194dc5a34c7a9b8b8dd662"
+},
+    "email_address":"pracheta.gupta@ticketmaster.com",
+    "first_name": "John",
+    "home_phone": "212-867-5309",
+    "last_name": "Doe",
+    "type": "WALLET"
+  }
 }
 {% endhighlight %}
 
@@ -2572,64 +2691,5 @@ Response:
 | 2015-10-01 |        1          |      0        | Initial |
 | 2015-10-12 |        1          |      0        | Updated captcha and cart session usage|
 | 2016-04-16 |        1          |      0        | Updated reserve endpoint|
-
-
-## Appendix
-{: #appendix}
-
-State IDs for cart purchase request
-
-| state_id | name | state_id | name |
-| -------- | ---- | -------- | ---- |
-| 1| Alabama                          | 43| New York |
-| 2| Alaska                           | 44| North Carolina |
-| 3| American Samoa                   | 45| North Dakota |
-| 4| Arizona                          | 46| Northern Mariana Islands |
-| 5| Arkansas                         | 47| Ohio |
-| 6| Armed Forces Other               | 48| Oklahoma |
-| 7| Armed Forces Americas            | 49| Oregon |
-| 11| Armed Forces Pacific            | 50| Palau |
-| 12| California                      | 51| Pennsylvania |
-| 13| Colorado                        | 52| Puerto Rico |
-| 14| Connecticut                     | 53| Rhode Island |
-| 15| Delaware                        | 54| South Carolina |
-| 16| District Of Columbia            | 55| South Dakota |
-| 17| Federated States Of Micronesia  | 56| Tennessee |
-| 18| Florida                         | 57| Texas |
-| 19| Georgia                         | 58| Utah |
-| 20| Guam                            | 59| Vermont |
-| 21| Hawaii                          | 60| Virgin Islands |
-| 22| Idaho                           | 61| Virginia |
-| 23| Illinois                        | 62| Washington |
-| 24| Indiana                         | 63| West Virginia |
-| 25| Iowa                            | 64| Wisconsin |
-| 26| Kansas                          | 65| Wyoming |
-| 27| Kentucky                        | 66| Alberta |
-| 28| Louisiana                       | 67| British Columbia |
-| 29| Maine                           | 68| Manitoba |
-| 30| Marshall Islands                | 69| New Brunswick |
-| 31| Maryland                        | 70| Newfoundland and Labrador |
-| 32| Massachusetts                   | 71| Northwest Territories |
-| 33| Michigan                        | 72| Nova Scotia |
-| 34| Minnesota                       | 73| Nunavut |
-| 35| Mississippi                     | 74| Ontario |
-| 36| Missouri                        | 75| Prince Edward Island |
-| 37| Montana                         | 76| Quebec |
-| 38| Nebraska                        | 77| Saskatchewan |
-| 39| Nevada                          | 78| Yukon |
-| 40| New Hampshire | | |
-| 41| New Jersey | | |
-| 42| New Mexico | | |
-
-
-Country Codes
-
-| country_id | name |
-| ---------- | ---- |
-| 840 | United States of America |
-| 124 | Canada |
-|  36 | Australia |
-| 484 | Mexico |
-| 554 | New Zealand |
 
 
