@@ -673,7 +673,7 @@
           "description" : "Radius of the area in which we want to search for events.",
           "required" : false,
           "type" : "string",
-          "default" : "50",
+          "default" : "",
           "pattern" : "^\\s*$|^0*1?\\d{1,4}$",
           "x-example" : ""
         }, {
@@ -1084,7 +1084,7 @@
           "description" : "Radius of the area in which we want to search for events.",
           "required" : false,
           "type" : "string",
-          "default" : "50",
+          "default" : "",
           "pattern" : "^\\s*$|^0*1?\\d{1,4}$",
           "x-example" : ""
         }, {
@@ -1525,15 +1525,15 @@
           "type" : "boolean",
           "default" : false
         },
+        "rangeDurationField" : {
+          "$ref" : "#/definitions/DurationField"
+        },
         "durationField" : {
           "$ref" : "#/definitions/DurationField"
         },
         "minimumValue" : {
           "type" : "integer",
           "format" : "int32"
-        },
-        "rangeDurationField" : {
-          "$ref" : "#/definitions/DurationField"
         },
         "maximumValue" : {
           "type" : "integer",
