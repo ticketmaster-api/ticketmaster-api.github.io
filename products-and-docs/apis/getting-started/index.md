@@ -294,7 +294,7 @@ The API also supports [Cross-Origin Resource Sharing (CORS)](http://en.wikipedia
       <td style="text-align: center;border-left: 0px;" class="checked-td"></td>
     </tr>
     <tr>
-      <td style="text-align: center; background: rgb(255, 255, 255);" rowspan="11">
+      <td style="text-align: center; background: rgb(255, 255, 255);">
         <a href="/products-and-docs/apis/commerce/">
           <img src="/assets/img/getting-started/ic-commerce-api.svg" alt="Commerce API">
         </a>
@@ -305,76 +305,6 @@ The API also supports [Cross-Origin Resource Sharing (CORS)](http://en.wikipedia
       <td style="text-align: center;border-right: 0px;" class="checked-td"></td>
       <td style="text-align: center;border-right: 0px; border-left: 0px; " class="checked-td"></td>
       <td style="text-align: center;border-right: 0px; border-left: 0px; "  class="checked-td"></td>
-      <td style="text-align: center;border-left: 0px;" class="checked-td"></td>
-    </tr>
-    <tr>
-      <td style="text-align: left;"><a href="/products-and-docs/apis/commerce/#get-cart">Get Cart</a></td>
-      <td style="text-align: center;border-right: 0px;" class="checked-td"></td>
-      <td style="text-align: center;border-right: 0px; border-left: 0px; " class="checked-td"></td>
-      <td style="text-align: center;border-right: 0px; border-left: 0px; "  class="checked-td"></td>
-      <td style="text-align: center;border-left: 0px;" class="checked-td"></td>
-    </tr>
-    <tr>
-      <td style="text-align: left;"><a href="/products-and-docs/apis/commerce/#create-cart">Create Cart</a></td>
-      <td style="text-align: center;border-right: 0px;" class="checked-td"></td>
-      <td style="text-align: center;border-right: 0px; border-left: 0px; " class="checked-td"></td>
-      <td style="text-align: center;border-right: 0px; border-left: 0px; "  class="checked-td"></td>
-      <td style="text-align: center;border-left: 0px;" class="checked-td"></td>
-    </tr>
-    <tr>
-      <td style="text-align: left;"><a href="/products-and-docs/apis/commerce/#empty-cart">Empty Cart</a></td>
-      <td style="text-align: center;border-right: 0px;" class="checked-td"></td>
-      <td style="text-align: center;border-right: 0px; border-left: 0px; " class="checked-td"></td>
-      <td style="text-align: center;border-right: 0px; border-left: 0px; "  class="checked-td"></td>
-      <td style="text-align: center;border-left: 0px;" class="checked-td"></td>
-    </tr>
-    <tr>
-      <td style="text-align: left;"><a href="/products-and-docs/apis/commerce/#update-cart-products">Update Cart Products</a></td>
-      <td style="text-align: center;border-right: 0px;" class="checked-td"></td>
-      <td style="text-align: center;border-right: 0px; border-left: 0px; " class="checked-td"></td>
-      <td style="text-align: center;border-right: 0px; border-left: 0px; "  class="checked-td"></td>
-      <td style="text-align: center;border-left: 0px;" class="checked-td"></td>
-    </tr>
-    <tr>
-      <td style="text-align: left;"><a href="/products-and-docs/apis/commerce/#select-payments">Select Payments</a></td>
-      <td style="text-align: center;border-right: 0px;" class="checked-td"></td>
-      <td style="text-align: center;border-right: 0px; border-left: 0px; " class="checked-td"></td>
-      <td style="text-align: center;border-right: 0px; border-left: 0px; "  class="checked-td"></td>
-      <td style="text-align: center;border-left: 0px;" class="checked-td"></td>
-    </tr>
-    <tr>
-      <td style="text-align: left"><a href="/products-and-docs/apis/commerce/#get-deliveries">Get Deliveries</a></td>
-      <td style="text-align: center;border-right: 0px;" class="checked-td"></td>
-      <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
-      <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
-      <td style="text-align: center;border-left: 0px;" class="checked-td"></td>
-    </tr>
-    <tr>
-      <td style="text-align: left"><a href="/products-and-docs/apis/commerce/#select-deliveries">Select Deliveries</a></td>
-      <td style="text-align: center;border-right: 0px;" class="checked-td"></td>
-      <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
-      <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
-      <td style="text-align: center;border-left: 0px;" class="checked-td"></td>
-    </tr>
-    <tr>
-      <td style="text-align: left;"><a href="/products-and-docs/apis/commerce/#get-payments">Get Payments</a></td>
-      <td style="text-align: center;border-right: 0px;" class="checked-td"></td>
-      <td style="text-align: center;border-right: 0px; border-left: 0px; " class="checked-td"></td>
-      <td style="text-align: center;border-right: 0px; border-left: 0px; "  class="checked-td"></td>
-      <td style="text-align: center;border-left: 0px;" class="checked-td"></td>
-    </tr>
-    <tr>
-      <td style="text-align: left"><a href="/products-and-docs/apis/commerce/#get-options">Get Options</a></td>
-      <td style="text-align: center;border-right: 0px;" class="checked-td"></td>
-      <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
-      <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
-      <td style="text-align: center;border-left: 0px;" class="checked-td"></td>
-    </tr>
-    <tr>
-      <td style="text-align: left"><a href="/products-and-docs/apis/commerce/#purchase">Purchase</a></td>
-      <td style="text-align: center;border-right: 0px;" class="checked-td"></td>
-      <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
-      <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
       <td style="text-align: center;border-left: 0px;" class="checked-td"></td>
     </tr>
     <tr>
