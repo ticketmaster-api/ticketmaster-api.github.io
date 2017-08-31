@@ -782,6 +782,11 @@
         },
         "paymentInfo" : {
           "$ref" : "#/definitions/Payment"
+        },
+        "cartHoldTimeSec" : {
+          "type" : "integer",
+          "format" : "int32",
+          "readOnly" : true
         }
       }
     },
@@ -796,6 +801,10 @@
           "items" : {
             "$ref" : "#/definitions/AddProductRequest"
           }
+        },
+        "cartHoldTimeSec" : {
+          "type" : "integer",
+          "format" : "int32"
         }
       }
     },
@@ -1784,6 +1793,11 @@
         "pollingCallbackUrl" : {
           "type" : "string"
         },
+        "cartHoldTimeSec" : {
+          "type" : "integer",
+          "format" : "int32",
+          "readOnly" : true
+        },
         "deliveries" : {
           "type" : "array",
           "items" : {
@@ -1797,6 +1811,11 @@
       "properties" : {
         "pollingCallbackUrl" : {
           "type" : "string"
+        },
+        "cartHoldTimeSec" : {
+          "type" : "integer",
+          "format" : "int32",
+          "readOnly" : true
         },
         "payments" : {
           "type" : "array",
@@ -1975,6 +1994,11 @@
           "items" : {
             "$ref" : "#/definitions/UpdateProductRequest"
           }
+        },
+        "cartHoldTimeSec" : {
+          "type" : "integer",
+          "format" : "int32",
+          "readOnly" : true
         }
       }
     },
