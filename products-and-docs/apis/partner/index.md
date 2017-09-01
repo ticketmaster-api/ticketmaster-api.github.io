@@ -29,7 +29,7 @@ Make live API calls right now in the interactive docs:
 
 Clients will be provided an API key from Ticketmaster which should be added to every resource endpoint call.
 
-Example: `https://app.ticketmaster.com/partners/v1/events/3F004EC9D1EBBC76/cart?apikey=3QIvq55bS608ai6r8moig1WdW57bONry`
+Example: `https://app.ticketmaster.com/partners/v1/events/1AeZZfEGkD0xtGV/cart?apikey=3QIvq55bS608ai6r8moig1WdW57bONry`
 
 ### Host and API endpoint information
 
@@ -37,13 +37,15 @@ Production: https://app.ticketmaster.com/partners/v1
 
 All connections must be made over SSL using https.
 
+Partner API will now use Universal Ids for all its endpoints . The universal Ids can be fetched using the <a href="/products-and-docs/apis/discovery-api/v2/">Discovery API</a> .
+
     
 ### Production environment testing
 
 Here you can test API transactions for different scenarios like credit card and invoice payment, captcha, etc.  The following event ids are available for use:
 
 
-    * 2000527EE48A9334: Use this event ID for production environment testing
+    * 1AeZZfEGkD0xtGV: Use this event ID for production environment testing
 
 
 ### Best Practices
@@ -122,7 +124,7 @@ Retrieve details for a given event including the ticket type & pricing details. 
 
 | Parameter  | Description          | Type              | Example      | Required |
 |:-----------|:---------------------|:----------------- |:------------------ |:-------- |
-| `event_id` | The 16-digit alphanumeric event ID.     | string            |     "0B004ED9FC825ACB"           | Yes      |
+| `event_id` | The 16-digit alphanumeric event ID.     | string            |     "1AeZZfEGkD0xtGV"           | Yes      |
 | `apikey`   | Your API Key         | string            |     "GkB8Z037ZfqbLCNtZViAgrEegbsrZ6Ne"          | Yes      |
 
 >[Request](#req)
@@ -131,7 +133,7 @@ Retrieve details for a given event including the ticket type & pricing details. 
 
 
 {% highlight bash %}
-https://app.ticketmaster.com/partners/v1/events/0B004ED9FC825ACB?apikey=GkB8Z037ZfqbLCNtZViAgrEegbsrZ6Ne
+https://app.ticketmaster.com/partners/v1/events/1AeZZfEGkD0xtGV?apikey=GkB8Z037ZfqbLCNtZViAgrEegbsrZ6Ne
 {% endhighlight %}
 
 {% highlight js %}
@@ -951,7 +953,7 @@ This is only available for partners signed up for affiliate tracking through Imp
 
 | Parameter  | Description          | Type              | Example      | Required |
 |:-----------|:---------------------|:----------------- |:------------------ |:-------- |
-| `event_id` | The 16-digit alphanumeric event ID.     | string            |     "0B004ED9FC825ACB"           | Yes      |
+| `event_id` | The 16-digit alphanumeric event ID.     | string            |     "1AeZZfEGkD0xtGV"           | Yes      |
 | `apikey`   | Your API Key         | string            |     "GkB8Z037ZfqbLCNtZViAgrEegbsrZ6Ne"          | Yes      |
 | `shared_id`| ImpactRadius SharedId field in reports (32 chars max)  | string            |     "02a8127b-7a52"          | No      |
 | `sub_id1,sub_id2,sub_id3`| ImpactRadius SubId1, SubId2, SubId3 fields in reports(32 chars max each)  | string            |     "02a8127b-7a52"          | No      |
@@ -962,7 +964,7 @@ This is only available for partners signed up for affiliate tracking through Imp
 {: .reqres}
 
 {% highlight bash %}
-https://app.ticketmaster.com/partners/v1/tracking?event_id=2000527EE48A9334&apikey=GkB8Z037ZfqbLCNtZViAgrEegbsrZ6Ne
+https://app.ticketmaster.com/partners/v1/tracking?event_id=1AeZZfEGkD0xtGV&apikey=GkB8Z037ZfqbLCNtZViAgrEegbsrZ6Ne
 {% endhighlight %}
 
 {% highlight js %}
@@ -1109,7 +1111,7 @@ For inventory that has been exclusively set aside, Channel partners are expected
 
 | Parameter  | Description          | Type              | Example      | Required |
 |:-----------|:---------------------|:----------------- |:------------------ |:-------- |
-| `event_id` | The 16-digit alphanumeric event ID.     | string            |     "0B004ED9FC825ACB"           | Yes      |
+| `event_id` | The 16-digit alphanumeric event ID.     | string            |     "1AeZZfEGkD0xtGV"           | Yes      |
 
 
 ### Response structure:
@@ -1162,7 +1164,7 @@ For inventory that has been exclusively set aside, Channel partners are expected
 {: .reqres}
 
 {% highlight bash %}
-https://app.ticketmaster.com/partners/v1/events/0B004ED9FC825ACB/availability?apikey=GkB8Z037ZfqbLCNtZViAgrEegbsrZ6Ne
+https://app.ticketmaster.com/partners/v1/events/1AeZZfEGkD0xtGV/availability?apikey=GkB8Z037ZfqbLCNtZViAgrEegbsrZ6Ne
 {% endhighlight %}
 
 
@@ -1170,7 +1172,7 @@ https://app.ticketmaster.com/partners/v1/events/0B004ED9FC825ACB/availability?ap
 Status 200
 {
     "event" : {
-        "id":"3F004CBB88958BF9",
+        "id":"0B004D43F86C478F",
         "restrictSingle" : true,  // indicates a reserve cannot leave 1 seat remaining among a contiguous set of seats
         "eventTicketLimit" : 10,  // 0 = unlimited for this event, but reserves may still be limited by current seat inventory (currentTicketLimit) 
         "seatLocationMapRestrict": false,
@@ -1294,7 +1296,7 @@ Request captcha status and details for a given event. If captcha is currently en
 | Parameter  | Description          | Type              | Example      | Required |
 |:-----------|:---------------------|:----------------- |:------------------ |:-------- |
 | `apikey`   | Your API Key         | string            |     "GkB8Z037ZfqbLCNtZViAgrEegbsrZ6Ne"          | Yes      |
-| `event_id`   | TM event id         | string            |     "3F004CBB88958BF9"          | Yes      |
+| `event_id`   | TM event id         | string            |     "1AeZZfEGkD0xtGV"          | Yes      |
 
 
 >[Request (html)](#req)
@@ -1371,7 +1373,7 @@ Reserves the specified tickets. For integrations requiring captcha, send the cap
 
 | Parameter  | Description          | Type              | Example      | Required |
 |:-----------|:---------------------|:----------------- |:------------------ |:-------- |
-| `event_id` | The 16-digit alphanumeric event ID.     | string            |     "0B004ED9FC825ACB"           | Yes      |
+| `event_id` | The 16-digit alphanumeric event ID.     | string            |     "1AeZZfEGkD0xtGV"           | Yes      |
 | `apikey`   | Your API Key         | string            |     "GkB8Z037ZfqbLCNtZViAgrEegbsrZ6Ne"          | Yes      |
 
 ### Response structure:
@@ -1435,7 +1437,7 @@ Reserves the specified tickets. For integrations requiring captcha, send the cap
 {: .reqres}
 
 {% highlight bash %}
-https://app.ticketmaster.com/partners/v1/events/0B004ED9FC825ACB/cart?apikey=GkB8Z037ZfqbLCNtZViAgrEegbsrZ6Ne
+https://app.ticketmaster.com/partners/v1/events/1AeZZfEGkD0xtGV/cart?apikey=GkB8Z037ZfqbLCNtZViAgrEegbsrZ6Ne
 
 {
     "token" : <captcha solution token, if required>,
@@ -1560,7 +1562,7 @@ Get shipping options available for this event.  Note: some API users will be pre
 
 | Parameter  | Description          | Type              | Example      | Required |
 |:-----------|:---------------------|:----------------- |:------------------ |:-------- |
-| `event_id` | The 16-digit alphanumeric event ID.     | string            |     "0B004ED9FC825ACB"           | Yes      |
+| `event_id` | The 16-digit alphanumeric event ID.     | string            |     "1AeZZfEGkD0xtGV"           | Yes      |
 | `apikey`   | Your API Key         | string            |     "GkB8Z037ZfqbLCNtZViAgrEegbsrZ6Ne"          | Yes      |
 | `cart_id`   | Card identifier. Must be url encoded.         | string            |     "bzJVZURoNit1UkhQQ25pcE5KSHh1K09SVE9lQ0k2RktwSEZFdnAwTlNJYS82ZE5WWldiREtSTQo%3D"          | Yes      |
 
@@ -1570,7 +1572,7 @@ Get shipping options available for this event.  Note: some API users will be pre
 {: .reqres}
 
 {% highlight bash %}
-https://app.ticketmaster.com/partners/v1/events/0B004ED9FC825ACB/cart/shipping?apikey=GkB8Z037ZfqbLCNtZViAgrEegbsrZ6Ne&cart_id=bzJVZURoNit1UkhQQ25pcE5KSHh1K09SVE9lQ0k2RktwSEZFdnAwTlNJYS82ZE5WWldiREtSTQo%3D
+https://app.ticketmaster.com/partners/v1/events/1AeZZfEGkD0xtGV/cart/shipping?apikey=GkB8Z037ZfqbLCNtZViAgrEegbsrZ6Ne&cart_id=bzJVZURoNit1UkhQQ25pcE5KSHh1K09SVE9lQ0k2RktwSEZFdnAwTlNJYS82ZE5WWldiREtSTQo%3D
 {% endhighlight %}
 
 {% highlight js %}
@@ -1651,7 +1653,7 @@ Add a shipping option to the event.  Note: some API users will be pre-configured
 
 | Parameter  | Description          | Type              | Example      | Required |
 |:-----------|:---------------------|:----------------- |:------------------ |:-------- |
-| `event_id` | The 16-digit alphanumeric event ID.     | string            |     "0B004ED9FC825ACB"           | Yes      |
+| `event_id` | The 16-digit alphanumeric event ID.     | string            |     "1AeZZfEGkD0xtGV"           | Yes      |
 | `apikey`   | Your API Key         | string            |     "GkB8Z037ZfqbLCNtZViAgrEegbsrZ6Ne"          | Yes      |
 | `cart_id`   | Card identifier. Must be url encoded.         | string            |     "bzJVZURoNit1UkhQQ25pcE5KSHh1K09SVE9lQ0k2RktwSEZFdnAwTlNJYS82ZE5WWldiREtSTQo%3D"          | Yes      |
 
@@ -1661,7 +1663,7 @@ Add a shipping option to the event.  Note: some API users will be pre-configured
 {: .reqres}
 
 {% highlight js %}
-    https://app.ticketmaster.com/partners/v1/events/0B004ED9FC825ACB/cart/shipping?apikey=GkB8Z037ZfqbLCNtZViAgrEegbsrZ6Ne&cart_id=bzJVZURoNit1UkhQQ25pcE5KSHh1K09SVE9lQ0k2RktwSEZFdnAwTlNJYS82ZE5WWldiREtSTQo%3D
+    https://app.ticketmaster.com/partners/v1/events/1AeZZfEGkD0xtGV/cart/shipping?apikey=GkB8Z037ZfqbLCNtZViAgrEegbsrZ6Ne&cart_id=bzJVZURoNit1UkhQQ25pcE5KSHh1K09SVE9lQ0k2RktwSEZFdnAwTlNJYS82ZE5WWldiREtSTQo%3D
 
     {"shipping_id": "4"}
 {% endhighlight %}
@@ -1678,50 +1680,6 @@ Add a shipping option to the event.  Note: some API users will be pre-configured
 {% endhighlight %}
 
 
-{: .article}
-## Encryption Certificate [GET]
-{: #encrypt-cert}
-
-Credit card information must be encrypted before sent to the API. Use this endpoint to get an encryption certificate value and id.  Not necessary for invoice transactions. Certificate is valid for 24 hours.
-
-/partners/v1/certificate?apikey={apikey}
-{: .code .red}
-
-*Polling: No*
-
-### Parameters
-
-| Parameter  | Description          | Type              | Example      | Required |
-|:-----------|:---------------------|:----------------- |:------------------ |:-------- |
-| `apikey`   | Your API Key         | string            |     "GkB8Z037ZfqbLCNtZViAgrEegbsrZ6Ne"          | Yes      |
-
->[Request](#req)
->[Response](#res)
-{: .reqres}
-
-{% highlight bash %}
-https://app.ticketmaster.com/partners/v1/certificate?apikey=GkB8Z037ZfqbLCNtZViAgrEegbsrZ6Ne
-{% endhighlight %}
-
-{% highlight js %}
-Status 200
-{
-    "id": "paysys-dev.0.us.3",
-    "value": "-----BEGIN CERTIFICATE-----\r\n
-              MIIDdzCCAuCgAwIBAgIRAONU+AhqczriCWS/YmzJABEwDQYJKoZIhvcNAQEFBQAw\r\n
-              gccxCzAJBgNVBAYTAlVTMRMwEQYDVQQIEwpDYWxpZm9ybmlhMRcwFQYDVQQHEw5X\r\n
-              ZXN0IEhvbGx5d29vZDEVMBMGA1UEChMMVGlja2V0bWFzdGVyMRwwGgYDVQQLExNT\r\n
-              eXN0ZW1zIEVuZ2luZWVyaW5nMTEwLwYDVQQDEyhUaWNrZXRtYXN0ZXIgUGF5bWVu\r\n
-              dCBTeXN0ZW1zIERFVlFBIENBIHYyMSIwIAYJKoZIhvcNAQkBFhNzZUB0aWNrZXRt\r\n
-              YXN0ZXIuY29tMB4XDTEwMDIwNDIxNTY0NFoXDTIwMDIwNDIxNTY0NFowgb8xCzAJ\r\n
-              BgNVBAYTAlVTMRMwEQYDVQQIEwpDYWxpZm9ybmlhMRcwFQYDVQQHEw5XZXN0IEhv\r\n
-              bGx5d29vZDEVMBMGA1UEChMMVGlja2V0bWFzdGVyMRwwGgYDVQQLExNTeXN0ZW1z\r\n
-              9WIi/k623qvlA3CoH7sladX0TO5yPO57aQzGnBwnTHyPMiGwIBi2s+dAliBMSUeB\r\n
-              0W1pXCbffi6nOOBIdjRsnNa+OOMP2YWLufnTnc2YdJQUrsvqNEpzE9h0yJX2AlOy\r\n
-              HTzCxxD7NVUZSAXyt2YEUePoFj4FS3RhmbnX\r\n
-              -----END CERTIFICATE-----\r\n"
-}
-{% endhighlight %}
 
 {: .article}
 ## Generate Wallet Token for Accountless Payment [POST]
@@ -1795,6 +1753,54 @@ Status 200
 The wallet token "wallet-wallet-0eb60d8aa4994bc8a6aa6aa4b330f996" returned can then be used to add payment in the Partner API using the add billing endpoint. The wallet token will be passed as card number along with the cin. The token and the cin need not be encrypted in this case.
 
 {: .article}
+## Encryption Certificate [GET]
+{: #encrypt-cert}
+
+Credit card information must be encrypted before sent to the API. Use this endpoint to get an encryption certificate value and id.  Not necessary for invoice transactions. Certificate is valid for 24 hours.
+
+/partners/v1/certificate?apikey={apikey}
+{: .code .red}
+
+*Polling: No*
+
+### Parameters
+
+| Parameter  | Description          | Type              | Example      | Required |
+|:-----------|:---------------------|:----------------- |:------------------ |:-------- |
+| `apikey`   | Your API Key         | string            |     "GkB8Z037ZfqbLCNtZViAgrEegbsrZ6Ne"          | Yes      |
+
+>[Request](#req)
+>[Response](#res)
+{: .reqres}
+
+{% highlight bash %}
+https://app.ticketmaster.com/partners/v1/certificate?apikey=GkB8Z037ZfqbLCNtZViAgrEegbsrZ6Ne
+{% endhighlight %}
+
+{% highlight js %}
+Status 200
+{
+    "id": "paysys-dev.0.us.3",
+    "value": "-----BEGIN CERTIFICATE-----\r\n
+              MIIDdzCCAuCgAwIBAgIRAONU+AhqczriCWS/YmzJABEwDQYJKoZIhvcNAQEFBQAw\r\n
+              gccxCzAJBgNVBAYTAlVTMRMwEQYDVQQIEwpDYWxpZm9ybmlhMRcwFQYDVQQHEw5X\r\n
+              ZXN0IEhvbGx5d29vZDEVMBMGA1UEChMMVGlja2V0bWFzdGVyMRwwGgYDVQQLExNT\r\n
+              eXN0ZW1zIEVuZ2luZWVyaW5nMTEwLwYDVQQDEyhUaWNrZXRtYXN0ZXIgUGF5bWVu\r\n
+              dCBTeXN0ZW1zIERFVlFBIENBIHYyMSIwIAYJKoZIhvcNAQkBFhNzZUB0aWNrZXRt\r\n
+              YXN0ZXIuY29tMB4XDTEwMDIwNDIxNTY0NFoXDTIwMDIwNDIxNTY0NFowgb8xCzAJ\r\n
+              BgNVBAYTAlVTMRMwEQYDVQQIEwpDYWxpZm9ybmlhMRcwFQYDVQQHEw5XZXN0IEhv\r\n
+              bGx5d29vZDEVMBMGA1UEChMMVGlja2V0bWFzdGVyMRwwGgYDVQQLExNTeXN0ZW1z\r\n
+              9WIi/k623qvlA3CoH7sladX0TO5yPO57aQzGnBwnTHyPMiGwIBi2s+dAliBMSUeB\r\n
+              0W1pXCbffi6nOOBIdjRsnNa+OOMP2YWLufnTnc2YdJQUrsvqNEpzE9h0yJX2AlOy\r\n
+              HTzCxxD7NVUZSAXyt2YEUePoFj4FS3RhmbnX\r\n
+              -----END CERTIFICATE-----\r\n"
+}
+{% endhighlight %}
+
+
+
+
+{: .article}
 ## Add Billing Information [PUT]
 {: #post-card}
 
@@ -1828,7 +1834,7 @@ Sample credit-card information for use in the production environment for event i
 
 | Parameter  | Description                              | Type              | Example                                   | Required |
 |:-----------|:-----------------------------------------|:------------------|:------------------------------------------|:-------- |
-| `event_id` | The 16-digit alphanumeric event ID.      | string            |     "0B004ED9FC825ACB"                    | Yes      |
+| `event_id` | The 16-digit alphanumeric event ID.      | string            |     "1AeZZfEGkD0xtGV"                    | Yes      |
 | `apikey`   | Your API Key                             | string            |     "GkB8Z037ZfqbLCNtZViAgrEegbsrZ6Ne"    |Yes      |
 
 
@@ -1872,7 +1878,7 @@ Sample credit-card information for use in the production environment for event i
 {: .reqres}
 
 {% highlight bash %}
-https://app.ticketmaster.com/partners/v1/events/0B004ED9FC825ACB/cart/payment?apikey=GkB8Z037ZfqbLCNtZViAgrEegbsrZ6Ne
+https://app.ticketmaster.com/partners/v1/events/1AeZZfEGkD0xtGV/cart/payment?apikey=GkB8Z037ZfqbLCNtZViAgrEegbsrZ6Ne
 
 {
 
@@ -1892,7 +1898,7 @@ https://app.ticketmaster.com/partners/v1/events/0B004ED9FC825ACB/cart/payment?ap
             "unit": "1h"                
             "city": "Los Angeles",      
             "country": {                
-                "code": "US"
+                "code": "US" //use ISO country abbreviations http://www.nationsonline.org/oneworld/country_code_list.htm
             },
             "region": {                 
                 "abbrev": "CA"
@@ -1938,7 +1944,7 @@ The request requires Member Authentication as a header with the request `Authori
 {: .reqres}
 
 {% highlight bash %}
-https://app.ticketmaster.com/partners/v1/events/0B004ED9FC825ACB/cart/payment?apikey=GkB8Z037ZfqbLCNtZViAgrEegbsrZ6Ne
+https://app.ticketmaster.com/partners/v1/events/1AeZZfEGkD0xtGV/cart/payment?apikey=GkB8Z037ZfqbLCNtZViAgrEegbsrZ6Ne
 
 {
     "cart_id": "bzJVZURoNit1UkhQQ25pcE5KSHh1K09SVE9lQ0k2RktwSEZFdnAwTlNJYS82ZE5WWldiREtSTQo=",
@@ -1977,14 +1983,14 @@ Status 200
 {: .reqres}
 
 {% highlight bash %}
-https://app.ticketmaster.com/partners/v1/events/0B004ED9FC825ACB/cart/payment?apikey=GkB8Z037ZfqbLCNtZViAgrEegbsrZ6Ne
+https://app.ticketmaster.com/partners/v1/events/1AeZZfEGkD0xtGV/cart/payment?apikey=GkB8Z037ZfqbLCNtZViAgrEegbsrZ6Ne
 
 {
   "cart_id": "3d7e57b4-7030-4600-9725-bfa62f44a9d6",
   "payment": {
     "address": {
       "city": "",
-      "country": {"code": "US"},
+      "country": {"code": "US"},  //use ISO country abbreviations http://www.nationsonline.org/oneworld/country_code_list.htm
       "line1": "123 Main Street",
       "line2": "",
       "postal_code": "",
@@ -2085,7 +2091,7 @@ For now, the response is the same with or without the Authorization Header.
 
 | Parameter  | Description          | Type              | Example      | Required |
 |:-----------|:---------------------|:----------------- |:------------------ |:-------- |
-| `event_id` | The 16-digit alphanumeric event ID.     | string            |     "0B004ED9FC825ACB"           | Yes      |
+| `event_id` | The 16-digit alphanumeric event ID.     | string            |     "1AeZZfEGkD0xtGV"           | Yes      |
 | `apikey`   | Your API Key         | string            |     "GkB8Z037ZfqbLCNtZViAgrEegbsrZ6Ne"          | Yes      |
 
 
@@ -2108,7 +2114,7 @@ For now, the response is the same with or without the Authorization Header.
 {: .reqres}
 
 {% highlight js %}
-https://app.ticketmaster.com/partners/v1/events/0B004ED9FC825ACB/cart?apikey=GkB8Z037ZfqbLCNtZViAgrEegbsrZ6Ne
+https://app.ticketmaster.com/partners/v1/events/1AeZZfEGkD0xtGV/cart?apikey=GkB8Z037ZfqbLCNtZViAgrEegbsrZ6Ne
 
 { 
     "cart_id" : "bzJVZURoNit1UkhQQ25pcE5KSHh1K09SVE9lQ0k2RktwSEZFdnAwTlNJYS82ZE5WWldiREtSTQo=",
@@ -2147,7 +2153,7 @@ Status 200
 
 Each partner has a limited amount of reservation resources that can be simultaneously in use. If the user abandons the reservation process, it is a good practice to manually delete the cart to allow these resources to be re-allocated. Increased [polling](#poll) may occur if carts are not cleaned up.  Not required if the user finalizes the transaction<br/>
 
-/partners/v1/events/0B004ED9FC825ACB/cart?apikey={apikey}&cart_id={cart_id}
+/partners/v1/events/1AeZZfEGkD0xtGV/cart?apikey={apikey}&cart_id={cart_id}
 {: .code .red}
 
 *Polling: Yes*
@@ -2156,7 +2162,7 @@ Each partner has a limited amount of reservation resources that can be simultane
 
 | Parameter  | Description          | Type              | Example      | Required |
 |:-----------|:---------------------|:----------------- |:------------------ |:-------- |
-| `event_id` | The 16-digit alphanumeric event ID.     | string            |     "0B004ED9FC825ACB"           | Yes      |
+| `event_id` | The 16-digit alphanumeric event ID.     | string            |     "1AeZZfEGkD0xtGV"           | Yes      |
 | `apikey`   | Your API Key         | string            |     "GkB8Z037ZfqbLCNtZViAgrEegbsrZ6Ne"          | Yes      |
 | `cart_id`   | Card identifier. Must be url encoded.         | string            |     "bzJVZURoNit1UkhQQ25pcE5KSHh1K09SVE9lQ0k2RktwSEZFdnAwTlNJYS82ZE5WWldiREtSTQo%3D"          | Yes      |
 
@@ -2166,7 +2172,7 @@ Each partner has a limited amount of reservation resources that can be simultane
 {: .reqres}
 
 {% highlight js %}
-https://app.ticketmaster.com/partners/v1/events/0B004ED9FC825ACB/cart?apikey=GkB8Z037ZfqbLCNtZViAgrEegbsrZ6Ne&cart_id=bzJVZURoNit1UkhQQ25pcE5KSHh1K09SVE9lQ0k2RktwSEZFdnAwTlNJYS82ZE5WWldiREtSTQo
+https://app.ticketmaster.com/partners/v1/events/1AeZZfEGkD0xtGV/cart?apikey=GkB8Z037ZfqbLCNtZViAgrEegbsrZ6Ne&cart_id=bzJVZURoNit1UkhQQ25pcE5KSHh1K09SVE9lQ0k2RktwSEZFdnAwTlNJYS82ZE5WWldiREtSTQo
 {% endhighlight %}
 
 {% highlight js %}
@@ -2280,7 +2286,7 @@ https://app.ticketmaster.com/partners/v1/member/billing?apikey=GkB8Z037ZfqbLCNtZ
         "address": {
             "city": "Los Angeles",
             "country": {
-                "id": 840
+                "code": "US"  //use ISO country abbreviations http://www.nationsonline.org/oneworld/country_code_list.htm
             },
             "line1": "123 My Street",
             "line2": "testadd2",
@@ -2588,7 +2594,7 @@ The following illustrates a typical purchase flow:
 
 ### 1. Discover event ticket information.
 
-Request: `GET /partners/v1/events/09004E6CE6325123`
+Request: `GET /partners/v1/events/1AeZZfEGkD0xtGV`
 
 Further ticketing operations only allowed if event.api_transactable=true.  Display a list of areas and price levels to the user to select a ticket type + price level to reserve.
 
@@ -2601,7 +2607,7 @@ Listen for redirects on the webview and obtain the captcha-token.
 
 ### 3. Submit the captcha-token with reserve criteria and start a new cart session
 
-Request: `POST /partners/v1/events/09004E6CE6325123/cart`
+Request: `POST /partners/v1/events/1AeZZfEGkD0xtGV/cart`
 Body: `{"token" : "2822b0737710e549a2f74c1e65be19b9", "reserve" : { "tickets": [ {"id": "000000000001"}] }}`
 
 Post the captcha token. Response contains cart_id to be used on further operations on this cart.
@@ -2616,7 +2622,7 @@ Request: `GET /partners/v1/certificate`
 
 ### 5. Add encrypted payment information.  Encrypt the credit card number and cvv for the payload (see example in Payment section)
 
-Request: `PUT /partners/v1/events/09004E6CE6325123/cart/payment`
+Request: `PUT /partners/v1/events/1AeZZfEGkD0xtGV/cart/payment`
 
 Request body:
 
@@ -2638,7 +2644,7 @@ Request body:
             "unit": "1h",                
             "city": "Los Angeles",      
             "country": {                
-                "id": 840
+                "code": "US"
             },
             "region": {                 
                 "abbrev": "CA"
@@ -2660,7 +2666,7 @@ Request body:
 
 ### 6. Purchase the tickets
 
-Request: `PUT /partners/v1/events/09004E6CE6325123/cart`
+Request: `PUT /partners/v1/events/1AeZZfEGkD0xtGV/cart`
 
 Request body:
 
