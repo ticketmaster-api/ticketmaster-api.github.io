@@ -206,6 +206,7 @@ All query parameters in snapshotImageUrl must be maintained and un-altered. Clie
 |:-----------|:---------------------|:----------------- |:------------------ |:-------- |
 | `w`   | The width, in pixels, of the image.  (min: 102, max: 1024)      | number            |     300          | No      |
 | `pw`   | The width, in pixels, of the dropped pin in the image.         | number            |     30          | No      |
+| `apikey`   |  Your API Key         | string            |     "GkB8Z037ZfqbLCNtZViAgrEegbsrZ6Ne"          | Yes      |
 
 
 ![pick image](/assets/img/products-and-docs/top-pick-1.png)
