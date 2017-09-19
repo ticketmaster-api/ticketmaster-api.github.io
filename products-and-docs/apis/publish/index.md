@@ -133,6 +133,9 @@ publish/{version}/events
     * `url` (string) - the URL of the image.
     * `width` (number) - the width of the image.
 - `names` (object) - map of locale to value for the names of the event.
+- `outlets` (array) - list of outlets for the event.
+    * `url` (string) - the URL of the outlet.
+    * `type` (string) - the type of outlet (allowedValues:["venueBoxOffice"]).
 - `place` (object) - the place where the event occurs.
     * `names` (object) - map of locale to value for the names of the place.
     * `address` (object) - the address of the place of the event.
