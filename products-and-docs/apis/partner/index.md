@@ -1578,6 +1578,7 @@ Example:
 | Event had no visible/usable ticket types for the current channel | 20046 | 400 | API user is not configured to sell the specified ticket types |
 | Payment method has no funds available | 20129 | 400| |
 | Connection error to upstream service | 502 | 502| |
+| Ticket limit reached | 10161 | 400 | User ticket limit has been reached |
 | Upstream service timeout | 504 | 504 | | 
 
 
