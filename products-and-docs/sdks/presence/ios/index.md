@@ -13,4 +13,4 @@ keywords: Presence, SDK, integration, iOS
 
 ## Documentation
 
-[Download](/products-and-docs/sdks/presence/ios/Presence_SDK_IOS.docx) Presence SDK iOS integration guide.
+[Download](/products-and-docs/sdks/presence/ios/Presence_SDK_IOS.pdf) Presence SDK iOS integration guide.

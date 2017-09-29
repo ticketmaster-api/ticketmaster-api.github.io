@@ -13,5 +13,4 @@ keywords: Presence, SDK, integration, Android
 
 ## Documentation
 
-[Download](/products-and-docs/sdks/presence/android/Presence_SDK_Android.docx) Presence SDK Android integration guide.
-
+[Download](/products-and-docs/sdks/presence/android/Presence_SDK_Android.pdf) Presence SDK Android integration guide.
