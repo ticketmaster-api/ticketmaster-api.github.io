@@ -17,4 +17,4 @@ keywords: Presence, SDK, integration, iOS
 
 ## SDK
 
-[Download](/products-and-docs/sdks/presence/ios/iOS_Presence_SDK-Version_1_1_0.zip) Presence SDK iOS.
+[Download](/products-and-docs/sdks/presence/ios/iOS_Presence_SDK_-_Version_1_1_1.zip) Presence SDK iOS.
