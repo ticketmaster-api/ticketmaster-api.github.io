@@ -34,16 +34,16 @@ describe("EDWWidget", () => {
 			writable: true,
 			value: 'developer.ticketmaster.com'
 		});
-		expect(widget.themeUrl).toBe('http://developer.ticketmaster.com/products-and-docs/widgets/event-discovery/1.0.0/theme/');
+		expect(widget.themeUrl).toBe('https://developer.ticketmaster.com/products-and-docs/widgets/event-discovery/1.0.0/theme/');
 	});
 
 	it('widget #portalUrl should be Defined', function(){
-		expect(widget.portalUrl).toBe('http://developer.ticketmaster.com/');
+		expect(widget.portalUrl).toBe('https://developer.ticketmaster.com/');
 		Object.defineProperty(window.location, 'host', {
 			writable: true,
 			value: 'developer.ticketmaster.com'
 		});
-		expect(widget.portalUrl).toBe('http://developer.ticketmaster.com/');
+		expect(widget.portalUrl).toBe('https://developer.ticketmaster.com/');
 	});
 
 	it('#events should be Defined', () => {
@@ -733,7 +733,7 @@ describe("EDWWidget", () => {
 
 	it('#makeImageUrl should be defined', () => {
 		widget.makeImageUrl('test');
-		expect(widget.makeImageUrl('test')).toBe('https://app.ticketmaster.com/discovery/v2/events/test/images.json');
+		expect(widget.makeImageUrl('test')).toBe('https://app.ticketmaster.com/discovery-widgets/v2/events/test/images.json');
 	});
 
 	it('#reduceParamsAndReloadEvents should be defined', () => {

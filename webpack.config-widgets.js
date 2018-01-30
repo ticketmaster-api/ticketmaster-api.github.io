@@ -100,6 +100,7 @@ switch (ENV) {
 		module.exports = configWidget('event-discovery');
 		break;
 	case 'calendar-widget-1.0.0-once' :
+	case 'calendar-widget-new':
 		module.exports = configWidget('calendar');
 		break;
 	case 'calendar-widget-1.0.0' :

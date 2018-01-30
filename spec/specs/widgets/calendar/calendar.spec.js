@@ -1,6 +1,13 @@
 var $ = require('jquery');
 window.$ = window.jQuery = $;
 
+import TicketmasterCalendarWidget from 'products-and-docs/widgets/calendar/1.0.0/src/classes/TicketmasterCalendarWidget.js';
+import TabsControls from 'products-and-docs/widgets/calendar/1.0.0/src/classes/TabsControls.js';
+import SelectorControls from 'products-and-docs/widgets/calendar/1.0.0/src/classes/SelectorControls.js';
+import WeekScheduler from 'products-and-docs/widgets/calendar/1.0.0/src/classes/WeekScheduler.js';
+import MonthScheduler from 'products-and-docs/widgets/calendar/1.0.0/src/classes/MonthScheduler.js';
+import YearScheduler from 'products-and-docs/widgets/calendar/1.0.0/src/classes/YearScheduler.js';
+
 describe("CalendarWidget", () => {
 	let widget,
 		widgetWeek,
@@ -22,14 +29,14 @@ describe("CalendarWidget", () => {
 	beforeAll(() => {
 		window.__VERSION__ = 'mockedVersion';
 		setFixture();
-		module = require('products-and-docs/widgets/calendar/1.0.0/src/main-widget.es6');
-		widget = new module.TicketmasterCalendarWidget();
-		widget = new module.TicketmasterCalendarWidget(document.querySelector('div[w-type="calendar"]'));
-		widgetWeek = new module.WeekScheduler();
-		widgetMonth = new module.MonthScheduler();
-		widgetYear = new module.YearScheduler();
-		tabsControls = new module.TabsControls();
-		selectorControls = new module.SelectorControls();
+		// module = require('products-and-docs/widgets/calendar/1.0.0/src/main-widget.es6');
+		widget = new TicketmasterCalendarWidget();
+		widget = new TicketmasterCalendarWidget(document.querySelector('div[w-type="calendar"]'));
+		widgetWeek = new WeekScheduler();
+		widgetMonth = new MonthScheduler();
+		widgetYear = new YearScheduler();
+		tabsControls = new TabsControls(document.querySelector('div[w-type="calendar"]'));
+		selectorControls = new SelectorControls();
 	});
 
 	beforeEach(function() {
@@ -49,7 +56,7 @@ describe("CalendarWidget", () => {
 			writable: true,
 			value: 'developer.ticketmaster.com'
 		});
-		expect(widget.themeUrl).toBe('http://developer.ticketmaster.com/products-and-docs/widgets/calendar/1.0.0/theme/');
+		expect(widget.themeUrl).toBe('https://developer.ticketmaster.com/products-and-docs/widgets/calendar/1.0.0/theme/');
 	});
 
 	it('#events should be Defined', () => {
@@ -119,21 +126,21 @@ describe("CalendarWidget", () => {
 	});
 
 	it('widget #portalUrl should be Defined', function(){
-		expect(widget.portalUrl).toBe('http://developer.ticketmaster.com/');
+		expect(widget.portalUrl).toBe('https://developer.ticketmaster.com/');
 		Object.defineProperty(window.location, 'host', {
 			writable: true,
 			value: 'developer.ticketmaster.com'
 		});
-		expect(widget.portalUrl).toBe('http://developer.ticketmaster.com/');
+		expect(widget.portalUrl).toBe('https://developer.ticketmaster.com/');
 	});
 
 	it('widget #legalNoticeUrl should be Defined', function(){
-		expect(widget.legalNoticeUrl).toBe('http://developer.ticketmaster.com/support/terms-of-use/');
+		expect(widget.legalNoticeUrl).toBe('https://developer.ticketmaster.com/support/terms-of-use/');
 		Object.defineProperty(window.location, 'host', {
 			writable: true,
 			value: 'developer.ticketmaster.com/support/terms-of-use/'
 		});
-		expect(widget.legalNoticeUrl).toBe('http://developer.ticketmaster.com/support/terms-of-use/');
+		expect(widget.legalNoticeUrl).toBe('https://developer.ticketmaster.com/support/terms-of-use/');
 	});
 
 	it('#events should be Defined', () => {
@@ -745,7 +752,7 @@ describe("CalendarWidget", () => {
 
 	it('#makeImageUrl should be defined', () => {
 		widget.makeImageUrl('test');
-		expect(widget.makeImageUrl('test')).toBe('https://app.ticketmaster.com/discovery/v2/events/test/images.json');
+		expect(widget.makeImageUrl('test')).toBe('https://app.ticketmaster.com/discovery-widgets/v2/events/test/images.json');
 	});
 
 	it('#parseEvent should return currentEvent', () => {
@@ -885,16 +892,10 @@ describe("CalendarWidget", () => {
 
   /* Tabs Controls [START] */
 
-	it('tabsContorls #removeActiveTab should be BeDefined', function(){
+	it('tabsContorls #setActiveTab should be BeDefined', function(){
 		let this_ = document.body.querySelector('.tabs');
-		tabsControls.removeActiveTab(this_);
-		expect(typeof(tabsControls.removeActiveTab)).toBe('function');
-	});
-
-	it('tabsContorls #selActiveTab should be BeDefined', function(){
-		let this_ = document.body.querySelector('.tabs');
-		tabsControls.selActiveTab(2,this_);
-		expect(typeof(tabsControls.selActiveTab)).toBe('function');
+		tabsControls.setActiveTab(2);
+		expect(typeof(tabsControls.setActiveTab)).toBe('function');
 		document.querySelector('.tb').click();
 	});
 
@@ -919,7 +920,7 @@ describe("CalendarWidget", () => {
 
 	it('widget #tmWidgetWhiteList should be BeDefined', function(){
 		widgetWeek.apiUrl;
-		expect(widgetWeek.apiUrl).toBe('https://app.ticketmaster.com/discovery/v2/events.json');
+		expect(widgetWeek.apiUrl).toBe('https://app.ticketmaster.com/discovery-widgets/v2/events.json');
 	});
 
 	it('widget #tmWidgetWhiteList should be BeDefined', function(){
@@ -966,7 +967,7 @@ describe("CalendarWidget", () => {
 
 	it('widgetMonth #tmWidgetWhiteList should be BeDefined', function(){
 		widgetMonth.apiUrl;
-		expect(widgetMonth.apiUrl).toBe('https://app.ticketmaster.com/discovery/v2/events.json');
+		expect(widgetMonth.apiUrl).toBe('https://app.ticketmaster.com/discovery-widgets/v2/events.json');
 	});
 
 	it('widgetMonth #tmWidgetWhiteList should be BeDefined', function(){
@@ -1002,7 +1003,7 @@ describe("CalendarWidget", () => {
 	/* WidgetYear [START] */
 	it('widgetYear #tmWidgetWhiteList should be BeDefined', function(){
 		widgetYear.apiUrl;
-		expect(widgetYear.apiUrl).toBe('https://app.ticketmaster.com/discovery/v2/events.json');
+		expect(widgetYear.apiUrl).toBe('https://app.ticketmaster.com/discovery-widgets/v2/events.json');
 	});
 
 	it('widgetYear #tmWidgetWhiteList should be BeDefined', function(){
@@ -1050,6 +1051,7 @@ describe("CalendarWidgetWithoutSpyOn", () => {
 		document.body.innerHTML += '<div class="tabs"><span class="tb active">Day</span><span class="tb">Week</span><span class="tb">Month</span><span class="tb">Year</span></div>';
 		document.body.innerHTML += '<div class="tabs-container"><div class="tab active">';
 		document.body.innerHTML += '<div class="sliderLeftSelector"><span class="selector-title">June 27</span><span class="selector-content" tabindex="-1"><span class="active" w-period="Tue Jun 27 2017 17:28:24 GMT+0300 (FLE Daylight Time)">June 27</span><span w-period="Wed Jun 28 2017 17:28:24 GMT+0300 (FLE Daylight Time)">June 28</span><span w-period="Thu Jun 29 2017 17:28:24 GMT+0300 (FLE Daylight Time)">June 29</span><span w-period="Fri Jun 30 2017 17:28:24 GMT+0300 (FLE Daylight Time)">June 30</span><span w-period="Sat Jul 01 2017 17:28:24 GMT+0300 (FLE Daylight Time)">July 1</span><span w-period="Sun Jul 02 2017 17:28:24 GMT+0300 (FLE Daylight Time)">July 2</span><span w-period="Mon Jul 03 2017 17:28:24 GMT+0300 (FLE Daylight Time)">July 3</span></span></div>';
+		document.body.innerHTML += '<div class="sliderLeftSelector"><span class="selector-title">June 27</span><span class="selector-content" tabindex="-1"><span class="active" w-period="Tue Jun 27 2017 17:28:24 GMT+0300 (FLE Daylight Time)">June 27</span><span w-period="Wed Jun 28 2017 17:28:24 GMT+0300 (FLE Daylight Time)">June 28</span><span w-period="Thu Jun 29 2017 17:28:24 GMT+0300 (FLE Daylight Time)">June 29</span><span w-period="Fri Jun 30 2017 17:28:24 GMT+0300 (FLE Daylight Time)">June 30</span><span w-period="Sat Jul 01 2017 17:28:24 GMT+0300 (FLE Daylight Time)">July 1</span><span w-period="Sun Jul 02 2017 17:28:24 GMT+0300 (FLE Daylight Time)">July 2</span><span w-period="Mon Jul 03 2017 17:28:24 GMT+0300 (FLE Daylight Time)">July 3</span></span></div>';
 		document.body.innerHTML += '<div class="sliderRightSelector"><span class="selector-title">All Events</span><span class="selector-content" tabindex="-1"><span class="active" w-classificationid="">All Events</span><span w-classificationid="KZFzniwnSyZfZ7v7na">Arts &amp; Theatre</span><span w-classificationid="KZFzniwnSyZfZ7v7nn">Film</span><span w-classificationid="KZFzniwnSyZfZ7v7n1">Miscellaneous</span><span w-classificationid="KZFzniwnSyZfZ7v7nJ">Music</span><span w-classificationid="KZFzniwnSyZfZ7v7nE">Sports</span></span></div>';
 		document.body.innerHTML += '</div><div class="tab"></div><div class="tab">';
 		document.body.innerHTML += '<div class="events-root-container border"><div class="spinner-container"></div><div class="weekSсheduler"><div class="event-message-container">Message</div></div></div>';
@@ -1061,12 +1063,11 @@ describe("CalendarWidgetWithoutSpyOn", () => {
 	beforeAll(() => {
 		window.__VERSION__ = 'mockedVersion';
 		setFixture();
-		module = require('products-and-docs/widgets/calendar/1.0.0/src/main-widget.es6');
-		widget = new module.TicketmasterCalendarWidget();
-		widget = new module.TicketmasterCalendarWidget(document.querySelector('div[w-type="calendar"]'));
-		widgetWeek = new module.WeekScheduler();
-		widgetMonth = new module.MonthScheduler();
-		widgetYear = new module.YearScheduler();
+		widget = new TicketmasterCalendarWidget();
+		widget = new TicketmasterCalendarWidget(document.querySelector('div[w-type="calendar"]'));
+		widgetWeek = new WeekScheduler();
+		widgetMonth = new MonthScheduler();
+		widgetYear = new YearScheduler();
 	});
 
 
