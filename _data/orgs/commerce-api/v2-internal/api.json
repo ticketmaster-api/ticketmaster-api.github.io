@@ -1500,6 +1500,64 @@
     "AttributeRelationships": {
       "type": "object"
     },
+    "AvdTicketItemDetailMetadata": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/Metadata"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "token": {
+              "type": "string"
+            },
+            "price": {
+              "$ref": "#/definitions/AvdTicketItemDetailMetadataPrice"
+            }
+          }
+        }
+      ]
+    },
+    "AvdTicketItemDetailMetadataPrice": {
+      "type": "object",
+      "properties": {
+        "amount": {
+          "type": "string"
+        },
+        "currency": {
+          "type": "string"
+        }
+      }
+    },
+    "Buyer": {
+      "type": "object",
+      "properties": {
+        "firstName": {
+          "type": "string"
+        },
+        "lastName": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "phoneNumber": {
+          "type": "string"
+        },
+        "streetAddress": {
+          "type": "string"
+        },
+        "city": {
+          "type": "string"
+        },
+        "state": {
+          "type": "string"
+        },
+        "postalCode": {
+          "type": "string"
+        }
+      }
+    },
     "Cart": {
       "type": "object",
       "properties": {
@@ -1698,6 +1756,17 @@
         "sendRedemptionEmail": {
           "type": "boolean",
           "default": false
+        },
+        "buyerInfo": {
+          "$ref": "#/definitions/Buyer"
+        },
+        "paymentInfo": {
+          "$ref": "#/definitions/Payment"
+        },
+        "cartHoldTimeSec": {
+          "type": "integer",
+          "format": "int32",
+          "readOnly": true
         }
       }
     },
@@ -1712,6 +1781,10 @@
           "items": {
             "$ref": "#/definitions/AddProductRequest"
           }
+        },
+        "cartHoldTimeSec": {
+          "type": "integer",
+          "format": "int32"
         }
       }
     },
@@ -2038,6 +2111,17 @@
         }
       }
     },
+    "Item": {
+      "type": "object",
+      "properties": {
+        "token": {
+          "type": "string"
+        },
+        "price": {
+          "$ref": "#/definitions/Money"
+        }
+      }
+    },
     "ItemDetail": {
       "type": "object",
       "discriminator": "type",
@@ -2123,6 +2207,18 @@
         }
       }
     },
+    "OfferAttribute": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string"
+        },
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
     "OfferFilter": {
       "type": "object",
       "properties": {
@@ -2152,8 +2248,24 @@
         "password": {
           "type": "string"
         },
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Item"
+          }
+        },
+        "attributes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/OfferAttribute"
+          }
+        },
         "offer": {
           "type": "string"
+        },
+        "qty": {
+          "type": "integer",
+          "format": "int32"
         }
       }
     },
@@ -2260,17 +2372,11 @@
     "Payment": {
       "type": "object",
       "properties": {
-        "id": {
+        "invoice": {
           "type": "string"
         },
-        "paymentType": {
-          "type": "string"
-        },
-        "amount": {
-          "type": "string"
-        },
-        "currency": {
-          "type": "string"
+        "totalAmount": {
+          "$ref": "#/definitions/PaymentAmount"
         }
       }
     },
@@ -2628,6 +2734,11 @@
         "pollingCallbackUrl": {
           "type": "string"
         },
+        "cartHoldTimeSec": {
+          "type": "integer",
+          "format": "int32",
+          "readOnly": true
+        },
         "deliveries": {
           "type": "array",
           "items": {
@@ -2641,6 +2752,11 @@
       "properties": {
         "pollingCallbackUrl": {
           "type": "string"
+        },
+        "cartHoldTimeSec": {
+          "type": "integer",
+          "format": "int32",
+          "readOnly": true
         },
         "payments": {
           "type": "array",
@@ -2735,6 +2851,27 @@
         }
       ]
     },
+    "TicketItem": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/Item"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "section": {
+              "type": "string"
+            },
+            "row": {
+              "type": "string"
+            },
+            "seat": {
+              "type": "string"
+            }
+          }
+        }
+      ]
+    },
     "TicketItemGroup": {
       "allOf": [
         {
@@ -2805,6 +2942,11 @@
           "items": {
             "$ref": "#/definitions/UpdateProductRequest"
           }
+        },
+        "cartHoldTimeSec": {
+          "type": "integer",
+          "format": "int32",
+          "readOnly": true
         }
       }
     },

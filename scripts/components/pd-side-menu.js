@@ -196,8 +196,10 @@
                     0;     // property not defined
 
                 if (isMacWebkit) {
-                    deltaX /= 30;
+                    /*
+                	  deltaX /= 30;
                     deltaY /= 30;
+                    */
                 }
 
                 if (navigator.userAgent.indexOf("Firefox") != -1 && e.type !== "DOMMouseScroll") {
