@@ -1,0 +1,14 @@
+﻿---
+layout: partners-doc
+
+pname: "Street Team"
+
+categories: 
+  - partner
+  - certified
+  
+group: "Europe & Australia/New Zeeland Partners"
+
+tile_logo: "streetteam.png"
+tile_description: "Street Team turns word of mouth into your best sales channel.Get your biggest fans to sell tickets to their friends in exchange for rewards"
+---
