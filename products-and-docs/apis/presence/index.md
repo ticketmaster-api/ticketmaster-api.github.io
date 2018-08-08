@@ -25,7 +25,12 @@ The Ticketmaster Presence API allows you to validate tickets and manage scanning
 
 #### Endpoint
 
-The base URL for the Web API is `https://app.ticketmaster.com/presence/v1/`
+The base URL for the Web API are:
++ Production: `https://app.ticketmaster.com/presence/v1/`
++ Pre-Production: `https://livenation-test.apigee.net/presence-api-preprod/presence/v1/`
+
+All development and testing has to be performed on the pre-production environment. The pre-production environment mirrors the production environment and test executed in pre-production will yield about the same results they will provide in the production environment.
+Any testing performed in the Production environment, should be just exploratory or a smoke test to confirm functionality is deployed correctly. No Load Testing is allowed in the Production environment.
 
 {: #authentication}
 #### Authentication
@@ -52,15 +57,27 @@ The Ticket Service API allows you to enter, exit and perform secondary scans on 
 Check the validity of ticket and mark it as entered, exited or secondary scanned at an event.
 {: .article .console-link}
 
+There are two types of scanning, **External Scanning** and **Internal Scanning**. 
+* External scanning is all the scanning that allows fans access to the venue.
+* Internal Scanning is all the scanning that allows access to restricted sections inside the venue, such as VIP section or access to a suite.
+
 **Method:** POST.
 Authentication required.
 
 presence/{version}/ticket/enter
 {: .code .red}
+
+Sends an external scan entry message
+
 presence/{version}/ticket/exit
 {: .code .red}
+
+Sends and external or internal scan exit message
+
 presence/{version}/ticket/validate
 {: .code .red}
+
+Sends and internal scan entry message
 
 ### Request body structure:
 
@@ -72,7 +89,7 @@ presence/{version}/ticket/validate
 * `venueId` (string) - **Required** - The venue ID that the device belongs to
 * `deviceId` (int) - **Required** - The ID of the device, this will be provided at device configuration
 * `gateId` (int) - **Required** - The ID of the gate that the device belongs to, this will be provided at device configuration
-* `scanTime` (long) - **Required** - The Unix timestamp in milliseconds of the ticket scan
+* `scanTime` (long) - **Required** - The Unix timestamp in **milliseconds** of the ticket scan
 
 ### Response structure:
 
@@ -90,9 +107,13 @@ The following statuses will be returned by these endpoints
 
 | Status              | Description |
 | ------------------- | ----------- |
-| OKAY                | Ticket is entered |
+| OKAY                | Ticket is entered, external or internal |
 | EXIT                | Ticket was exited |
-| INTERNAL_SCAN       | Ticket was internal scanned |
+| INTERNAL_SCAN_EXIT  | Internal Scan Exit |
+| DUPLICATE           | Same ticket was sent more than once within 2 seconds time span |
+| EXIT_NOT_PERMITTED  | Exit not allowed at this moment |
+| INTERNAL_SCAN_ALREADY_ENTERED | Ticket already entered in the internal gate |
+| INTERNAL_SCAN_EXIT_NOT_PERMITTED | Ticket not valid for exit on the internal gate |
 | NOT_FOUND           | Ticket was not found |
 | BAD_REQUEST         | The request was not valid |
 | ALREADY_ENTERED     | The ticket was already entered |
@@ -101,8 +122,19 @@ The following statuses will be returned by these endpoints
 | END_RESTRICTION     | Scan violates end time rule |
 | SECTION_RESTRICTION | Scan violates section rule |
 | EVENT_RESTRICTION   | Scan violates event rule |
+| ACCESS_GROUP_RESTRICTION | Scan violates access group rule |
+| XNUM_RESTRICTION    | Scan violates Xnum rule |
+| MARK_RESTRICTION    | There is a Mark on the ticket |
 | TOO_EARLY           | Event has not yet started |
 | TOO_LATE            | Event is over |
+| BAD_TOKEN           | Bad Token |
+| OPEN_SEAT           | Open Seat |
+| TRANSFER            | Accepted Transfer |
+| GENERAL_ERROR       | A general error has occurred |
+
+`The only status where a ticket holder should be allowed entry is the OKAY status. All other status should be considered as an entry denied.`
+
+`The only statuses where an exit is valid are the EXIT and INTERNAL_EXIT_SCAN status. All other statuses should be considered as an invalid exit.`
 
 {: .aside}
 >[JavaScript](#js)
@@ -166,7 +198,7 @@ Host: app.ticketmaster.com
 {
   "result": {
     "status": "OKAY",
-    "message": "Okay"
+    "message": "'Welcome IN"
   },
   "message": {
     "tickets": [
@@ -178,6 +210,43 @@ Host: app.ticketmaster.com
   }
 }
 {% endhighlight %}
+
+### External Scanning
+
+For External Scanning the scanner doesn't require extra configuration and calls to the enter and exit endpoints Presence will assume it is an external gate. The external gates have the following rules:
+* The first time a valid ticket is scanned as a entry (using enter endpoint), the ticket wil be marked as ENTERED
+* Any subsequent enter scans for the same ticket will return as an Already Entered ticket and the access will be denied
+* The first Exit scan performed to an already entered ticket will mark the ticket as EXITED
+* Any subsequent Exit scans performed to an already exited ticket will return a Exit Not Permitted response.
+* Any exit scan to a non entered ticket will return a Exit Not Permitted response.
+
+**End points used for external scanning:**    
+  
+presence/{version}/ticket/enter
+{: .code .red}
+presence/{version}/ticket/exit
+{: .code .red}
+
+### Internal Scanning
+
+For Internal Scanning the scanner is required to be assigned to a gate configured with an "Internal Scans" rule. The rule has an option to allow multiple entries with the same ticket or to require an exit before allowing the same ticket again. Please consult the Presence UI training materials for more information.    
+The internal gates have the following rules:
+* The first time a valid ticket is scanned as an internal entry (using validate endpoint) it will be added as an internal entry
+* if the ticket has not been scanned as an external entry already, the internal entry will also mark the ticket as ENTERED
+* If the gate is configured to NOT require exit scans, any subsequent internal entry scans will be accepted
+* If the gate is configured to require exit scans, any subsequent internal entry scans will be denied with an Internal Scan Already Entered result
+* The first exit scan performed to an already internal entered ticket will mark the ticket as EXIT INTERNAL
+* Any subsequent scans performed to an already internal exit ticket will return an Internal Scan Exit not Permitted response
+* An internal exit scan to a ticket that has not been internal entered, will return  Internal Scan Exit not Permitted
+	* A gate configured for internal scan will NOT be able to perform external exit scans.
+* An internal entry scan (validate) from a scanner on a gate not configured for internal scanning will accept the ticket as an Internal Entry
+
+**End points used for internal scanning:**    
+
+presence/{version}/ticket/validate
+{: .code .red}
+presence/{version}/ticket/exit
+{: .code .red}
 
 {: .article #device-service}
 ## Device Service 
@@ -320,7 +389,10 @@ presence/{version}/device
 
 {: .nested-list }
 * `venue` (string) - **Required** - the id of the venue that the device is configured too.
-* `mac` (string) - **Required** - A MAC address for the device
+* `mac` (string) - **Optional** - A MAC address for the device. If you send mac address, do not send device ID
+* `device` (string) - **Optional** - The device Id assigned to the device. If you send device, do not send the mac address.
+ 
+ Either a `mac` or `device` parameter is required.
 
 ### Response structure:
 
@@ -407,3 +479,25 @@ Host: app.ticketmaster.com
     }
 }
 {% endhighlight %}
+
+{: .article #FAQ}
+## F.A.Q.
+**Q:** How do I get the device’s assigned gate id from Presence at device initialization?
+
+**A:** The Device endpoint will return the gate Id among other information related to the scanner. Please refer to the Device Information section on this page. 
+
+**Q:** Why do I get “NOT FOUND” when the event is not set for today?
+
+**A:** The barcode is validated against the active events in Presence. If the event is not active, either because it is in the past, or because it is in the future, all barcodes belonging to that event won't be included in the search domain. An event is active only from the beginning of the scanning time to the end of scanning time, normally 12 hours before and 12 hours after the event's start time.
+
+**Q:** How do I make the scanners appear on the UI on a specific order?
+
+**A:** The scanners will appear on the order they are added to the system. If you want the devices to appear on a specific order, you need to add the devices in that order.
+
+**Q:** How can I scan barcodes when I am off-line?
+
+**A:** At this point there is no support for off-line scanning for third-parties. A project is in the works to support this feature and an announcement will be made when that functionality is released to Production.
+
+**Q:** What is the expected response time for an api call?
+
+**A:** The response time varies based on the end-point used and the information being sent, on an call to the entry endpoint, if the information is correct and complete. On the ENTRY endpoint, a response of more than 3 seconds should be considered a time-out.
